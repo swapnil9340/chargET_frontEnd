@@ -17,6 +17,9 @@ const Sldeslider = () => {
           <img className={classes.icon} src="Icon.ico"></img>
         </div>}
       </div>
+      <div className="Sidebarlist">
+ 
+      </div>
     </div>
   );
 };
