@@ -33,7 +33,7 @@ padding: 0;
     font-family: "Work Sans";
     font-weight: 500;
     line-height: 20px;  
-    border-bottom: 1px solid #ccc; 
+    border-bottom: 2px solid #ccc; 
   }
 .closebuttom{
     margin-right: -16px;
@@ -46,27 +46,3 @@ padding: 0;
   height: 22px;
 }
 
-
-.menu-icon {
-    /* color: #ffffff; */
-    display: flex;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-}
-
-.bar {
-    width: 16px;
-    height: 2px;
-    background-color: blue;
-    margin: 2px 0;
-}
-
-.arrow {
-    width: 0;
-    height: 0;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    border-left: 6px solid blue;
-    margin-left: 4px;
-}

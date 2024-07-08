@@ -8,7 +8,7 @@ export default function layout({ children }) {
                 <Slider></Slider>
             </div>
             <div className="w-100 border"><main>{children}</main></div>
-            <div className="col-2  border">leftbar</div>
+            <div className="col-2 border">leftbar</div>
         </div>
     )
 }
