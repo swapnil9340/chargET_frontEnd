@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Sldeslider = () => {
-  const [isOpen, setIsOpen] = useState(true );
+  const [isOpen, setIsOpen] = useState(true);
 
   console.log(isOpen);
 
@@ -12,7 +12,7 @@ const Sldeslider = () => {
                <div className="option12">{`FullScreens`}</div>
                
         </div>
-        <div className="closebuttom">
+        <div className="closebuttom"  onClick={() => setIsOpen(!isOpen)}>
             <img src="Icon.ico"></img>
         </div>
     </div>
