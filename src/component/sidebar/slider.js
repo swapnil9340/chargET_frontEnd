@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import classes from "../../styles/style.module.scss"
+import { IoReorderThreeOutline } from "react-icons/io5";
 
 const Sldeslider = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -7,16 +9,15 @@ const Sldeslider = () => {
 
   return (
     <div className={isOpen ? "slid" : "sidebar_head"} >
-    <div className="d-flex">
-    <div className="option">
-               <div className="option12">{`FullScreens`}</div>
-               
+      <div className="d-flex">
+        <div className="option">
+          {isOpen ?  <div className="option12">{`FullScreens`}</div> : <IoReorderThreeOutline  onClick={() => setIsOpen(!isOpen)}/>}
         </div>
-        <div className="closebuttom"  onClick={() => setIsOpen(!isOpen)}>
-            <img src="Icon.ico"></img>
-        </div>
+     { isOpen &&   <div className="closebuttom" onClick={() => setIsOpen(!isOpen)}>
+          <img className={classes.icon} src="Icon.ico"></img>
+        </div>}
+      </div>
     </div>
-  </div>
   );
 };
 
