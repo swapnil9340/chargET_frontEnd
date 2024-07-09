@@ -9,6 +9,9 @@ padding: 0;
     background-color: #06367a;
     width: 88px;
     height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: width 0.2s ease-out; /* Transition width only */
   }
   
@@ -17,11 +20,70 @@ padding: 0;
     background-color: #06367a;
     border-top-left-radius: 10px;
     /* State when isOpen is true */
-    width: 202px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 900px;
     transition: width 0.2s ease-out; /* Transition width only */
   }
+  .slid .option12{
+    font-size: 22px;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+  }
+  .sidebar_head .sidebaritem a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sidebar_head p span:nth-child(1){
+    font-size: 24px !important;
+  }
+  .sidebar_head .sidebaritem a span:nth-child(1){
+    font-size: 24px;
+    margin: 0 auto;
+  }
+  .sidebar_head .sidebaritem a span:nth-child(2){
+   display: none;
+  }
+  .sidebar_head p span:nth-child(2) , .sidebar_head p span:nth-child(3){
+    display: none;
+  }
 
+  .sidebaritem{
+    margin-bottom: 10px;
+  }
+    .sidebaritem a{
+                font-size: 16px;
+                width: 100%;
+                font-weight: 600;
+                color: #fff;
+                line-height: 1.4;
+                text-decoration: none; 
+                padding: 5px; 
+                display: block;
+                font-family: "Inter", sans-serif;
+    }
+    .sidebaritem a:hover{
+      font-weight: 600;
+      font-size: 17px;
+      transition: all .5s ease-in-out;
+     
+    }
+    a.activeLink{
+      background-color: #fff;
+      color: #06367A;
+      border-radius: 5px;
+      transition: all .6s ease;
+      font-weight: 700;
+    }
+    .sidebaritem a span:nth-child(1){
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 15px; 
+    }
   .option{
     width: 100%;
     height: 70px;

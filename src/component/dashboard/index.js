@@ -1,10 +1,9 @@
-import React from "react";
-
+import Suggestion from "../suggestions/suggestion";
 export default function Home() {
 
 return(
     <div>
-        <p>dddd</p>
+        <Suggestion></Suggestion>
     </div>
 )
 }
