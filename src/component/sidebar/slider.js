@@ -3,6 +3,7 @@ import classes from "../../styles/style.module.scss"
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import Image from 'next/image'
+import { PiRectangleDashed } from "react-icons/pi";
 import { BiSolidPieChartAlt2 } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import { IoNewspaper } from "react-icons/io5";
@@ -19,7 +20,7 @@ const Sldeslider = () => {
       <div>
       <div className="d-flex">
         <div className="option">
-          {isOpen ? <div className="option12">{`Full Screens`}</div> :<span> <IoReorderThreeOutline size={24} onClick={() => setIsOpen(!isOpen)}/></span>  }
+          {isOpen ? <div className="option12"> <span><PiRectangleDashed/></span>{`Full Screens`}</div> :<span> <IoReorderThreeOutline size={32} onClick={() => setIsOpen(!isOpen)}/></span>  }
         </div>
         { isOpen &&   <div className="closebuttom" onClick={() => setIsOpen(!isOpen)}>
           <img className={classes.icon} src="icon1.png"></img>
@@ -58,7 +59,7 @@ const Sldeslider = () => {
               <p className="m-0"><span><MdHelpCenter/></span> <span>{`Help`}</span></p>
             </div>
             <div className={classes.profilesection}>
-              <div className="d-flex">
+              <div className="d-flex align-items-center">
                 <div className={classes.profileCircle}>
                   <Image src="/user.jpg" width={100} height={100} alt="Picture of the author"/>
                 </div>

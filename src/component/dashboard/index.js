@@ -1,9 +1,14 @@
 import Suggestion from "../suggestions/suggestion";
+import Card from "../Card/card";
+import Homesection from "../Homesection/Homesection";
+import Header from "../Header/Header";
 export default function Home() {
-    const classes = useStyles();
 return(
-    <div>
-        <Suggestion></Suggestion>
+    <div className="px-3">
+        <Header/>
+        <Homesection title={'AI Suggetions'} />
+        <Homesection title={'Your Devices'}/>
+      
     </div>
 )
 }

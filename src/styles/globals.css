@@ -19,8 +19,7 @@ padding: 0;
     margin-right: 11px;
     background-color: #06367a;
     border-top-left-radius: 10px;
-    /* State when isOpen is true */
-    width: 280px;
+    width: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,7 +31,11 @@ padding: 0;
     font-weight: 600;
     font-family: "Inter", sans-serif;
     line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
+  
   .sidebar_head .sidebaritem a{
     display: flex;
     justify-content: center;
@@ -66,12 +69,8 @@ padding: 0;
                 display: block;
                 font-family: "Inter", sans-serif;
     }
-    .sidebaritem a:hover{
-      font-weight: 600;
-      font-size: 17px;
-      transition: all .5s ease-in-out;
-     
-    }
+    
+    
     a.activeLink{
       background-color: #fff;
       color: #06367A;
@@ -107,4 +106,47 @@ padding: 0;
   width: 24px;
   height: 22px;
 }
+.shinebtn:hover {
+  animation-name: shine;
+  animation-duration: 300ms;
+}
+@keyframes shine {
+  0% {
+    background: linear-gradient(
+      30deg, 
+      hsl(260, 85%, 95%) 0%, 
+      hsl(215, 91%, 25%) 25%
+    );
+  }
 
+  25% {
+    background: linear-gradient(
+      30deg, 
+      hsl(215, 91%, 25%) 0%, 
+      hsl(260, 85%, 95%) 25%, 
+      hsl(215, 91%, 25%) 50%);
+  }
+
+  50% {
+    background: linear-gradient(
+      30deg,
+      hsl(215, 91%, 25%) 0%, 
+      hsl(260, 85%, 95%) 50%, 
+      hsl(215, 91%, 25%) 75%); 
+  }
+
+  75% {
+    background: linear-gradient(
+      30deg, 
+      hsl(215, 91%, 25%) 0%, 
+      hsl(260, 85%, 95%) 75%, 
+      hsl(215, 91%, 25%) 100%); 
+  }
+
+  100% {
+    background: linear-gradient(
+      30deg, 
+      hsl(215, 91%, 25%) 0%, 
+      hsl(260, 85%, 95%) 100%); 
+  }
+}
