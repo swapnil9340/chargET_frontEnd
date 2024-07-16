@@ -154,3 +154,20 @@ padding: 0;
       hsl(260, 85%, 95%) 100%); 
   }
 }
+
+
+.header__center {
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-column-gap: 1.2rem;
+  align-items: center;
+}
+
+.header__center::before,
+.header__center::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: currentColor;
+}

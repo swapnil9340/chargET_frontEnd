@@ -1,4 +1,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+.Header {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.Header .searchbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f5f9fd;
+  padding: 5px 20px;
+  border-radius: 30px;
+  flex: 1;
+}
+.Header .searchbar input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 2;
+}
+.Header .searchbar input:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+.Header .searchbar input::-moz-placeholder {
+  color: #1b1b1b;
+  opacity: 1;
+  font-weight: 600;
+}
+.Header .searchbar input::placeholder {
+  color: #1b1b1b;
+  opacity: 1;
+  font-weight: 600;
+}
+.Header .searchbar span {
+  font-size: 22px;
+}
+.Header .headerbutton {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #06367A;
+  border: none;
+  border-radius: 50px;
+  line-height: 2;
+  padding: 5px 20px;
+  display: flex;
+  gap: 10px;
+}
+
 .icon {
   width: 22px;
 }
@@ -135,7 +191,7 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border: 3px solid #06367A;
+  border: 3px solid #06367a;
 }
 .suggestionsection .suggestioncircle .suggestionimagebox {
   width: 90%;
@@ -152,4 +208,186 @@
   font-weight: 500;
   line-height: 1.5;
   color: #242424;
+}
+
+.card {
+  width: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.card .cardimage {
+  width: 100%;
+  max-height: 200px;
+}
+.card .cardimage img {
+  width: 100%;
+  height: 100%;
+}
+.card .cardInfo {
+  padding: 10px;
+}
+.card .cardInfo h3.locationName {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #13264d;
+}
+.card .cardInfo h4.OwnerName {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #363636;
+}
+.card .cardInfo p.priceBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card .cardInfo p.priceBar span {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #363636;
+}
+.card .cardInfo p.priceBar span:nth-child(2) {
+  font-weight: 400;
+}
+.card .postionbutton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #06367A;
+  color: #06367A;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.card .postionbutton:hover {
+  background-color: #06367A;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.homesection {
+  width: 100%;
+}
+.homesection h2.homesectiontitle {
+  font-size: 24px;
+  line-height: 1.5;
+  color: #06367A;
+  font-weight: 700;
+}
+.homesection .scrollContainer {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  justify-content: normal;
+  left: 0px;
+  padding: 20px 0;
+}
+
+.accespage {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  gap: 0;
+}
+.accespage .leftside {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(114, 163, 232, 0.1);
+}
+.accespage .leftside .contentbox {
+  width: 420px;
+}
+.accespage .leftside .contentbox h2.maintitle {
+  color: #030303;
+  font-size: 32px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: center;
+}
+.accespage .leftside .contentbox h3.subtitle {
+  color: rgba(3, 3, 3, 0.9607843137);
+  font-size: 20px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.accespage .leftside .contentbox p.para {
+  color: rgba(0, 0, 0, 0.6705882353);
+  font-size: 14px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.accespage .leftside .contentbox button.loginwithgoolebtn {
+  cursor: pointer;
+  width: 100%;
+  height: 48px;
+  padding: 8px;
+  border: 1px solid #cddef7;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #72a3e8;
+  font-size: 16px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  line-height: 24px;
+  outline: none;
+}
+.accespage .leftside .contentbox button.loginwithgoolebtn:hover {
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.accespage .leftside .contentbox input.inputstylelogin {
+  width: 100%;
+  padding: 8px 8px;
+  border: 1px solid #ededed;
+  border-radius: 100px;
+  background-color: #ffffff;
+  color: #929292;
+  font-size: 16px;
+  font-family: "Work Sans", sans-serif;
+  line-height: 24px;
+  outline: none;
+  margin-bottom: 10px;
+}
+.accespage .leftside .contentbox button.loginsubmitbtn {
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background-color: #266fd5;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  line-height: 24px;
+  outline: none;
+}
+.accespage .leftside .contentbox h4.pagecahngebtn {
+  color: #030303;
+  font-size: 16px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+.accespage .rightside {
+  width: 50%;
 }/*# sourceMappingURL=style.module.css.map */

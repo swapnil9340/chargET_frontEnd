@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 .Header{
     padding: 20px 0 ;
     display: flex;
@@ -288,5 +288,102 @@
         justify-content: normal;
         left: 0px;
         padding: 20px 0;
+    }
+}
+.accespage{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    gap: 0;
+    .leftside{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(114,163,232,0.1);
+            .contentbox{
+                width: 420px;
+                h2.maintitle{
+                    color: #030303;
+                    font-size: 32px;
+                    font-family: "Quicksand", sans-serif;                    font-weight: 600;
+                    line-height: 40px;
+                    text-align: center;
+                }
+                h3.subtitle{
+                    color: #030303f5;
+                    font-size: 20px;
+                    font-family: "Quicksand", sans-serif;                    font-weight: 600;
+                    line-height: 1.4;
+                    text-align: center;
+                }
+                p.para{
+                    color: #000000ab;
+                    font-size: 14px;
+                    font-family: "Quicksand", sans-serif;                    font-weight: 600;
+                    line-height: 1.4;
+                    text-align: center;
+                }
+                button.loginwithgoolebtn{
+                    cursor: pointer;
+                
+                    width: 100%;
+                    height: 48px;
+                    padding: 8px;
+                    border: 1px solid #cddef7;
+                    border-radius: 8px;
+                    background-color:transparent;
+                    color: #72a3e8;
+                    font-size: 16px;
+                    font-family: "Work Sans", sans-serif;
+                    font-weight: 600;
+                    text-align: center;
+                    line-height: 24px;
+                    outline: none;
+                    &:hover{
+                        background-color: #fff;
+                        transition: all .3s ease-in-out;
+                    }
+                }
+                input.inputstylelogin{
+                    width: 100%;
+                    padding: 8px 8px;
+                    border: 1px solid #ededed;
+                    border-radius: 100px;
+                    background-color: #ffffff;
+                    color: #929292;
+                    font-size: 16px;
+                    font-family: "Work Sans", sans-serif;
+                    line-height: 24px;
+                    outline: none;
+                    margin-bottom: 10px;
+                }
+                button.loginsubmitbtn{
+                    cursor: pointer;
+                    width: 100%;
+                    padding:  8px;
+                    border: 0;
+                    border-radius: 8px;
+                    background-color: #266fd5;
+                    color: #ffffff;
+                    font-size: 16px;
+                    font-family: "Work Sans", sans-serif;
+                    font-weight: 600;
+                    line-height: 24px;
+                    outline: none;
+                }
+                h4.pagecahngebtn{
+                    color: #030303;
+                    font-size: 16px;
+                    font-family: "Work Sans", sans-serif;
+                    font-weight: 600;
+                    line-height: 24px;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+            }
+    }
+    .rightside{
+        width: 50%;
     }
 }
