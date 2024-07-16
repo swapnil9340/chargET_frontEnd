@@ -25,5 +25,4 @@ const signup = () => {
     </div>
   )
 }
-
-export default signup
+export default signup 
