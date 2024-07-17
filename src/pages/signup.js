@@ -25,5 +25,5 @@ const signup = () => {
     </div>
   )
 }
-
+signup.layout = "layout1"
 export default signup

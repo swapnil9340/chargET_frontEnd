@@ -28,5 +28,5 @@ const login = () => {
   </div>
   )
 }
-
+login.layout = "layout1"
 export default login
