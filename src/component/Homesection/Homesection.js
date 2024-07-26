@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from '../../styles/style.module.scss'
 import Suggestion from '../suggestions/suggestion'
-import { collapseClasses } from '@mui/material'
 import Card from '../Card/card'
 const Homesection = (props) => {
   return (
