@@ -19,7 +19,7 @@ const Homesection = (props) => {
         <div className={classes.scrollContainer}>
                 {
                   [1,2,3,4,9].map((item, index)=>{
-                     return <Card name={'name'}  />
+                     return <Card key={index}  name={'name'}  />
                   })
                 }
           
