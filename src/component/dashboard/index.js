@@ -1,5 +1,4 @@
 import Suggestion from "../suggestions/suggestion";
-import Card from "../Card/card";
 import Homesection from "../Homesection/Homesection";
 import Header from "../Header/Header";
 export default function Home() {

@@ -9,7 +9,7 @@ import createEmotionCache from '../createEmotionCache';  // Corrected path
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import theme from '../styles/style';  // Ensure theme is imported
-
+import { useRouter } from 'next/router';
 const layouts = {
   default: Layout,
   layout1: Layout1,
@@ -18,6 +18,8 @@ const layouts = {
 const clientSideEmotionCache = createEmotionCache();
 
 export default function App({ Component, emotionCache = clientSideEmotionCache, pageProps }) {
+  const requiresAuth = Component.auth;
+  const router = useRouter();
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -30,7 +32,7 @@ export default function App({ Component, emotionCache = clientSideEmotionCache, 
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>My page</title>
+        <title>ChargET</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
@@ -48,3 +50,4 @@ App.propTypes = {
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
+

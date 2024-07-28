@@ -3,7 +3,6 @@ import classes from '../../styles/style.module.scss'
 import { IoSearch } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowUpRightDots } from "react-icons/fa6";
-import { Bitter } from 'next/font/google';
 
 const Header = () => {
     const [seartext, setSearchtext]= useState('')

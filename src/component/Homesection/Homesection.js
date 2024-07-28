@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from '../../styles/style.module.scss'
 import Suggestion from '../suggestions/suggestion'
-import { collapseClasses } from '@mui/material'
 import Card from '../Card/card'
 const Homesection = (props) => {
   return (
@@ -20,7 +19,7 @@ const Homesection = (props) => {
         <div className={classes.scrollContainer}>
                 {
                   [1,2,3,4,9].map((item, index)=>{
-                     return <Card name={'name'}  />
+                     return <Card key={index}  name={'name'}  />
                   })
                 }
           
