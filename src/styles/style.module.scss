@@ -387,3 +387,42 @@
         width: 50%;
     }
 }
+.mediacardwrapper{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2% 20px;
+    row-gap: 20px;
+}
+.mediacard{
+    width: 23%;
+    border-radius: 20px;
+    background-color: '#ffffff';
+    border-radius: 16px;
+    box-shadow: 1px 1px 8px rgba(149,149,149,0.25);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px 20px;
+    .mediacardimage{
+        width: 100%;
+        img{
+            width: 100%;
+        }
+    }
+    h3.mediacardimgename{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 2;
+        margin-bottom: 0;
+    }
+    p{
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 0;
+        color: #c1c0c8;
+        line-height: 1.4;
+    }
+    div{
+        cursor: pointer;
+    }
+}
