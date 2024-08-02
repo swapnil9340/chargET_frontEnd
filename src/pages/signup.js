@@ -78,7 +78,7 @@ const signup = () => {
           <h3 className={Styles.subtitle}>{`Create Your account`}</h3>
           <p className={Styles.para}>{`Take the next step`}</p>
           <button className={Styles.loginwithgoolebtn}>{`Continue with Google`}</button>
-          <div class="header__center">{`Or`}</div>
+          <div className="header__center">{`Or`}</div>
 
           <form onSubmit={handleSubmit(Submit)}>
             <input type='email' {...register('email', { required: true })} placeholder='Email' className={Styles.inputstylelogin} />
@@ -154,5 +154,5 @@ const signup = () => {
     </div>
   )
 }
-
+signup.layout = "layout1"
 export default signup
