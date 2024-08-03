@@ -21,6 +21,7 @@ const Mediacard = () => {
           <span ><FaRegHeart onClick={()=>{setlike(true)}} /></span> 
         }
         </div>
+        
     </div>
   )
 }
