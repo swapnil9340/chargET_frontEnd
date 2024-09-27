@@ -11,7 +11,7 @@ const Homesection = (props) => {
             <div className={classes.scrollContainer}>
                {
                   [1,2,3,4,5,7,8,9,2].map((item, index)=>{
-                     return <Suggestion name={'name'}  />
+                     return <Suggestion   key={index} name={'name'}  />
                   })
                 }
        

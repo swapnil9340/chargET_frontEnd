@@ -10,7 +10,7 @@ const Mediacard = () => {
     <div className={classes.mediacard}>
         <div className='text-end'><BsThreeDots size={18}/></div>
         <div className={classes.mediacardimage}>
-            <img  src='https://i.ibb.co/qmLJq6g/Image-1.png' alt='image'></img>
+            <Image width={100} height={100}  src='https://i.ibb.co/qmLJq6g/Image-1.png' alt='image'></Image>
         </div>
         <h3 className={classes.mediacardimgename}>Image Name</h3>
         <p className={classes.mediatype}>GIF</p>

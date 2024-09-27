@@ -56,8 +56,8 @@ const Mediaupload = () => {
     </Box>
     <CustomTabPanel value={value} index={0}>
      <div className={classes.mediacardwrapper}>{
-      [1,2,3,4,5,6,7].map((item)=>{
-        return <Mediacard/>
+      [1,2,3,4,5,6,7].map((item , index)=>{
+        return <Mediacard key={index}/>
       })
      }</div>
     </CustomTabPanel>

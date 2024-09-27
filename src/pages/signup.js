@@ -31,7 +31,7 @@ import IconButton from '@mui/material/IconButton';
 //     },
 //   },
 // });
-const signup = () => {
+const Signup = () => {
   // const classes = useStyles();
   const {
     register,
@@ -154,5 +154,5 @@ const signup = () => {
     </div>
   )
 }
-signup.layout = "layout1"
-export default signup
+Signup.layout = "layout1"
+export default Signup
