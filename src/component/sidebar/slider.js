@@ -23,7 +23,7 @@ const Sldeslider = () => {
           {isOpen ? <div className="option12"> <span><PiRectangleDashed/></span>{`Full Screens`}</div> :<span> <IoReorderThreeOutline size={32} onClick={() => setIsOpen(!isOpen)}/></span>  }
         </div>
         { isOpen &&   <div className="closebuttom" onClick={() => setIsOpen(!isOpen)}>
-          <Image width={100} height={30} className={classes.icon} src="/icon1.png"></Image>
+          <Image width={100} height={30} className={classes.icon} src="/icon1.png" alt="icon"></Image>
           </div>}
       </div>
       <div className={classes.Sidebarlist}>
