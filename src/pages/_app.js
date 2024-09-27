@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import theme from '../styles/style';  // Ensure theme is imported
 import { useRouter } from 'next/router';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../styles/globals.css'; // Your global styles (if any)
 const layouts = {
   default: Layout,
   layout1: Layout1,
