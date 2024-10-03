@@ -17,7 +17,7 @@ export default Home
 
 export async function getServerSideProps(context) {
   const { req } = context;
-  const tokenString = req.cookies.ChargeET_UserToken;
+  const tokenString = req?.cookies?.ChargeET_UserToken;
   // console.log(tokenString)
   // Use the token to fetch data
   // const response = await fetch('https://api.example.com/data', {

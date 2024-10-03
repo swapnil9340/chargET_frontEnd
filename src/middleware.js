@@ -1,31 +1,33 @@
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
-  const tokenString = request.cookies.get('ChargeET_UserToken');
-  const { pathname } = request.nextUrl;
+export function middleware(req) {
+  // Get the token from cookies
+  const token = req.cookies.get('ChargeET_UserToken');
 
+  // Define paths
   const loginPath = '/login';
   const signupPath = '/signup';
+  const homePath = '/';
+  const requestedPage = req.nextUrl.pathname;
 
-  // Check if the user is on login or signup pages
-  if ([loginPath, signupPath].includes(pathname)) {
-    // If the token exists, redirect authenticated users away from login/signup pages
-    if (tokenString) {
-      return NextResponse.redirect(new URL('/', request.url));
+  // If token exists
+  if (token) {
+    // If the user tries to access login or sign-up, redirect to the home page
+    if (requestedPage === loginPath || requestedPage === signupPath) {
+      return NextResponse.redirect(new URL(homePath, req.url));
     }
-    // Allow unauthenticated users to proceed to login/signup
-    return NextResponse.next();
+  } else {
+    // If no token and the user tries to access a protected page, redirect to login
+    if (requestedPage !== loginPath && requestedPage !== signupPath) {
+      return NextResponse.redirect(new URL(loginPath, req.url));
+    }
   }
 
-  // If no token exists, redirect to the login page
-  if (!tokenString) {
-    return NextResponse.redirect(new URL(loginPath, request.url));
-  }
-
-  // Allow access to all other routes if authenticated
+  // Allow request to continue if no redirection is needed
   return NextResponse.next();
 }
 
+
 export const config = {
-  matcher: ['/'], // Apply the middleware to all paths
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

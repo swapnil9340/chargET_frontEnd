@@ -12,6 +12,9 @@ import theme from '../styles/style';  // Ensure theme is imported
 import { useRouter } from 'next/router';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../styles/globals.css'; // Your global styles (if any)
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+import Router from 'next/router';
 const layouts = {
   default: Layout,
   layout1: Layout1,
@@ -29,6 +32,26 @@ export default function App({ Component, emotionCache = clientSideEmotionCache, 
 
   const Layout = layouts[Component.layout] || layouts.default;
 
+  React.useEffect(() => {
+    NProgress.configure({ showSpinner: false });
+    const handleStart = () => {
+      NProgress.start();
+    };
+
+    const handleStop = () => {
+      NProgress.done();
+    };
+
+    Router.events.on('routeChangeStart', handleStart);
+    Router.events.on('routeChangeComplete', handleStop);
+    Router.events.on('routeChangeError', handleStop);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleStart);
+      Router.events.off('routeChangeComplete', handleStop);
+      Router.events.off('routeChangeError', handleStop);
+    };
+  }, []);
   return (
     <CacheProvider value={emotionCache}>
       <Head>

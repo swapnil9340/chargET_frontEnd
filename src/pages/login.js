@@ -3,7 +3,7 @@ import Styles from '@/styles/style.module.scss';
 import { useForm } from 'react-hook-form';
 import Button from '@/component/inputs/button';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 const Login = () => {
   const router = useRouter()
    const [loading , Setloading] = React.useState(false)
@@ -29,10 +29,11 @@ const Login = () => {
       })
       .then(response => response.json())
       .then(data => {
+        router.push('/')
         Setloading(false)
         const oneHour = 1 / 24; // 1 hour in days
         Cookies.set('ChargeET_UserToken', data.token, { expires: oneHour });
-        router.push('/')
+        
       })
 
       .catch((error) => {
