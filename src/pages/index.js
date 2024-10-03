@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
-import nextCookies from 'next-cookies';
+
 const Dashbord = dynamic(() => import('../component/dashboard/index'), )
 
  function Home() {
@@ -15,9 +15,10 @@ const Dashbord = dynamic(() => import('../component/dashboard/index'), )
 export default Home
 
 
-export async function getStaticProps(context) {
-  const { token } = nextCookies(context);
-console.log(token)
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const tokenString = req.cookies.ChargeET_UserToken;
+  // console.log(tokenString)
   // Use the token to fetch data
   // const response = await fetch('https://api.example.com/data', {
   //   headers: {

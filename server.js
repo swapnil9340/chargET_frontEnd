@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const cookieParser = require('cookie-parser');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 
@@ -9,7 +8,6 @@ const ip = '192.168.1.20';
 app.prepare().
 then(() => {
   const server = express();
-  server.use(cookieParser());
 
   // Custom route example
   server.get('/custom-route', (req, res) => {

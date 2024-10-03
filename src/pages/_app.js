@@ -20,8 +20,6 @@ const layouts = {
 const clientSideEmotionCache = createEmotionCache();
 
 export default function App({ Component, emotionCache = clientSideEmotionCache, pageProps }) {
-  const requiresAuth = Component.auth;
-  const router = useRouter();
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {

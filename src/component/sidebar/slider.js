@@ -35,7 +35,7 @@ const Sldeslider = () => {
             <ul className={dpopen  ? classes.dropsidedrop :""}>
               <li> <Link href="/mediaupload" className={router.pathname == "/mediaupload" ? "active" : ""}> <span></span><span>{`Media Upload`}</span></Link></li>
               <li> <Link href="/" className={router.pathname == "/" ? "active" : ""}> <span></span><span>{'Ad-Create'}</span></Link></li>
-              <li> <Link href="/" className={router.pathname == "/" ? "active" : ""}> <span></span><span>{'Schedule'}</span></Link></li>
+              <li> <Link href="/calender" className={router.pathname == "/" ? "active" : ""}> <span></span><span>{'Schedule'}</span></Link></li>
               <li> <Link href="/" className={router.pathname == "/" ? "active" : ""}> <span></span><span>{'Campaigns'}</span></Link></li>
             </ul>
           </div>
