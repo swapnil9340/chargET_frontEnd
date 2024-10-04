@@ -16,6 +16,7 @@ const Scheduler = (props) => {
     }
   };
 
+   console.log(events)
   return (
     <div style={{ height: 500 }}>
       <Calendar
