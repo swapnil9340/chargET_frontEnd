@@ -4,48 +4,57 @@ import { useForm } from 'react-hook-form';
 import Button from '@/component/inputs/button';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router'
+import axios from 'axios';
 const Login = () => {
   const router = useRouter()
    const [loading , Setloading] = React.useState(false)
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm();
 
 
   const Submit = async (event) => {
+  
     try {
-      Setloading(true)
-      fetch('https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=user&action=login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      Setloading(true);
+  
+      const response = await axios.post(
+        'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=user&action=login',
+        {
           email: event.email,
           password: event.password
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        router.push('/')
-        Setloading(false)
-        const oneHour = 1 / 24; // 1 hour in days
-        Cookies.set('ChargeET_UserToken', data.token, { expires: oneHour });
-        
-      })
-
-      .catch((error) => {
-        Setloading(false)
-        console.error('Error:', error);
-      });
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+  
+      const data = response.data;
+      router.push('/');
+      const oneHour = 1 / 24; // 1 hour in days
+      Cookies.set('ChargeET_UserToken', data.token, { expires: oneHour });
+  
     } catch (error) {
-      // Handle error
+      // Customize error handling logic based on the type of error
+      if (error.response.data.message === "Wrong Credentials.") {
+        setError('email', { type: 'custom', message: 'Invalid email' });
+        setError('password', { type: 'custom', message: 'Invalid password' });
+
+      } else if (error.request) {
+        // No response was received
+        console.error('Request error:', error.request);
+      } else {
+        // Something else went wrong in setting up the request
+        console.error('Unexpected error:', error.message);
+      }
+    } finally {
+      Setloading(false); // Make sure to stop loading in both success and error cases
     }
-    // finally{
-    //   Setloading(false)
-    // }
   };
 
   return (
@@ -58,14 +67,15 @@ const Login = () => {
           <form onSubmit={handleSubmit(Submit)}>
             <input
               type="email"
-              {...register('email', { required: true })}
+              {...register('email', {  required: 'Email is required',  })}
               placeholder="Email"
               className={Styles.inputstylelogin}
             />
-            {errors.email && <p>Email is required.</p>}
+            {errors.email && <p>{errors.email.message}</p>}
             
             <input
               type="password"
+              name='password'
               {...register('password', {
                 required: 'Password is required',
                 minLength: {

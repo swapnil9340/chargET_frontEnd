@@ -8,11 +8,10 @@ export function middleware(req) {
   const loginPath = '/login';
   const signupPath = '/signup';
   const homePath = '/';
-  const requestedPage = req.nextUrl.pathname;
-
+  const requestedPage = req.nextUrl.pathname; 
   // If token exists
-  if (token) {
-    // If the user tries to access login or sign-up, redirect to the home page
+  if (Boolean(token?.value) && token?.value !== 'undefined' && token) {
+    // If the user tries to access login or sign-u    p, redirect to the home page
     if (requestedPage === loginPath || requestedPage === signupPath) {
       return NextResponse.redirect(new URL(homePath, req.url));
     }
