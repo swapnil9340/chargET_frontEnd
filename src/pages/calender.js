@@ -2,38 +2,92 @@
 import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
+import axios from 'axios';
 
 const localizer = momentLocalizer(moment);
 
+
+
+const createSchedule = async (start, end, title , tokenString) => {
+  const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=schedule&action=create';
+  const headers = {
+    'Authorization': tokenString, // Add your authorization token here
+    'Content-Type': 'application/json',
+  };
+  const data = {
+    media_id: 'media456',
+    start_date: start,
+    start_time: '10:00:00',
+    end_time: '12:00:00',
+    screen_id: 'screen789',
+    recurrence_type: 'monthly',
+    recurrence_end_date: end,
+  };
+console.log(data)
+  try {
+    const response = await axios.post(url, data, { headers });
+    console.log('Response:', response.data);
+  } catch (error) {
+    console.error('Error creating schedule:', error.response ? error.response.data : error.message);
+  }
+};
+
+
 const Scheduler = (props) => {
   const [events, setEvents] = useState([]);
-
+  
   const handleSelect = ({ start, end }) => {
+    const startDateTime = new Date(start);
+    const endDateTime = new Date(end);
+    
+    // Extract the start and end dates in the required format (YYYY-MM-DD)
+    const startDate = startDateTime.toISOString().split('T')[0];  // "2024-10-14"
+    const endDate = endDateTime.toISOString().split('T')[0];      // "2024-10-24"
+    
+    // Define start and end times
+    const startTime = '10:00:00';
+    const endTime = '12:00:00';
+    
+    // Combine dates with respective times
+    const startDateTimeCombined = `${startDate} ${startTime}`; // "2024-10-14 10:00:00"
+    const endDateTimeCombined = `${endDate} ${endTime}`;       // "2024-10-24 12:00:00"
+    
+console.log(startDateTimeCombined  , endDateTimeCombined)
+
     const title = window.prompt('New Event name');
-     console.log( start, end, title)
+    console.log(start, end, title)
     if (title) {
-      // Use end directly without decrementing it
+createSchedule(startDate, endDate, title , props.tokenString) ;
       setEvents((prevEvents) => [
         ...prevEvents,
         { start, end, title },
       ]);
     }
   };
-  const date = '2024-10-15T00:00:00';
-  const start_time = '10:00:00';
-  const end_time = '12:00:00';
+
+  React.useEffect(() => {
+    const scheduleData = props.data;
   
-  // Create a Date object for the start date
-  const startDate = new Date(date);
-  const [startHours, startMinutes] = start_time.split(':');
-  startDate.setHours(parseInt(startHours), parseInt(startMinutes));
+    const newEvents = scheduleData.map((item) => {
+      const startDate = new Date(item.date);
+      const [startHours, startMinutes] = item.start_time.split(":");
+      startDate.setHours(parseInt(startHours), parseInt(startMinutes));
   
-  // Create a Date object for the end date
-  const endDate = new Date(date);
-  const [endHours, endMinutes] = end_time.split(':');
-  endDate.setHours(parseInt(endHours), parseInt(endMinutes));
-  console.log('Start Date:', startDate);
-  console.log('End Date:', endDate);  
+      const endDate = new Date(item.date);
+      const [endHours, endMinutes] = item.end_time.split(":");
+      endDate.setHours(parseInt(endHours), parseInt(endMinutes));
+  
+      return {
+        start: startDate,
+        end: endDate,
+        title: item.schedule_id,  // Using schedule_id as title
+      };
+    });
+  
+    setEvents(newEvents);  // Replace previous events, not append
+  }, [props.data]);
+  
+  
   return (
     <div style={{ height: 500 }}>
       <Calendar
@@ -89,8 +143,8 @@ export async function getServerSideProps(context) {
 
   const body = JSON.stringify({
     start_date: start_date,
-    // end_date: end_date, // Uncomment if needed
-    fetch_type: "month",
+    end_date: end_date, // Uncomment if needed
+    fetch_type: "range",
   });
 
   try {
@@ -119,6 +173,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data,
+      tokenString,
       error, // Will be null if no error occurred
     },
   };
