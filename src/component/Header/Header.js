@@ -13,10 +13,10 @@ const Header = () => {
          <input type='text' placeholder='Search' onChange={(e)=>{setSearchtext(e.target.value)}} />
         {Boolean(seartext.length !==0) && <span><RxCross2 /></span>}
         </div>
-        <button className={`${classes.headerbutton} shinebtn`}>
+        {/* <button className={`${classes.headerbutton} shinebtn`}>
             <span><FaArrowUpRightDots/></span>
             Publish
-        </button>
+        </button> */}
     </div> 
   )
 }
