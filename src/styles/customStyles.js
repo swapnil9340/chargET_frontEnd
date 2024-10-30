@@ -1,4 +1,5 @@
 // src/styles/customStyles.js
+import { BorderBottom } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +28,30 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiTabs-indicator":{
       display:'none',
+    }
+  },
+  historyList:{
+    "& .MuiBox-root":{
+       BorderBottom:'0px !important',
+    
+      '& .MuiTabs-root':{
+        border:'none',
+        "& .Mui-selected ":{
+          color:'#000 !important',
+          border:'none',
+        },
+        "& .MuiButtonBase-root":{
+            color: "#9399a2",
+            fontSize: '14px',
+            fontFamily: "Rubik",
+            fontWeight: '600',
+            lineHeight: '20px',
+            textTransform: 'uppercase',
+        },
+        "& .MuiTabs-indicator":{
+          display:'none',
+        }
+      }
     }
   }
 }));

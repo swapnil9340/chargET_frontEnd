@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.5",
     "@googleapis/calendar": "^9.7.9",
     "@mui/icons-material": "^5.16.0",
+    "@mui/lab": "^6.0.0-beta.13",
     "@mui/material": "^5.16.0",
     "@mui/styles": "^5.16.0",
     "axios": "^1.7.7",

@@ -19,7 +19,7 @@ const Homesection = (props) => {
         </div>
         :
         <div className={classes.scrollContainer}>
-      <Devicecard></Devicecard>
+        <Devicecard></Devicecard>
           
         </div>
          }

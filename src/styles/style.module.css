@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.{googleapis.com/css2?family=Quicksand:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 .Header {
   padding: 20px 0;
   display: flex;
@@ -58,11 +59,77 @@
 .commonbox {
   background-color: #eaecef;
   border-radius: 24px;
+  padding: 30px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  margin-bottom: 50px;
+}
+.commonbox .commonboxTitle {
+  color: #9399a2;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.floatingbn {
+  padding: 0px 8px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background-color: #202b3b;
+  color: #f5f5f5;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  outline: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .icon {
   width: 22px;
+}
+
+.HomepageLayout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.historyListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+.historyListItem p {
+  color: #9399a2;
+  font-size: 16px;
+  font-family: "Rubik";
+  line-height: 22px;
+  margin-bottom: 0;
+  max-width: 25%;
+}
+.historyListItem span {
+  color: #202b3b;
+  font-size: 16px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 22px;
+  max-width: 25%;
+}
+.historyListItem img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10000px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  border: none;
 }
 
 .Sidebarlist {
@@ -442,4 +509,41 @@
 }
 .mediacard div {
   cursor: pointer;
+}
+
+.warningbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding: 30px;
+}
+.warningbox h2 {
+  color: #202b3b;
+  font-size: 43px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 56px;
+}
+.warningbox p {
+  color: #7c8797;
+  font-size: 27px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 35px;
+}
+.warningbox .worningboxBTN button {
+  width: 224px;
+  font-size: 14px;
+  line-height: 50px;
+}
+
+.historybox {
+  position: relative;
+}
+.historybox .worningboxBTN button {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 12px;
 }/*# sourceMappingURL=style.module.css.map */

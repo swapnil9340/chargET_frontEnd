@@ -1,8 +1,9 @@
 import React from 'react'
+import styled from "@/styles/style.module.scss";
 
-const Index = () => {
+const Index = ({text}) => {
   return (
-    <div>Index</div>
+    <button className={styled.floatingbn}>{text}</button>
   )
 }
 
