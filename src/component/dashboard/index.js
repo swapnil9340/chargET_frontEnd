@@ -3,9 +3,9 @@ import Homesection from "../Homesection/Homesection";
 import Header from "../Header/Header";
 export default function Home() {
 return(
-    <div className="px-3">
+    <div className="">
         <Header/>
-        <Homesection title={'AI Suggetions'} />
+        <Homesection title={'Top Publishers'} />
         <Homesection title={'Your Devices'}/>
       
     </div>

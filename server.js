@@ -13,8 +13,7 @@ then(() => {
   server.get('/custom-route', (req, res) => {
     return app.render(req, res, '/custom-route', req.query);
   });
-
-
+  
   // Handle all other routes with Next.js
   server.get('*', (req, res) => {
 

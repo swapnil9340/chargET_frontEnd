@@ -15,13 +15,13 @@ const createSchedule = async (start, end, title , tokenString) => {
     'Content-Type': 'application/json',
   };
   const data = {
-    media_id: 'media456',
-    start_date: start,
-    start_time: '10:00:00',
-    end_time: '12:00:00',
-    screen_id: 'screen789',
-    recurrence_type: 'monthly',
-    recurrence_end_date: end,
+    "media_id": "media456",
+    "start_date": start,
+    "start_time": "10:00:00",
+    "end_time": "12:00:00",
+    "screen_id": "screen789",
+    "recurrence_type": "daily",
+    "recurrence_end_date": end
   };
 console.log(data)
   try {
@@ -36,7 +36,9 @@ console.log(data)
 const Scheduler = (props) => {
   const [events, setEvents] = useState([]);
   
-  const handleSelect = ({ start, end }) => {
+  const handleSelect = (slotinfo) => {
+    const { start, end , slots} =  slotinfo
+        console.log( start, end  , slots)
     const startDateTime = new Date(start);
     const endDateTime = new Date(end);
     
@@ -65,6 +67,9 @@ createSchedule(startDate, endDate, title , props.tokenString) ;
     }
   };
 
+// const handleSelect =(slotInfo) =>{
+// console.log(slotInfo)
+// }
   React.useEffect(() => {
     const scheduleData = props.data;
   
@@ -92,13 +97,15 @@ createSchedule(startDate, endDate, title , props.tokenString) ;
     <div style={{ height: 500 }}>
       <Calendar
         selectable
+       
         localizer={localizer}
         events={events}
         defaultView="month"
-        views={['month', 'week', 'day']}
-        step={30}
+        views={["day", "agenda", "work_week", "month"]}
+        // step={30}
         defaultDate={new Date()}
         onSelectSlot={handleSelect}
+        onSelectEvent={(event) => alert(event.title)}
         style={{ height: '100vh' }}
       />
     </div>
@@ -162,7 +169,6 @@ export async function getServerSideProps(context) {
 
     const result = await response.json();
     data = result.schedule_details || [];
-    console.log(data)
   } catch (error) {
     console.error('Error fetching schedule details:', error.message);
     // Assign error message to return to the frontend
