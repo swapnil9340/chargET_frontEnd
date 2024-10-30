@@ -56,7 +56,11 @@
         gap: 10px;
     }
 }
-
+.commonbox{
+    background-color: #eaecef;
+    border-radius: 24px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.16);  
+}
 .icon {
     width: 22px;
 }
@@ -407,7 +411,7 @@
 
             input.inputstylelogin {
                 width: 100%;
-                padding: 8px 8px;
+                padding: 8px 20px;
                 border: 1px solid #ededed;
                 border-radius: 100px;
                 background-color: #ffffff;
@@ -423,7 +427,7 @@
                 cursor: pointer;
                 width: 100%;
                 padding: 8px;
-                border: 0;
+                border: 1px solid #266fd5;
                 border-radius: 8px;
                 background-color: #266fd5;
                 color: #ffffff;
@@ -432,6 +436,11 @@
                 font-weight: 600;
                 line-height: 24px;
                 outline: none;
+                &:hover{
+                    background-color: #fff;
+                    color: #266fd5;
+                    transition: all .4s ease;
+                }
             }
 
             h4.pagecahngebtn {
