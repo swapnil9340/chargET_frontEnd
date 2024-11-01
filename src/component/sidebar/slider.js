@@ -5,7 +5,7 @@ import AdIcon from '@mui/icons-material/Campaign';
 import MediaIcon from '@mui/icons-material/PermMedia';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { styled } from '@mui/material/styles';
-
+import styless from '@/styles/style.module.scss'
 const CustomListItem = styled(ListItem)(({ theme }) => ({
   display: 'grid',
   alignItems: 'center',
@@ -19,25 +19,7 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
 
 const Sidebar = () => {
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: "7%",
-        '& .MuiDrawer-paper': {
-          width: 100,
-          left: '15px',
-          height: "90%",
-          backgroundColor: '#f5f7fa',
-          borderRadius: '25px',
-          border: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingTop: 2,
-          paddingBottom: 2,
-        },
-      }}
-    >
+    <div className={styless.sidebar}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {/* Logo */}
         <ListItem sx={{ justifyContent: 'center', paddingBottom: 4 }}>
@@ -72,7 +54,7 @@ const Sidebar = () => {
         </List>
       </div>
 
-      {/* Avatar */}
+      
       <Avatar
         src="/user-avatar.jpg"
         alt="Aser Avatar"
@@ -82,7 +64,7 @@ const Sidebar = () => {
           marginBottom: 2,
         }}
       />
-    </Drawer>
+    </div>
   );
 };
 

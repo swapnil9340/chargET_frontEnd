@@ -1,79 +1,112 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 import useStyles from '@/styles/customStyles';
 import Mediacard from '@/component/Mediacard/Mediacard';
-import classes from '@/styles/style.module.scss'
-function CustomTabPanel(props) {
-    const { children, value, index, ...other } = props;
-   
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-      </div>
-    );
-  }
-  
-  CustomTabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-  };
-  
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
+import styled from '@/styles/style.module.scss'
+import { BsBadgeHdFill } from "react-icons/bs";
+import { MdImage } from "react-icons/md";
+import { TbRefreshDot } from "react-icons/tb";
 
   
 const Mediaupload = () => {
-    const [value, setValue] = React.useState(0);
-    const classee=useStyles() 
+    const [value, setValue] = React.useState('1');
+    const Styles=useStyles() 
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
   
   return (
-    <Box sx={{ width: '100%' }}>
-    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className={classee.mediatabs}>
-        <Tab label="All" {...a11yProps(0)} />
-        <Tab label="Videos" {...a11yProps(1)} />
-        <Tab label="GIF" {...a11yProps(2)} />
-        <Tab label="Images" {...a11yProps(3)} />
-        <Tab label="Favourite" {...a11yProps(4)} />
-      </Tabs>
+  <div>
+    <Box className={Styles.historyList}>
+    <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label={`ALL`} value="1" />
+            <Tab label={`IMAGES`} value="2" />
+            <Tab label={`VIDEOS`} value="3" />
+            <Tab label={`FAVOURITE`} value="4" />
+        </TabList>
+        </Box>
+        <TabPanel value="1">
+          
+            <div className={styled.mediacardwrapper}>{
+                [1,2,3,4,5,6,7].map((item , index)=>{
+                  return <Mediacard key={index}/>
+                })
+              }
+            </div>
+                
+        </TabPanel>
+        <TabPanel value="2">
+      
+        <div className={styled.mediacardwrapper}>{
+                [1,2,3,4,5,6,7].map((item , index)=>{
+                  return <Mediacard key={index}/>
+                })
+              }
+            </div>
+        </TabPanel>
+        <TabPanel value="3">
+      
+        <div className={styled.mediacardwrapper}>{
+                [1,2,3,4,5,6,7].map((item , index)=>{
+                  return <Mediacard key={index}/>
+                })
+              }
+            </div>
+        </TabPanel>
+        <TabPanel value="4">
+        <div className={styled.mediacardwrapper}>{
+                [1,2,3,4,5,6,7].map((item , index)=>{
+                  return <Mediacard key={index}/>
+                })
+              }
+            </div>
+        </TabPanel>
+    </TabContext>
     </Box>
-    <CustomTabPanel value={value} index={0}>
-     <div className={classes.mediacardwrapper}>{
-      [1,2,3,4,5,6,7].map((item , index)=>{
-        return <Mediacard key={index}/>
-      })
-     }</div>
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index={1}>
-      Item Two 2
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index={2}>
-      Item Three 3
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index={3}>
-      Item Three 4
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index={4}>
-      Item Three 5
-    </CustomTabPanel>
-  </Box>
+    <div className={`${styled.commonbox} ${styled.DeviceInfo} container `}>
+           <div className='d-flex justify-content-between align-items-center'>
+                  <h3 className={styled.commonboxTitle}>{'BURGER'}</h3>
+                  <button>{'See  more'}</button>
+                </div>  
+              <div className='row'>
+                  <div className='col-4'>
+                      <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
+                          <div><BsBadgeHdFill size={22} color='#9399a2'/>                    </div>
+                          <div>
+                              <span>{`Resolution`}</span>
+                              <h4>{`1080x2040`}</h4>
+                          </div>
+                      </div>
+                  </div>
+                  <div className='col-4'>
+                      <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
+                          <div><TbRefreshDot size={22} color='#9399a2' />
+                          </div>
+                          <div>
+                              <span>{`Orientation`}</span>
+                              <h4>{`Image`}</h4>
+                          </div>
+                      </div>
+                  </div>
+                  <div className='col-4'>
+                      <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
+                          <div><MdImage
+                          size={22} color='#9399a2'/></div>
+                          <div>
+                              <span>{`Location`}</span>
+                              <h4>{`Portrait`}</h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+    </div>
+  </div>
   )
 }
 
