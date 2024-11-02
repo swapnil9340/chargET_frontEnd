@@ -2,8 +2,9 @@
 @import url('https://fonts.{googleapis.com/css2?family=Quicksand:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 .Header {
-    padding: 20px 0;
+    padding: 0 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,7 +99,27 @@
 
 
 
-
+.layoutWrapper{
+    display: flex;
+    gap: 15px;
+    width: 100vw;
+    // max-width: 1440px;
+    // margin: 0 auto;
+    height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      
+   
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    
+    main{
+        flex: 1;
+    }
+}
 
 .devicedcard{
     position: relative;
@@ -167,94 +188,6 @@
      border: none;
     }
 }
-// .Sidebarlist {
-//     // background-color: #fff;
-//     padding: 15px;
-
-//     .sidebardropdown {
-//         margin-bottom: 10px;
-
-//         p {
-//             font-size: 16px;
-//             width: 100%;
-//             cursor: pointer;
-//             font-weight: 600;
-//             color: #fff;
-//             line-height: 1.4;
-//             text-decoration: none;
-//             padding: 5px;
-//             display: block;
-//             font-family: "Inter", sans-serif;
-//             position: relative;
-
-//             span.dropdwonbox {
-//                 position: absolute;
-//                 z-index: 2;
-//                 right: 10px;
-//                 font-size: 32px;
-//                 font-weight: 700;
-//                 top: -50%;
-//                 transform: translateY(10px);
-//             }
-
-//             span:nth-child(1) {
-//                 font-weight: 700;
-//                 font-size: 18px;
-//                 margin: 0 15px;
-//             }
-//         }
-
-//         ul {
-//             padding-left: 60px;
-//             height: 0;
-//             overflow: hidden;
-//             margin-bottom: 0;
-
-//             li {
-//                 list-style-type: none;
-
-//                 a {
-//                     font-size: 15px;
-//                     width: 100%;
-//                     font-weight: 600;
-//                     color: #fff;
-//                     line-height: 1.4;
-//                     text-decoration: none;
-//                     padding: 5px;
-//                     display: block;
-//                     font-family: "Inter", sans-serif;
-//                 }
-//             }
-//         }
-
-//         ul.dropsidedrop {
-//             // height: auto !important;
-//             transition: all 10s ease;
-//             animation-name: example;
-//             animation-duration: 1s;
-//             animation-fill-mode: forwards;
-//         }
-
-//         p.sidebardropdowntitle {
-//             span.dropdwonbox {
-//                 transform: translateY(10px);
-//                 transform: rotate(180deg);
-//                 transition: all .3s ease-in-out;
-//                 top: 0;
-//             }
-//         }
-
-//         @keyframes example {
-//             0% {
-//                 height: 0;
-//             }
-
-//             100% {
-//                 height: 125px;
-//             }
-//         }
-//     }
-// }
 .sidebarfooter {
     padding: 15px;
 
@@ -688,4 +621,41 @@
     height: 100%;
     background-color: #eaecef;
     border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    .logoclasswrapper{
+        width: 100%;
+       text-align: center;
+        img{
+            width: 30px;
+            height: auto;
+        }
+        
+    }
+}
+.dashboard{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      .mainDashboardsection{
+        width: 67%;
+      }
+     .DashboardLeftSection{
+        width: 30%;
+     }
+      
+      
+}
+.mediapagewrapper{
+    display: flex;
 }

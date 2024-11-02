@@ -8,13 +8,13 @@ import styled from '@/styles/style.module.scss'
 export default function Home() {
 return(
     <div className={styled.dashboard}>
-         <div>
+         <div className={styled.mainDashboardsection}>
             <Header/>
             <Homesection title={'Top Publishers'} />
             <DeviceSection/>
             <DeviceInfo/>
          </div>
-         <div>
+         <div className={styled.DashboardLeftSection}>
            <Leftbar/>
          </div>
     </div>

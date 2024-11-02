@@ -2,7 +2,7 @@
 @import url("https://fonts.{googleapis.com/css2?family=Quicksand:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 .Header {
-  padding: 20px 0;
+  padding: 0 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,6 +92,52 @@
   width: 22px;
 }
 
+.layoutWrapper {
+  display: flex;
+  gap: 15px;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.layoutWrapper::-webkit-scrollbar {
+  display: none;
+}
+.layoutWrapper main {
+  flex: 1;
+}
+
+.devicedcard {
+  position: relative;
+  width: 140px;
+  padding-bottom: 30px;
+  border-right: 2px solid #dde0e4;
+  text-align: center;
+}
+.devicedcard h4 {
+  color: #9399a2;
+  font-size: 16px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+}
+.devicedcard button {
+  padding: 6px 20px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background-color: #202b3b;
+  color: #f5f5f5;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 20px;
+  outline: none;
+}
+
 .HomepageLayout {
   display: flex;
   height: 100vh;
@@ -130,80 +176,6 @@
   border-radius: 10000px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
   border: none;
-}
-
-.Sidebarlist {
-  padding: 15px;
-}
-.Sidebarlist .sidebardropdown {
-  margin-bottom: 10px;
-}
-.Sidebarlist .sidebardropdown p {
-  font-size: 16px;
-  width: 100%;
-  cursor: pointer;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.4;
-  text-decoration: none;
-  padding: 5px;
-  display: block;
-  font-family: "Inter", sans-serif;
-  position: relative;
-}
-.Sidebarlist .sidebardropdown p span.dropdwonbox {
-  position: absolute;
-  z-index: 2;
-  right: 10px;
-  font-size: 32px;
-  font-weight: 700;
-  top: -50%;
-  transform: translateY(10px);
-}
-.Sidebarlist .sidebardropdown p span:nth-child(1) {
-  font-weight: 700;
-  font-size: 18px;
-  margin: 0 15px;
-}
-.Sidebarlist .sidebardropdown ul {
-  padding-left: 60px;
-  height: 0;
-  overflow: hidden;
-  margin-bottom: 0;
-}
-.Sidebarlist .sidebardropdown ul li {
-  list-style-type: none;
-}
-.Sidebarlist .sidebardropdown ul li a {
-  font-size: 15px;
-  width: 100%;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.4;
-  text-decoration: none;
-  padding: 5px;
-  display: block;
-  font-family: "Inter", sans-serif;
-}
-.Sidebarlist .sidebardropdown ul.dropsidedrop {
-  transition: all 10s ease;
-  animation-name: example;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-.Sidebarlist .sidebardropdown p.sidebardropdowntitle span.dropdwonbox {
-  transform: translateY(10px);
-  transform: rotate(180deg);
-  transition: all 0.3s ease-in-out;
-  top: 0;
-}
-@keyframes example {
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 125px;
-  }
 }
 
 .sidebarfooter {
@@ -480,25 +452,28 @@
 }
 
 .mediacard {
-  width: 23%;
+  width: 30%;
   border-radius: 20px;
   background-color: "#ffffff";
   border-radius: 16px;
   box-shadow: 1px 1px 8px rgba(149, 149, 149, 0.25);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 10px 20px;
+  padding: 10px;
 }
 .mediacard .mediacardimage {
   width: 100%;
 }
 .mediacard .mediacardimage img {
   width: 100%;
+  height: auto;
 }
 .mediacard h3.mediacardimgename {
-  font-size: 16px;
+  margin-bottom: 0;
+  color: #202b3b;
+  font-size: 22px;
+  font-family: "Rubik";
   font-weight: 600;
   line-height: 2;
-  margin-bottom: 0;
 }
 .mediacard p {
   font-size: 12px;
@@ -506,6 +481,13 @@
   margin-bottom: 0;
   color: #c1c0c8;
   line-height: 1.4;
+  margin-bottom: 0;
+  color: #7c8797;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
 }
 .mediacard div {
   cursor: pointer;
@@ -546,4 +528,77 @@
   font-size: 14px;
   line-height: 20px;
   padding: 6px 12px;
+}
+
+.DeviceInfo button {
+  padding: 5px 20px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background-color: #202b3b;
+  color: #f5f5f5;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 20px;
+  outline: none;
+}
+.DeviceInfo .deviceinfocard {
+  margin-top: 15px;
+}
+.DeviceInfo .deviceinfocard span {
+  color: #9399a2;
+  font-size: 20px;
+  font-family: "Rubik";
+  line-height: 26px;
+}
+.DeviceInfo .deviceinfocard h4 {
+  color: #202b3b;
+  font-size: 32px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 38px;
+}
+
+.sidebar {
+  width: 94px;
+  height: 100%;
+  background-color: #eaecef;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.sidebar .logoclasswrapper {
+  width: 100%;
+  text-align: center;
+}
+.sidebar .logoclasswrapper img {
+  width: 30px;
+  height: auto;
+}
+
+.dashboard {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.dashboard::-webkit-scrollbar {
+  display: none;
+}
+.dashboard .mainDashboardsection {
+  width: 67%;
+}
+.dashboard .DashboardLeftSection {
+  width: 30%;
+}
+
+.mediapagewrapper {
+  display: flex;
 }/*# sourceMappingURL=style.module.css.map */

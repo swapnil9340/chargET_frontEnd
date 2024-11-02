@@ -2,10 +2,12 @@ import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Avatar, Divider } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AdIcon from '@mui/icons-material/Campaign';
+import logo from '../../../public/logo.png'
 import MediaIcon from '@mui/icons-material/PermMedia';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { styled } from '@mui/material/styles';
 import styless from '@/styles/style.module.scss'
+import Image from 'next/image';
 const CustomListItem = styled(ListItem)(({ theme }) => ({
   display: 'grid',
   alignItems: 'center',
@@ -20,12 +22,12 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
 const Sidebar = () => {
   return (
     <div className={styless.sidebar}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* Logo */}
-        <ListItem sx={{ justifyContent: 'center', paddingBottom: 4 }}>
-          <img src="/logo.png" alt="Logo" style={{ width: 30 }} />
-        </ListItem>
-
+      
+      
+      <div>
+        <div className={styless.logoclasswrapper}>
+          <Image src={logo.src} alt="Logo" width={50} height={100} />
+        </div>
         <List >
           <CustomListItem button sx={{ justifyContent: 'center' }}>
             <ListItemIcon  sx={{ justifyContent: 'center' }}>
