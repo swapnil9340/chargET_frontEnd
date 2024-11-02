@@ -599,6 +599,45 @@
   width: 30%;
 }
 
+.imageUploadbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  flex-direction: column;
+}
+.imageUploadbox p {
+  margin-bottom: 0;
+  color: #9399a2;
+  font-size: 19px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 25px;
+  text-transform: capitalize;
+}
+.imageUploadbox button {
+  padding: 0px 20px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background-color: #202b3b;
+  color: #f5f5f5;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 20px;
+  outline: none;
+  border: 1px solid;
+  line-height: 2;
+}
+.imageUploadbox button:hover {
+  border-color: #202b3b;
+  background-color: #fff;
+  color: #202b3b;
+  transition: all 0.3s ease;
+}
+
 .mediapagewrapper {
   display: flex;
 }/*# sourceMappingURL=style.module.css.map */
