@@ -498,7 +498,7 @@
     row-gap: 20px;
 }
 .mediacard {
-    width: 30%;
+    width: 200PX;
     border-radius: 20px;
     background-color: '#ffffff';
     border-radius: 16px;
@@ -695,5 +695,9 @@
     }
 }
 .mediapagewrapper{
+    display: flex;
+}
+
+.campaignbox{
     display: flex;
 }
