@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import DeviewImg from '../../../public/DeviewImg.png'
 import Image from 'next/image'
 import styled from "@/styles/style.module.scss";
+import cookie from "js-cookie";
 import { RiExpandLeftRightLine } from "react-icons/ri";
 import Devicecard from '@/component/Homesection/Devicecard'
+import axios from 'axios'
 const DeviceSection = () => {
+
   return (
-    <div className={`${styled.commonbox} ${styled.DeviceSection} container `}>
+    <div className={`${styled.commonbox} ${styled.DeviceSection} container`}>
         <div className='row'>
             <div className='col-9'>
                 <div className='d-flex justify-content-between align-items-center'>
@@ -29,3 +32,4 @@ const DeviceSection = () => {
 }
 
 export default DeviceSection
+
