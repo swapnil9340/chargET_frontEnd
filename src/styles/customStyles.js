@@ -53,6 +53,22 @@ const useStyles = makeStyles((theme) => ({
         }
       }
     }
+  },
+  addcampaignBtn:{
+
+    width: '214px',
+    height: '43px',
+    padding: '0px 8px',
+    border: '0',
+    boxSizing: 'border-box',
+    borderRadius: '24px',
+    backgroundColor:' #202b3b',
+    color: '#f5f5f5',
+    fontSize: '14px',
+    fontFamily: "Rubik",
+    fontWeight: '500',
+    lineHeight: '20px',
+    outline: 'none',
   }
 }));
 

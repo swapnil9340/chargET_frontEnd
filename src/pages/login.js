@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 import Button from '@/component/inputs/button';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router'
+import Loginaimge from '../../public/login.png'
 import axios from 'axios';
+import Image from 'next/image';
+
 const Login = () => {
   const router = useRouter()
    const [loading , Setloading] = React.useState(false)
@@ -59,7 +62,9 @@ const Login = () => {
 
   return (
     <div className={Styles.accespage}>
-      <div className={Styles.rightside}></div>
+      <div className={Styles.rightside}>
+        <Image src={Loginaimge.src} alt={'image'} width={400} height={400} />
+      </div>
       <div className={Styles.leftside}>
         <div className={Styles.contentbox}>
           <h2 className={Styles.maintitle}>{`Login to your account`}</h2>

@@ -40,8 +40,8 @@ const Sidebar = () => {
           </CustomListItem>
            <CustomListItem button sx={{ justifyContent: 'center' }}>
            <Link href="/campaign" style={{ textDecoration: 'none' }}>
-            <ListItemIcon sx={{ justifyContent: 'center' }}>
-            <PhotoLibraryIcon />
+            <ListItemIcon sx={{ display:'block', textAlign: 'center' , width:'100%' }}>
+              <PhotoLibraryIcon />
             </ListItemIcon>
             <ListItemText primary="Campaign" sx={{ color: '#333', fontSize: 12,  textAlign:"center" }} />
             </Link>

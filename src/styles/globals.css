@@ -1,3 +1,4 @@
+
 .container-fluid{
 margin: 0;
 padding: 0;
@@ -198,4 +199,7 @@ padding: 0;
   background-color: #202b3b;
   height: 100px;
   max-width: 30px;
+}
+.slick-next:before, .slick-prev:before{
+  color: #000;
 }
