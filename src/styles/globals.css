@@ -171,3 +171,31 @@ padding: 0;
   height: 1px;
   background-color: currentColor;
 }
+
+.custom-box {
+  border-radius: 15px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+.box-content {
+  background-color: #e9ecef;
+  height: 100px;
+  /* border-radius: 10px; */
+
+}
+.box-content1{
+  background-color: #7c8797;
+  height: 20px;
+  /* border-radius: 10px;   */
+  margin-bottom: 10px;
+}
+.box-text {
+  color: #6c757d;
+  font-weight: 500;
+}.box-cont{
+  background-color: #202b3b;
+  height: 100px;
+  max-width: 30px;
+}

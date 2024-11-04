@@ -41,50 +41,50 @@ const Styles = useStyles()
                 <TabPanel value="1">
                     <div>
                        <h3 className={styled.commonboxTitle}>{'All'}</h3>
-                       {[1].map((item)=>{
-                        return <SingleList/>
+                       {[1].map((item , index)=>{
+                        return <SingleList key={index}/>
                        })}
                     </div>
                     <div>
                        <h3 className={styled.commonboxTitle}>{'ACTIVE'}</h3>
-                       {[1,3,].map((item)=>{
-                        return <SingleList/>
+                       {[1,3,].map((item , index)=>{
+                        return <SingleList key={index}/>
                        })}
                     </div>
                     <div>
                        <h3 className={styled.commonboxTitle}>{'UPCOMING'}</h3>
-                       {[13].map((item)=>{
-                        return <SingleList/>
+                       {[13].map((item , index)=>{
+                        return <SingleList key={index}/>
                        })}
                     </div>
                     <div>
                        <h3 className={styled.commonboxTitle}>{'INACTIVE'}</h3>
-                       {[1,2].map((item)=>{
-                        return <SingleList/>
+                       {[1,2].map((item , index)=>{
+                        return <SingleList key={index}/>
                        })}
                     </div>
                 </TabPanel>
                 <TabPanel value="2">
                 <div>
                        <h3 className={styled.commonboxTitle}>{'ACTIVE'}</h3>
-                       {[1,3,].map((item)=>{
-                        return <SingleList/>
+                       {[1,3,].map((item , index)=>{
+                        return <SingleList  key={index}/>
                        })}
                     </div>
                 </TabPanel>
                 <TabPanel value="3">
                 <div>
                        <h3 className={styled.commonboxTitle}>{'UPCOMING'}</h3>
-                       {[1,2,3,].map((item)=>{
-                        return <SingleList/>
+                       {[1,2,3,].map((item , index)=>{
+                        return <SingleList key={index}/>
                        })}
                     </div>
                 </TabPanel>
                 <TabPanel value="4">
                     <div>
                        <h3 className={styled.commonboxTitle}>{'INACTIVE'}</h3>
-                       {[1,2,3,].map((item)=>{
-                        return <SingleList/>
+                       {[1,2,3,].map((item ,index)=>{
+                        return <SingleList key={index}/>
                        })}
                     </div>
                 </TabPanel>

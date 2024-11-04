@@ -6,9 +6,9 @@ export default function DeviceDashboard(props) {
   return (
 
       <div className={styled.devicedcard}>
-        <h4>{'Galaxy S1'}</h4>
+        <h4>{props.name}</h4>
         <div>
-          <Image src={''} width={100} height={100} alt='image' />
+          <Image src={'/deviceimage.png'} width={100} height={100} alt='image' />
         </div>
         <button >{'Publish'}</button>
       </div>
