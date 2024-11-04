@@ -21,7 +21,7 @@ import Threezone from '@/component/SelectZone/Threezone';
 import Bootomsinglezone from '@/component/SelectZone/Bottomsinglezone';
 import Bottomdualzone from '@/component/SelectZone/Bottomdualzone';
 import Bottenthreezone from '@/component/SelectZone/Bottomthreezone';
-const add = () => {
+const Add = () => {
     const [value, setValue] = React.useState('1');
     const router = useRouter();
     const [add, setadd] = React.useState(false);
@@ -142,5 +142,5 @@ const add = () => {
         </div>
     )
 }
-add.layout = "layout1"
-export default add
+Add.layout = "layout1"
+export default Add

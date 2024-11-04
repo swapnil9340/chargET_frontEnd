@@ -8,6 +8,7 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import { styled } from '@mui/material/styles';
 import styless from '@/styles/style.module.scss'
 import Link from 'next/link';
+import Image from 'next/image';
 const CustomListItem = styled(ListItem)(({ theme }) => ({
   display: 'grid',
   alignItems: 'center',
@@ -25,7 +26,7 @@ const Sidebar = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {/* Logo */}
         <ListItem sx={{ justifyContent: 'center', paddingBottom: 4 }}>
-          <img src="/logo.png" alt="Logo" style={{ width: 30 }} />
+          <Image width={100}  height={100} src="/logo.png" alt="Logo" style={{ width: 25 , height : 45}} />
         </ListItem>
 
         <List >
