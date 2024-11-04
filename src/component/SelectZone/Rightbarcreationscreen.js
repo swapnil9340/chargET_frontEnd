@@ -8,20 +8,17 @@ import CompositionSequence from './CompostionSequence';
 const Rightbarcreationscreen = () => {
   return (
     <div>
-      <div className={`${styled.commonbox} ${styled.historybox}`}>
+      <div className={`${styled.commonbox} ${styled.historybox}`} style={{height:200}}>
         <h3 className={styled.commonboxTitle}>{'Zone Selection'}</h3>
 
-        <div class="row justify-content-center">
-          <div class="col-12 ">
-            <div class="custom-box">
-              <div class="box-content"></div>
-              <div class="box-text">Single Zone</div>
-            </div>
-          </div>
-        </div>
-        <div className='col d-flex mt-2'>
+        <div className='col-12 d-flex' style={{height:133}}>
+        <div className='col-6'  >
+          <Singlezone height={67}></Singlezone>
+         </div>
+        <div className='col-6 d-flex mt-2 align-items-center' >
           <Button>zone1</Button>
           <Button>zone2</Button>
+        </div>
         </div>
 
       </div>
