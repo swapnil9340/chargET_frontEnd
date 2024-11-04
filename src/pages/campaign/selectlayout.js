@@ -18,6 +18,9 @@ import Singlezone from '@/component/SelectZone/single';
 import classes from '@/styles/style.module.scss'
 import DuelZone from '@/component/SelectZone/Dual';
 import Threezone from '@/component/SelectZone/Threezone';
+import Bootomsinglezone from '@/component/SelectZone/Bottomsinglezone';
+import Bottomdualzone from '@/component/SelectZone/Bottomdualzone';
+import Bottenthreezone from '@/component/SelectZone/Bottomthreezone';
 const add = () => {
     const [value, setValue] = React.useState('1');
     const router = useRouter();
@@ -67,13 +70,13 @@ const add = () => {
                                         <Threezone />
                                     </div>
                                     <div className={`col-12 col-md-6 col-lg-4 d-flex justify-content-center ${styled.zonebox}`}>
-                                        <Singlezone />
+                                        <Bootomsinglezone />
                                     </div>
                                     <div className={`col-12 col-md-6 col-lg-4 d-flex justify-content-center ${styled.zonebox}`}>
-                                        <Singlezone />
+                                        <Bottomdualzone />
                                     </div>
                                     <div className={`col-12 col-md-6 col-lg-4 d-flex justify-content-center ${styled.zonebox}`}>
-                                        <Singlezone />
+                                        <Bottenthreezone />
                                     </div>
                                 </div>
                             </div>
