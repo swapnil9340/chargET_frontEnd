@@ -57,12 +57,14 @@
         gap: 10px;
     }
 }
+
 .commonbox {
     background-color: #eaecef;
     border-radius: 24px;
     padding: 30px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
     margin-bottom: 50px;
+
     .commonboxTitle {
         color: #9399a2;
         font-size: 14px;
@@ -72,6 +74,7 @@
         text-transform: uppercase;
     }
 }
+
 .floatingbn {
     padding: 0px 8px;
     border: 0;
@@ -87,6 +90,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .icon {
     width: 22px;
 }
@@ -100,12 +104,15 @@
     height: 100vh;
     padding: 20px;
     overflow: hidden;
+
     &::-webkit-scrollbar {
         display: none;
     }
 
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 
     main {
         flex: 1;
@@ -118,6 +125,7 @@
     padding-bottom: 30px;
     border-right: 2px solid #dde0e4;
     text-align: center;
+
     h4 {
         color: #9399a2;
         font-size: 16px;
@@ -126,6 +134,7 @@
         line-height: 22px;
         text-align: center;
     }
+
     button {
         padding: 6px 20px;
         border: 0;
@@ -140,6 +149,7 @@
         outline: none;
     }
 }
+
 .HomepageLayout {
     display: flex;
     height: 100vh;
@@ -149,11 +159,13 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+
 .historyListItem {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 0;
+
     p {
         color: #9399a2;
         font-size: 16px;
@@ -162,6 +174,7 @@
         margin-bottom: 0;
         max-width: 25%;
     }
+
     span {
         color: #202b3b;
         font-size: 16px;
@@ -170,6 +183,7 @@
         line-height: 22px;
         max-width: 25%;
     }
+
     img {
         width: 60px;
         height: 60px;
@@ -178,6 +192,7 @@
         border: none;
     }
 }
+
 .sidebarfooter {
     padding: 15px;
 
@@ -236,6 +251,7 @@
         }
     }
 }
+
 .suggestionsection {
     .suggestioncircle {
         width: 70px;
@@ -267,6 +283,7 @@
         color: #242424;
     }
 }
+
 .card {
     width: 220px;
     border-radius: 8px;
@@ -340,6 +357,7 @@
         }
     }
 }
+
 .homesection {
     width: 100%;
 
@@ -359,6 +377,7 @@
         padding: 20px 0;
     }
 }
+
 .accespage {
     display: flex;
     width: 100%;
@@ -452,6 +471,7 @@
                 font-weight: 600;
                 line-height: 24px;
                 outline: none;
+
                 &:hover {
                     background-color: #fff;
                     color: #266fd5;
@@ -475,6 +495,7 @@
         width: 50%;
     }
 }
+
 .mediacardwrapper {
     width: 100%;
     display: flex;
@@ -483,6 +504,7 @@
     gap: 2% 20px;
     row-gap: 20px;
 }
+
 .mediacard {
     width: 200px;
     border-radius: 20px;
@@ -529,6 +551,7 @@
         cursor: pointer;
     }
 }
+
 .warningbox {
     display: flex;
     justify-content: center;
@@ -536,6 +559,7 @@
     flex-direction: column;
     position: relative;
     padding: 30px;
+
     h2 {
         color: #202b3b;
         font-size: 43px;
@@ -543,6 +567,7 @@
         font-weight: 600;
         line-height: 56px;
     }
+
     p {
         color: #7c8797;
         font-size: 27px;
@@ -550,6 +575,7 @@
         font-weight: 600;
         line-height: 35px;
     }
+
     .worningboxBTN {
         button {
             width: 224px;
@@ -558,8 +584,10 @@
         }
     }
 }
+
 .historybox {
     position: relative;
+
     .worningboxBTN {
         button {
             font-size: 14px;
@@ -568,6 +596,7 @@
         }
     }
 }
+
 .DeviceInfo {
     button {
         padding: 5px 20px;
@@ -582,14 +611,17 @@
         line-height: 20px;
         outline: none;
     }
+
     .deviceinfocard {
         margin-top: 15px;
+
         span {
             color: #9399a2;
             font-size: 20px;
             font-family: "Rubik";
             line-height: 26px;
         }
+
         h4 {
             color: #202b3b;
             font-size: 32px;
@@ -599,6 +631,7 @@
         }
     }
 }
+
 .sidebar {
     width: 94px;
     height: 100%;
@@ -609,33 +642,42 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
+
     .logoclasswrapper {
         width: 100%;
         text-align: center;
+
         img {
             width: 30px;
             height: auto;
         }
     }
 }
+
 .dashboard {
     display: flex;
     width: 100%;
     justify-content: space-between;
     height: 100%;
     overflow-y: scroll;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
     &::-webkit-scrollbar {
         display: none;
     }
+
     .mainDashboardsection {
         width: 67%;
     }
+
     .DashboardLeftSection {
         width: 30%;
     }
 }
+
 .imageUploadbox {
     display: flex;
     justify-content: center;
@@ -643,6 +685,7 @@
     gap: 10px;
     padding: 20px;
     flex-direction: column;
+
     p {
         margin-bottom: 0;
         color: #9399a2;
@@ -652,6 +695,7 @@
         line-height: 25px;
         text-transform: capitalize;
     }
+
     button {
         padding: 0px 20px;
         border: 0;
@@ -666,6 +710,7 @@
         outline: none;
         border: 1px solid;
         line-height: 2;
+
         &:hover {
             border-color: #202b3b;
             background-color: #fff;
@@ -674,6 +719,7 @@
         }
     }
 }
+
 .mediapagewrapper {
     display: flex;
 }
@@ -681,106 +727,18 @@
 .campaignbox {
     display: flex;
 }
-.Zonesection {
-    padding: 10px;
-    background-color: #eaecef;
-    .zonetoper {
-        row-gap: 10px;
-    }
-    .Singlezone {
-        .box {
-            width: 378px;
-            height: 262px;
-            background-color: #f6f6f6;
-            border-radius: 30.240000000000002px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            justify-content: center;
-            display: grid;
-            align-items: center;
-            .layout {
-                width: 316px;
-                height: 144px;
-                background-color: #eaecef;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .DuelZone1 {
-                width: 316px;
-                height: 113px;
-                background-color: #eaecef;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .DuelZone2 {
-                width: 316px;
-                height: 37px;
-                background-color: #7c8797;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .ThreeZone1{
-                width: 316px;
-               height: 144px;
-                background-color: #eaecef;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .ThreeZone{
-                width: 272px;
-                height: 107px;  
-            }
-            .ThreeZone3{
-                width: 44px;
-                background-color: #202b3b;
-            }
-            .ThreeZone2{
-                height: 37px;
-                background-color: #7c8797;
-            }
-        }
-    }
-    .bottomSinglezone {
-        .box {
-            width: 378px;
-            height: 262px;
-            background-color: #f6f6f6;
-            border-radius: 30.240000000000002px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            .layout {
-                width: 147px;
-                height: 144px;
-                background-color: #eaecef;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .DuelZone1 {
-                width: 147px;
-                height: 113px;
-                background-color: #eaecef;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .DuelZone2 {
-                width: 147px;
-                height: 37px;
-                background-color: #7c8797;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .ThreeZone1{
-                width: 147px;
-               height: 144px;
-                background-color: #eaecef;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-            }
-            .ThreeZone{
-                // width: 272px;
-                height: 107px;  
-            }
-            .ThreeZone3{
-                // width: 44px;
-                background-color: #202b3b;
-            }
-            .ThreeZone2{
-                height: 37px;
-                background-color: #7c8797;
-            }
-        }
-    }
+
+.zoneselect {
+    background-color: #f6f6f6;
+    border-radius: 30.240000000000002px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+    display: flex;
+    justify-content: center;
+
+}
+
+.zonebox {
+    display: flex;
+    justify-content: center;
+
 }

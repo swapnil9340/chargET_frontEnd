@@ -7,23 +7,16 @@ import classes from '@/styles/style.module.scss'
 const Threezone = () => {
 
     return (
-        <div className={classes.Singlezone}>
-            <div className={classes.box}>
-                <div className={`${classes.ThreeZone1} col`}>
-                    <div className='col-12 d-flex '>
-                        <div className={` ${classes.ThreeZone} col-10`}>
-
-                        </div>
-                        <div className={`${classes.ThreeZone3} col-2`}>
-
-                        </div> 
-                    </div>
-                    <div className={classes.ThreeZone2}>
-
-                    </div>
-                </div>
-                <div className={classes.title}>
-                    <p>{`Three Zone`}</p>
+        <div class="row justify-content-center">
+            <div class="col-12 ">
+                <div class="custom-box">
+                      <div className='d-flex'>
+                      <div class=" col box-content"></div>
+                      <div class=" col box-cont"></div>
+                      </div>
+                      <div class=" col box-content1"></div>
+                      
+                    <div class="box-text">Three Zone</div>
                 </div>
             </div>
         </div>

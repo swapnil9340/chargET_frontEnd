@@ -5,18 +5,16 @@ import classes from '@/styles/style.module.scss'
 
 const Singlezone = () => {
 
-    return (
-        <div className={classes.Singlezone}>
-            <div className={classes.box}>
-                <div className={classes.layout}>
-
-                </div>
-                <div className={classes.title}>
-                    <p>{`Single Zone`}</p>
-                </div>
-            </div>
+  return (
+    <div class="row justify-content-center">
+      <div class="col-12 ">
+        <div class="custom-box">
+          <div class="box-content" style={{height:120}}></div>
+          <div class="box-text">Single Zone</div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default Singlezone

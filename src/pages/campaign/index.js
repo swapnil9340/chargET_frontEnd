@@ -15,7 +15,7 @@ import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import { Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
   
-const Mediaupload = () => {
+const Addcampaign = () => {
     const [value, setValue] = React.useState('1');
     const router = useRouter();
     const [add, setadd] = React.useState(false);
@@ -118,5 +118,5 @@ const Mediaupload = () => {
     </div>
   )
 }
-
-export default Mediaupload
+Addcampaign.layout = "layout1"
+export default Addcampaign

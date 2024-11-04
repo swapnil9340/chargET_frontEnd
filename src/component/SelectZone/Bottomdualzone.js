@@ -6,21 +6,20 @@ import classes from '@/styles/style.module.scss'
 const Bottomdualzone = () => {
 
     return (
-        <div className={classes.bottomSinglezone}>
-            <div className={classes.box}>
+        <div class="row justify-content-center">
+            <div class="col-12 ">
+                <div class="custom-box d-flex">
 
-                <div className={classes.title}>
-                    <p>{`Duel Zone`}</p>
-                </div>
-                <div className=''>
-                    <div className={classes.DuelZone1}>
 
+
+                    <div className='col-6'>
+                        <div class="box-text">Dual Zone</div>
                     </div>
-                    <div className={classes.DuelZone2}>
-
+                    <div className='col-6'>
+                        <div class=" col box-content"></div>
+                        <div class=" col box-content1"></div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

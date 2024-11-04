@@ -6,18 +6,14 @@ import classes from '@/styles/style.module.scss'
 const DuelZone = () => {
 
     return (
-        <div className={classes.Singlezone}>
-            <div className={classes.box}>
-                <div className='col'>
-                    <div className={classes.DuelZone1}>
-
-                    </div>
-                    <div className={classes.DuelZone2}>
-
-                    </div>
-                </div>
-                <div className={classes.title}>
-                    <p>{`Duel Zone`}</p>
+        <div class="row justify-content-center">
+            <div class="col-12 ">
+                <div class="custom-box">
+                      
+                      <div class=" col box-content"></div>
+                      <div class=" col box-content1"></div>
+                      
+                    <div class="box-text">Dual Zone</div>
                 </div>
             </div>
         </div>
