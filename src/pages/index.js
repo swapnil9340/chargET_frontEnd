@@ -15,22 +15,22 @@ const Dashbord = dynamic(() => import('../component/dashboard/index'), )
 export default Home
 
 
-export async function getServerSideProps(context) {
-  const { req } = context;
-  const tokenString = req?.cookies?.ChargeET_UserToken;
-  // console.log(tokenString)
-  // Use the token to fetch data
-  // const response = await fetch('https://api.example.com/data', {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // });
+// export async function getServerSideProps(context) {
+//   const { req } = context;
+//   const tokenString = req?.cookies?.ChargeET_UserToken;
+//   // console.log(tokenString)
+//   // Use the token to fetch data
+//   // const response = await fetch('https://api.example.com/data', {
+//   //   headers: {
+//   //     Authorization: `Bearer ${token}`,
+//   //   },
+//   // });
 
-  const data = []
+//   const data = []
 
-  return {
-    props: {
-      data,
-    },
-  };
-}
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }

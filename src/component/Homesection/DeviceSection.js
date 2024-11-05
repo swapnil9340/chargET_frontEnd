@@ -56,7 +56,7 @@ const DeviceSection = () => {
 
     fetchData();
   }, [])
-  console.log(device)
+
   return (
     <div className={`${styled.commonbox} ${styled.DeviceSection} container `}>
       

@@ -64,7 +64,7 @@ const Add = () => {
                                 <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
                                     <div style={{ width: '300px' }}>
 
-                                        <Singlezone />
+                                        <Singlezone  />
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>

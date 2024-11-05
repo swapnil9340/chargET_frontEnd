@@ -15,7 +15,8 @@ import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import Rightbarcreationscreen from '@/component/SelectZone/Rightbarcreationscreen';
   
-const Createscreen = () => {
+const Createscreen = (props) => {
+
     const [value, setValue] = React.useState('1');
     const Styles=useStyles() 
     const handleChange = (event, newValue) => {
@@ -114,10 +115,32 @@ const Createscreen = () => {
         </div>
       </div>
       <div className={styled.DashboardLeftSection}>
-        <Rightbarcreationscreen/>
+        <Rightbarcreationscreen zone={props.zone}/>
       </div>
     </div>
   )
 }
 Createscreen.layout = "layout1"
 export default Createscreen
+
+export async function getServerSideProps(context) {
+  const { layout } = context.query;
+
+  // Check if the 'layout' query parameter exists
+  if (!layout) {
+    // Redirect to a 404 page if 'layout' query is missing
+    return {
+      redirect: {
+        destination: '/404',
+        permanent: false,
+      },
+    };
+  }
+
+  // If 'layout' query parameter is present, pass it as props
+  return {
+    props: {
+      zone: layout,
+    },
+  };
+}
