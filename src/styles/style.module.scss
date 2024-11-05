@@ -95,6 +95,30 @@
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // position: relative;
+    // display: inline-block;
+    // width: auto; height: auto;
+    // // background-color: transparent;
+    // border: none;
+    // cursor: pointer;
+    // margin: 0px 25px 15px;
+    // min-width: 150px;
+    // &::before {
+    //     position: relative;
+    //     content: "";
+    //     bottom: 0; left: 0; right: 0; 
+    //     height: 100%; width: 100%;
+    //     background-color: rgb(28, 31, 30);
+    //     transition: 5s ease-out;
+    //     border-radius: 40px;
+    //   }
+    //   &:hover{
+    //     &::before {
+    //         height: 0%;
+    //         position: absolute;
+    //         content: "";
+    //     }
+    // }
 }
 
 .icon {
@@ -545,6 +569,27 @@ img{
 
     .rightside {
         width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .LoginaimgeContent{
+            width: 60%;
+            h3{
+                color: #030303;
+                font-size: 24px;
+                font-family: "Rubik";
+                font-weight: 600;
+                line-height: 1.6;
+                text-align: center;
+            }
+            p{
+                color: #7c8797;
+                font-size: 18px;
+                font-family: "Rubik";
+                line-height: 30px;
+                text-align: center;
+            }
+        }
     }
 }
 
@@ -796,13 +841,48 @@ img{
 }
 
 .hoverzonesection{
-    &:hover .hoverButton {
-        display: block;
-      }
+        .custombox {
+            border-radius: 15px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .hoverzonetitle{
+            color: #9399a2;
+            font-size: 16px;
+            font-family: "Rubik";
+            font-weight: 500;
+            line-height: 35px;
+            margin-bottom: 0;
+        }
+        .hoverzoneBtn{
+            display: none;
+        }
+        &:hover{
+            .custombox {
+                background-color: #202b3b;
+                transition: all .3s ease;
+            }
+            .hoverzonetitle{
+             color: #eaecef;
+            }
+            .hoverzoneBtn{
+                display: flex;
+                background-color: #fff;
+                color: #030303;
+            
+                padding: 6px 20px;
+                border: 0;
+                box-sizing: border-box;
+                border-radius: 24px;
+                background-color: #f6f6f6;
+                color: #000000;
+                font-size: 14px;
+                font-family: "Rubik";
+                font-weight: 500;
+                line-height: 20px;
+                outline: none;
+            }
+        }
 }
-.hoverButton {
-    display: none; // Initially hidden
-    // position: absolute;
-    top: 10px;
-    right: 10px;
-  }

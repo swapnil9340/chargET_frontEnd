@@ -13,9 +13,7 @@ import { TbRefreshDot } from "react-icons/tb";
 import Header from '@/component/Header/Header';
 import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import { Button, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-  
+import { useRouter } from 'next/router';  
 const Addcampaign = () => {
     const [value, setValue] = React.useState('1');
     const router = useRouter();
@@ -32,14 +30,9 @@ const Addcampaign = () => {
     <div className={styled.dashboard} >
        <div className={styled.mainDashboardsection} style={{width:"100%"}}>
         <Header/>
-        <div   className='d-flex w-100 justify-content-between align-items-center'  >
-               
-                  <h1 className={styled.pageHeading}>{`Campaign`}</h1>
-               
-              
-
-               <Button onClick={addcampaign} className={Styles.addcampaignBtn}>{`Add Composition`}</Button>
-               
+            <div   className='d-flex w-100 justify-content-between align-items-center'  >
+                <h1 className={styled.pageHeading}>{`Campaign`}</h1>
+                <Button onClick={addcampaign} className={Styles.addcampaignBtn}>{`Add Composition`}</Button>   
             </div>
         <Box className={Styles.historyList}>
          

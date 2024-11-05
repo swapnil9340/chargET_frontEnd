@@ -173,13 +173,7 @@ padding: 0;
   background-color: currentColor;
 }
 
-.custom-box {
-  border-radius: 15px;
-  background-color: #f8f9fa;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-}
+
 .box-content {
   background-color: #e9ecef;
   height: 100px;

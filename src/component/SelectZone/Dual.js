@@ -16,16 +16,17 @@ const DuelZone = ({hover = true , select}) => {
     return (
         <div className={`row justify-content-center  ${ hover ? classes.hoverzonesection :""}`}>
             <div className="col-12 ">
-                <div className="custom-box">
+                <div className={classes.custombox}>
                       
                       <div className=" col box-content" style={{boxShadow: select?.selectzone1  && boxShadow }}></div>
                       <div className=" col box-content1" style={{boxShadow: select?.selectzone2 && boxShadow }}></div>
                       
-                    <div className="box-text">Dual Zone</div>
-                    <div className={ hover ? classes.hoverButton : ""}>
-                    {hover && <button variant="contained" onClick={()=>handleusethis("singlezone1")}>use this</button>}
+                      <div className='d-flex justify-content-between align-items-center py-2'>
+                    
+                        <h3 className={classes.hoverzonetitle}>Dual Zone</h3>
+                        {hover && <button className={classes.hoverzoneBtn} onClick={()=>handleusethis("singlezone1")}>{`use this`}</button>}
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
     )

@@ -63,7 +63,12 @@ const Login = () => {
   return (
     <div className={Styles.accespage}>
       <div className={Styles.rightside}>
-        <Image src={Loginaimge.src} alt={'image'} width={400} height={400} />
+        <div className={Styles.LoginaimgeContent}>
+          <Image src={Loginaimge.src} alt={'image'} width={400} height={400} />
+          <h3>{'Activate programmatic DOOH with precision. Globally.'}</h3>
+          <p>{'Revolutionarize The DOOH'}</p>
+        
+        </div>
       </div>
       <div className={Styles.leftside}>
         <div className={Styles.contentbox}>
@@ -87,13 +92,7 @@ const Login = () => {
                   value: 8,
                   message: 'Password must be at least 8 characters long',
                 },
-                // validate: {
-                //   hasNumber: (value) => /\d/.test(value) || 'Password must contain at least one number',
-                //   hasUpperCase: (value) =>
-                //     /[A-Z]/.test(value) || 'Password must contain at least one uppercase letter',
-                //   hasSpecialChar: (value) =>
-                //     /[!@#$%^&*(),.?":{}|<>]/.test(value) || 'Password must contain at least one special character',
-                // },
+              
               })}
               placeholder="Password"
               className={Styles.inputstylelogin}

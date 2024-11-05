@@ -36,18 +36,9 @@ const Add = () => {
             <div className={styled.mainDashboardsection} style={{ width: "100%" }}>
                 <Header />
                 <div   className='d-flex w-100 justify-content-between align-items-center'  >
-               
-               <h1 className={styled.pageHeading}>{`Choose Layout`}</h1>
-            
-           
-
-            <Button onClick={addcampaign} className={Styles.addcampaignBtn}>{`Add Composition`}</Button>
-            
-         </div>
-                            {/* <Typography variant="h6">Choose Layout</Typography>
-                      
-                            <Button variant="contained" onClick={addcampaign}>Add Composition</Button>
-                        */}
+                    <h1 className={styled.pageHeading}>{`Choose Layout`}</h1>
+                    <Button onClick={addcampaign} className={Styles.addcampaignBtn}>{`Add Composition`}</Button>
+                </div>
                 <Box className={Styles.historyList}>
                   
                     <TabContext value={value}>

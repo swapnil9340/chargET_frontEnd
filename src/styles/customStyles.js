@@ -55,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   addcampaignBtn:{
-
     width: '214px',
     height: '43px',
     padding: '0px 8px',
@@ -69,6 +68,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '500',
     lineHeight: '20px',
     outline: 'none',
+    "&:hover":{
+      border:'1px solid #000',
+      color:'#000',
+      
+    }
   }
 }));
 

@@ -84,7 +84,7 @@ const Createscreen = (props) => {
                   <div className='row'>
                       <div className='col-4'>
                           <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
-                              <div><BsBadgeHdFill size={22} color='#9399a2'/>                    </div>
+                              <div><BsBadgeHdFill size={22} color='#9399a2'/></div>
                               <div>
                                   <span>{`Resolution`}</span>
                                   <h4>{`1080x2040`}</h4>
