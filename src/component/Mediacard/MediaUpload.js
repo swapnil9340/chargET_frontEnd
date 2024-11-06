@@ -16,14 +16,9 @@ const MediaUpload = () => {
       });
       uppy.use(RemoteSources, {
         companionUrl: 'https://your-companion-url',
-        sources: [ 'Dropbox', 'GoogleDrive' ],
+        sources: [ 'Dropbox', 'GoogleDrive' , 'Unsplash' ],
       });
-      // Set up the XHRUpload plugin
-      uppy.setMeta({
-        folder: 'sample22344',       // Example additional field
-        media_name: 'bird.jpeg',   // Another example field
-      });
-    
+
       uppy.use(XHRUpload, {
         endpoint: 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=media&action=upload', // Replace with your server endpoint
         fieldName: 'media_content',                      // Name of the field on the server
