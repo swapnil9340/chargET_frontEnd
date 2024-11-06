@@ -12,7 +12,6 @@ import { MdImage } from "react-icons/md";
 import { TbRefreshDot } from "react-icons/tb";
 import Header from '@/component/Header/Searchbar';
 import Medialeftbar from '@/component/Leftbar/Medialeftbar';
-
   
 const Mediaupload = () => {
     const [value, setValue] = React.useState('1');

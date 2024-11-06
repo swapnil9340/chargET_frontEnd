@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import DeviewImg from '../../../public/DeviewImgss.png'
 import Image from 'next/image'
 import styled from "@/styles/style.module.scss";
-import cookie from "js-cookie";
 import { RiExpandLeftRightLine } from "react-icons/ri";
 import Devicecard from '@/component/Homesection/Devicecard'
 import axios from 'axios';
