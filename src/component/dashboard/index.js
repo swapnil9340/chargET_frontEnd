@@ -1,6 +1,6 @@
 import Suggestion from "../suggestions/suggestion";
 import Homesection from "../Homesection/Homesection";
-import Header from "../Header/Header";
+import Header from "../Header/Searchbar";
 import DeviceSection from "../Homesection/DeviceSection";
 import DeviceInfo from "../Homesection/DeviceInfo";
 import Leftbar from '@/component/Leftbar/Index';

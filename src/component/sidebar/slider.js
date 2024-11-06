@@ -47,10 +47,12 @@ const Sidebar = () => {
             </Link>
           </CustomListItem>
           <CustomListItem button sx={{ justifyContent: 'center' }}>
+          <Link href="/publish" style={{ textDecoration: 'none' }}>
             <ListItemIcon sx={{ justifyContent: 'center' }}>
               <AdIcon />
             </ListItemIcon>
             <ListItemText primary="Publish" sx={{ color: '#333', fontSize: 12,  textAlign:"center" }} />
+            </Link>
           </CustomListItem>
           <CustomListItem button sx={{ justifyContent: 'center' }}>
             <Link href="/mediaupload" style={{ textDecoration: 'none' }}>

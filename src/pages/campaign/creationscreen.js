@@ -10,7 +10,7 @@ import styled from '@/styles/style.module.scss'
 import { BsBadgeHdFill } from "react-icons/bs";
 import { MdImage } from "react-icons/md";
 import { TbRefreshDot } from "react-icons/tb";
-import Header from '@/component/Header/Header';
+import Header from '@/component/Header/Searchbar';
 import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import Rightbarcreationscreen from '@/component/SelectZone/Rightbarcreationscreen';

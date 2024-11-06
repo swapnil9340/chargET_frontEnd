@@ -8,7 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import useStyles from '@/styles/customStyles';
 import Mediacard from '@/component/Mediacard/Mediacard';
 import styled from '@/styles/style.module.scss';
-import Header from '@/component/Header/Header';
+import Header from '@/component/Header/Searchbar';
 import { Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Singlezone from '@/component/SelectZone/single';
