@@ -14,7 +14,8 @@ import Header from '@/component/Header/Searchbar';
 import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import axios from 'axios';
 
-const Mediaupload = () => {
+const Mediaupload = (props) => {
+
   const [value, setValue] = React.useState('1');
   const Styles = useStyles()
   const handleChange = (event, newValue) => {
@@ -24,7 +25,7 @@ const [media , Setmedia] = useState([])
   const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=media&action=get';
 
   const headers = {
-    'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN3YXBuaWxjaGF1aGFuMDhAZ21haWwuY29tIiwiX2lkIjoiNjZmZTIyNWVlMjFiZjQ1NjA2ODEwY2NjIiwiZXhwIjoxNzMwOTc5OTQ5fQ.o5iv_pnXapmb1myYz_7bCa7kMtXX8Sb-tuqTiQQJ-Mw',
+    'Authorization': props.token,
     'Content-Type': 'application/json'
   };
 
@@ -40,7 +41,8 @@ React.useEffect   (()=>{
     .catch(error => {
       console.log('Error:', error);
     });
-},[])
+},[props.token])
+
 
   return (
     <div className={styled.dashboard}>
@@ -59,9 +61,9 @@ React.useEffect   (()=>{
             <TabPanel value="1">
 
               <div className={styled.mediacardwrapper}>{
-                media.map((item, index) => {
-                  return <Mediacard key={index}  item={item} />
-                })
+                  media.map((item, index) => {
+                    return <Mediacard key={index}  item={item} />
+                  })
               }
               </div>
 
@@ -69,8 +71,8 @@ React.useEffect   (()=>{
             <TabPanel value="2">
 
               <div className={styled.mediacardwrapper}>{
-                [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
-                  return <Mediacard key={index} />
+                 media.map((item, index) => {
+                  return <Mediacard key={index}  item={item} />
                 })
               }
               </div>
@@ -78,16 +80,16 @@ React.useEffect   (()=>{
             <TabPanel value="3">
 
               <div className={styled.mediacardwrapper}>{
-                [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
-                  return <Mediacard key={index} />
+                media.map((item, index) => {
+                  return <Mediacard key={index}  item={item} />
                 })
               }
               </div>
             </TabPanel>
             <TabPanel value="4">
               <div className={styled.mediacardwrapper}>{
-                [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
-                  return <Mediacard key={index} />
+                media.map((item, index) => {
+                  return <Mediacard key={index}  item={item} />
                 })
               }
               </div>
@@ -140,3 +142,24 @@ React.useEffect   (()=>{
 }
 
 export default Mediaupload
+
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const tokenString = req?.cookies?.ChargeET_UserToken;
+  // console.log(tokenString)
+  // Use the token to fetch data
+  // const response = await fetch('https://api.example.com/data', {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // });
+
+  const data = []
+
+  return {
+    props: {
+      token:tokenString
+    },
+  };
+}

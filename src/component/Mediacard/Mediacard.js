@@ -10,9 +10,9 @@ const Mediacard = ({item}) => {
     <div className={classes.mediacard}>
        
         <div className={classes.mediacardimage}>
-            <Image width={100} height={100}  src={item.asset_url}   onError={() => 'https://i.ibb.co/qmLJq6g/Image-1.png'} alt='image'></Image>
+            <Image width={100} height={100}  src={item.asset_url}   onError={() => '/logo.png'} alt='image'></Image>
         </div>
-        <h3 className={classes.mediacardimgename}>Image Name</h3>
+        <h3 className={classes.mediacardimgename}>{item.media_id}</h3>
       <div className='d-flex justify-content-between align-content-center'>
           <p className={classes.mediafileSize}>{'JuLY 01, 2024'}</p>
           <div >
