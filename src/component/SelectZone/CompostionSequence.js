@@ -120,9 +120,8 @@ React.useEffect(()=>{
                 onChange={({ oldIndex, newIndex }) =>
                     setItems(arrayMove(items, oldIndex, newIndex))
                 }
-                renderList={({ children, props }) => <ul {...props}>{children}</ul>}
+                renderList={({ children, props }) => <ul {...props} className='px-0'>{children}</ul>}
                 renderItem={({ value, props }) =>  { 
-                 console.log(props)
                 return <StyledCard key={value.id} {...props}>
                 <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>  { Boolean(props.key+1) ? props.key +1 : <MdDragIndicator /> } .</Typography>
                 <Avatar src={value.asset_url} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
@@ -168,7 +167,7 @@ React.useEffect(()=>{
                         </IconButton>
                     </Box>
                 </CardContent>
-            </StyledCard>}
+               </StyledCard>}
             
         }
             />

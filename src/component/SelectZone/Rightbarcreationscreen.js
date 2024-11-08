@@ -55,10 +55,10 @@ const Rightbarcreationscreen = (props) => {
 
   return (
     <div>
-      <div className={`${styled.commonbox} ${styled.historybox} `} style={{ height: 200 }}>
+      <div className={`${styled.commonbox} ${styled.historybox} `}>
         <h3 className={styled.commonboxTitle}>{'Zone Selection'}</h3>
 
-        <div className='col-12 d-flex' style={{ height: 133 }}>
+        <div className='row'>
           <div className='col-6'>
             {props.zone === "singlezone1" && <Singlezone height={67} hover={false}  select={selectzone[0].zone1.selectzone1}></Singlezone>}
             {props.zone === "singlezone2" && <DuelZone height={67} hover={false}  select={selectzone[0].zone2}></DuelZone>}
