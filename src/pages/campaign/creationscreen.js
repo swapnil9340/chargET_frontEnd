@@ -19,6 +19,7 @@ import axios from 'axios';
 const Createscreen = (props) => {
 
     const [value, setValue] = React.useState('1');
+    const [selectcampaign, setselectcampaign] = React.useState([])
     const Styles=useStyles() 
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -38,14 +39,31 @@ const Createscreen = (props) => {
       .then(response  => {
         // console.log(Boolean(response.data.media_information))
         const l =   response.data.media_information
-        Setmedia(value => l);
+        Setmedia( l);
       })
       .catch(error => {
         console.log('Error:', error);
       });
   },[props.token])
   
+  function campaignSelect(select) {
+    setselectcampaign(prev => {
+      const mediaExists = prev.some(media => media.media_id === select.media_id);
+      if (mediaExists) {
+        // Remove the existing media
+        return prev.filter(media => media.media_id !== select.media_id);
+      } else {
+        // Add the new media
+        return [...prev, select];
+      }
+    });
   
+  }
+  function find_id ( id){
+
+    return  selectcampaign.find((data) => data.media_id === id);
+  }
+ 
   return (
     <div className={styled.dashboard}>
        <div className={styled.mainDashboardsection}>
@@ -65,7 +83,7 @@ const Createscreen = (props) => {
               
                 <div className={styled.mediacardwrapper}>{
                          media.map((item, index) => {
-                          return <Mediacard key={index}  item={item} />
+                          return <Mediacard key={index}  hnadlechnage={campaignSelect} item={item} select={ find_id(item.media_id) ? styled.sectioncard : ""} />
                         })
                   }
                 </div>
@@ -138,7 +156,7 @@ const Createscreen = (props) => {
         </div>
       </div>
       <div className={styled.DashboardLeftSection}>
-        <Rightbarcreationscreen zone={props.zone}/>
+        <Rightbarcreationscreen zone={props.zone} selectcampaign={selectcampaign}/>
       </div>
     </div>
   )

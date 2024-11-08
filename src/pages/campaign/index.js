@@ -88,7 +88,7 @@ const Addcampaign = (props) => {
               <div className={styled.mediacardwrapper}>{
                 campaign.map((item, index) => {
                   console.log(item._id  === selectcampaign._id)
-                  return <Mediacard key={index} item={item} hnadlechnage={campaignSelect} select={selectcampaign} />
+                  return <Mediacard key={index} item={item} hnadlechnage={campaignSelect} select={ item?._id === selectcampaign?._id  ? styled.sectioncard : ""} />
                 })
               }
               </div>

@@ -73,7 +73,7 @@ const Rightbarcreationscreen = (props) => {
 
       </div>
       <div className={`${styled.commonbox} ${styled.historybox}`}>
-        <CompositionSequence></CompositionSequence>
+        <CompositionSequence selectcampaign ={props.selectcampaign}></CompositionSequence>
       </div>
     </div>
   )
