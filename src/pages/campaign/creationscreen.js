@@ -10,11 +10,12 @@ import styled from '@/styles/style.module.scss'
 import { BsBadgeHdFill } from "react-icons/bs";
 import { MdImage } from "react-icons/md";
 import { TbRefreshDot } from "react-icons/tb";
-import Header from '@/component/Header/Header';
+import Header from '@/component/Header/Searchbar';
 import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import Rightbarcreationscreen from '@/component/SelectZone/Rightbarcreationscreen';
-  
+import axios from 'axios';
+
 const Createscreen = (props) => {
 
     const [value, setValue] = React.useState('1');
@@ -22,6 +23,28 @@ const Createscreen = (props) => {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+    const [media , Setmedia] = React.useState([])
+    const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=media&action=get';
+  
+    const headers = {
+      'Authorization': props.token,
+      'Content-Type': 'application/json'
+    };
+  
+    const data = {};
+  
+  React.useEffect   (()=>{
+    axios.post(url, data, { headers })
+      .then(response  => {
+        // console.log(Boolean(response.data.media_information))
+        const l =   response.data.media_information
+        Setmedia(value => l);
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  },[props.token])
+  
   
   return (
     <div className={styled.dashboard}>
@@ -41,9 +64,9 @@ const Createscreen = (props) => {
             <TabPanel value="1">
               
                 <div className={styled.mediacardwrapper}>{
-                    [1,2,3,4,5,6,7].map((item , index)=>{
-                      return <Mediacard key={index}/>
-                    })
+                         media.map((item, index) => {
+                          return <Mediacard key={index}  item={item} />
+                        })
                   }
                 </div>
                     
@@ -51,26 +74,26 @@ const Createscreen = (props) => {
             <TabPanel value="2">
           
             <div className={styled.mediacardwrapper}>{
-                    [1,2,3,4,5,6,7].map((item , index)=>{
-                      return <Mediacard key={index}/>
-                    })
+                    // [1,2,3,4,5,6,7].map((item , index)=>{
+                    //   return <Mediacard key={index}/>
+                    // })
                   }
                 </div>
             </TabPanel>
             <TabPanel value="3">
           
             <div className={styled.mediacardwrapper}>{
-                    [1,2,3,4,5,6,7].map((item , index)=>{
-                      return <Mediacard key={index}/>
-                    })
+                    // [1,2,3,4,5,6,7].map((item , index)=>{
+                    //   return <Mediacard key={index}/>
+                    // })
                   }
                 </div>
             </TabPanel>
             <TabPanel value="4">
             <div className={styled.mediacardwrapper}>{
-                    [1,2,3,4,5,6,7].map((item , index)=>{
-                      return <Mediacard key={index}/>
-                    })
+                    // [1,2,3,4,5,6,7].map((item , index)=>{
+                    //   return <Mediacard key={index}/>
+                    // })
                   }
                 </div>
             </TabPanel>
@@ -125,7 +148,8 @@ export default Createscreen
 
 export async function getServerSideProps(context) {
   const { layout } = context.query;
-
+  const { req } = context;
+  const tokenString = req?.cookies?.ChargeET_UserToken;
   // Check if the 'layout' query parameter exists
   if (!layout) {
     // Redirect to a 404 page if 'layout' query is missing
@@ -141,6 +165,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       zone: layout,
+      token:tokenString
     },
   };
 }

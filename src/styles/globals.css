@@ -3,7 +3,9 @@
 margin: 0;
 padding: 0;
 }
-
+.uppy-Dashboard-inner{
+  height: auto !important;
+}
 .sidebar_head {
     /* Initial state */
     border-top-left-radius: 10px;
