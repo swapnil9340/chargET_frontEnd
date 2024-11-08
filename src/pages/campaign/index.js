@@ -64,6 +64,8 @@ const Addcampaign = (props) => {
     return totalSum + zone.media_sequence.reduce((sum, media) => sum + (media.duration || 0), 0);
   }, 0);
 
+  console.log([selectcampaign])
+
   return (
     <div className={styled.dashboard} >
       <div className={styled.mainDashboardsection} style={{ width: "100%" }}>
@@ -85,7 +87,8 @@ const Addcampaign = (props) => {
 
               <div className={styled.mediacardwrapper}>{
                 campaign.map((item, index) => {
-                  return <Mediacard key={index} item={item} hnadlechnage={campaignSelect} />
+                  console.log(item._id  === selectcampaign._id)
+                  return <Mediacard key={index} item={item} hnadlechnage={campaignSelect} select={selectcampaign} />
                 })
               }
               </div>

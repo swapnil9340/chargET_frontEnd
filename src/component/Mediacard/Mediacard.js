@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import { FaHeart , FaRegHeart } from "react-icons/fa";
 import classes from '@/styles/style.module.scss'
 
-const Mediacard = ({item , hnadlechnage}) => {
+const Mediacard = ({item , hnadlechnage ,selectcampaign , key} ) => {
   const [like,setlike]=useState()
 
+
   return (
-    <div className={classes.mediacard} onClick={()=>hnadlechnage(item)} >
+    <div className={`${classes.mediacard}`} onClick={()=>hnadlechnage(item)}  >
         <div className={classes.mediacardimage} >
             <Image width={100} height={50}  src={item.asset_url || '/user.jpg' } quality={100}  alt='image'></Image>
         </div>

@@ -63,7 +63,7 @@ React.useEffect   (()=>{
 
               <div className={styled.mediacardwrapper}>{
                   media.slice(0,8).map((item, index) => {
-                    return <Mediacard key={index}  item={item} />
+                    return <Mediacard key={index}  item={item} select={''} />
                   })
               }
               </div>
