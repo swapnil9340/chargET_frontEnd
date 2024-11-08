@@ -35,7 +35,7 @@ React.useEffect   (()=>{
   axios.post(url, data, { headers })
     .then(response  => {
       // console.log(Boolean(response.data.media_information))
-      const l =   JSON.parse(response.data.media_information)
+      const l =   response.data.media_information
       Setmedia(value => l);
     })
     .catch(error => {

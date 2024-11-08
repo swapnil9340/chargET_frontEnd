@@ -14,7 +14,8 @@ import Header from '@/component/Header/Searchbar';
 import Medialeftbar from '@/component/Leftbar/Medialeftbar';
 import { Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';  
-const Addcampaign = () => {
+import axios from 'axios';
+const Addcampaign = (props) => {
     const [value, setValue] = React.useState('1');
     const router = useRouter();
     const [add, setadd] = React.useState(false);
@@ -26,6 +27,10 @@ const Addcampaign = () => {
     function addcampaign (){
         router.push('/campaign/selectlayout');
     }
+
+
+    const [campaign , setcampaign] = React.useState([])
+
   return (
     <div className={styled.dashboard} >
        <div className={styled.mainDashboardsection} style={{width:"100%"}}>
@@ -46,8 +51,8 @@ const Addcampaign = () => {
                 <TabPanel value="1">
                 
                     <div className={styled.mediacardwrapper}>{
-                        [1,2,3,1,1,1,1,1,1,1,1,1,1,1,].map((item , index)=>{
-                        return <Mediacard key={index}/>
+                        campaign.map((item , index)=>{
+                        return <Mediacard key={index} item={item}/>
                         })
                     }
                     </div>
@@ -56,9 +61,9 @@ const Addcampaign = () => {
                 <TabPanel value="2">
             
                 <div className={styled.mediacardwrapper}>{
-                        [1,2,3,4,5,6,7].map((item , index)=>{
-                        return <Mediacard key={index}/>
-                        })
+                        // [1,2,3,4,5,6,7].map((item , index)=>{
+                        // return <Mediacard key={index}/>
+                        // })
                     }
                     </div>
                 </TabPanel>
@@ -115,3 +120,23 @@ const Addcampaign = () => {
 }
 // Addcampaign.layout = "layout1"
 export default Addcampaign
+
+export async function getServerSideProps(context) {
+    const { req } = context;
+    const tokenString = req?.cookies?.ChargeET_UserToken;
+    // console.log(tokenString)
+    // Use the token to fetch data
+    // const response = await fetch('https://api.example.com/data', {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // });
+  
+    const data = []
+  
+    return {
+      props: {
+        token:tokenString
+      },
+    };
+  }
