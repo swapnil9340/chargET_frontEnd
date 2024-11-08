@@ -23,14 +23,9 @@ const StyledSelect = styled(Select)({
     },
 });
 
-const CompositionSequence = () => {
-    const [items, setItems] = useState([
-        { id: 1, name: 'Choco', image: '/path/to/choco.jpg', duration: 10, size: '1024x2048' },
-        { id: 2, name: 'Fries', image: '/path/to/fries.jpg', duration: 10, size: '1024x2048' },
-        { id: 3, name: 'Choco', image: '/path/to/choco.jpg', duration: 10, size: '1024x2048' },
-        { id: 4, name: 'Choco', image: '/path/to/choco.jpg', duration: 10, size: '1024x2048' },
-        { id: 5, name: 'Choco', image: '/path/to/choco.jpg', duration: 10, size: '1024x2048' }
-    ]);
+const CompositionSequence = ({selectcampaign}) => {
+    console.log(selectcampaign)
+    const [items, setItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
 
     const fetchMoreData = () => {
@@ -48,6 +43,13 @@ const CompositionSequence = () => {
         }));
         setItems([...items, ...newItems]);
     };
+
+
+React.useEffect(()=>{
+    setItems(selectcampaign)
+},[selectcampaign])
+
+
 
     return (
         <Box>
@@ -123,11 +125,11 @@ const CompositionSequence = () => {
                  console.log(props)
                 return <StyledCard key={value.id} {...props}>
                 <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>  { Boolean(props.key+1) ? props.key +1 : <MdDragIndicator /> } .</Typography>
-                <Avatar src={value.image} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
+                <Avatar src={value.asset_url} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
                 <CardContent sx={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0' }}>
                     <Box>
                         <Typography variant="body1" fontWeight="bold">
-                            {value.name}
+                            {value.media_id}
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
                             {value.size}
