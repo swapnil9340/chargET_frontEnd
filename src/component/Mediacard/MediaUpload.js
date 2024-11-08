@@ -46,7 +46,6 @@ const MediaUpload = () => {
             hideUploadButton={false}
             hideProgressAfterFinish={true}
         />
-        
     </div>
   )
 }

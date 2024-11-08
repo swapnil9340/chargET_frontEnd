@@ -3,6 +3,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Avatar, Box, Card, CardContent, IconButton, Typography, Select, MenuItem } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/system';
+import { List, arrayMove } from "react-movable";
+import { MdDragIndicator } from "react-icons/md";
 
 const StyledCard = styled(Card)(({ theme }) => ({
     display: 'flex',
@@ -52,13 +54,13 @@ const CompositionSequence = () => {
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Composition Sequence
             </Typography>
-            <InfiniteScroll
+            {/* <InfiniteScroll
                 dataLength={items.length}
                 next={fetchMoreData}
                 hasMore={hasMore}
                 loader={<Typography textAlign="center">Loading...</Typography>}
                 height={400}
-                endMessage={<Typography textAlign="center">You have seen it all</Typography>}
+                endMessage={<Typography textAlign="center">{`You have seen it all`}</Typography>}
             >
                 {items.map((item, index) => (
                     <StyledCard key={item.id}>
@@ -108,7 +110,66 @@ const CompositionSequence = () => {
                         </CardContent>
                     </StyledCard>
                 ))}
-            </InfiniteScroll>
+            </InfiniteScroll> */}
+
+
+            <List
+                values={items}
+                onChange={({ oldIndex, newIndex }) =>
+                    setItems(arrayMove(items, oldIndex, newIndex))
+                }
+                renderList={({ children, props }) => <ul {...props}>{children}</ul>}
+                renderItem={({ value, props }) =>  { 
+                 console.log(props)
+                return <StyledCard key={value.id} {...props}>
+                <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>  { Boolean(props.key+1) ? props.key +1 : <MdDragIndicator /> } .</Typography>
+                <Avatar src={value.image} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
+                <CardContent sx={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0' }}>
+                    <Box>
+                        <Typography variant="body1" fontWeight="bold">
+                            {value.name}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                            {value.size}
+                        </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledSelect
+                            value={value.duration}
+                            onChange={(e) => {
+                                const updatedItems = items.map((itm) =>
+                                    itm.id === value.id ? { ...itm, duration: e.target.value } : itm
+                                );
+                                setItems(updatedItems);
+                            }}
+                            size="small"
+                            sx={{
+                                mr: 1,
+                                minWidth: '60px',
+                                backgroundColor: '#ffffff',
+                                '& .MuiSelect-select': { padding: '4px 8px' },
+                            }}
+                        >
+                            {[5, 10, 15, 20].map((sec) => (
+                                <MenuItem key={sec} value={sec}>
+                                    {sec} SEC
+                                </MenuItem>
+                            ))}
+                        </StyledSelect>
+                        <IconButton
+                            onClick={() => {
+                                setItems(items.filter((itm) => itm.id !== value.id));
+                            }}
+                            sx={{ color: '#757575' }}
+                        >
+                            <DeleteIcon />
+                        </IconButton>
+                    </Box>
+                </CardContent>
+            </StyledCard>}
+            
+        }
+            />
         </Box>
     );
 };

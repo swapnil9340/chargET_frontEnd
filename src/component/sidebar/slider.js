@@ -71,10 +71,9 @@ const Sidebar = () => {
         </List>
       </div>
 
-      
       <Avatar
         src="/user-avatar.jpg"
-        alt="Aser Avatar"
+        alt="Sser Avatar"
         sx={{
           width: 40,
           height: 40,
