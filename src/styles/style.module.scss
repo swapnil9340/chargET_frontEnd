@@ -577,6 +577,7 @@ img{
     row-gap: 20px;
 }
 .mediacard {
+ 
     width: 200px;
     border-radius: 20px;
     background-color: "#ffffff";
@@ -625,6 +626,7 @@ img{
         cursor: pointer;
     }
 }
+
 .warningbox {
     display: flex;
     justify-content: center;
@@ -632,7 +634,6 @@ img{
     flex-direction: column;
     position: relative;
     padding: 30px;
-
     h2 {
         color: #202b3b;
         font-size: 43px;

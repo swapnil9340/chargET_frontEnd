@@ -36,6 +36,7 @@ React.useEffect   (()=>{
     .then(response  => {
       // console.log(Boolean(response.data.media_information))
       const l =   response.data.media_information
+
       Setmedia(value => l);
     })
     .catch(error => {
@@ -61,7 +62,7 @@ React.useEffect   (()=>{
             <TabPanel value="1">
 
               <div className={styled.mediacardwrapper}>{
-                  media.map((item, index) => {
+                  media.slice(0,8).map((item, index) => {
                     return <Mediacard key={index}  item={item} />
                   })
               }
