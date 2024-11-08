@@ -601,6 +601,9 @@ img{
         font-family: "Rubik";
         font-weight: 600;
         line-height: 2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     p {
