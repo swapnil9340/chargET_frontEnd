@@ -41,7 +41,7 @@ function PublishOptions() {
     return (
         <Box>
             <Header></Header>
-                <Typography variant="h5" fontWeight="600"   sx={{
+                {/* <Typography variant="h5" fontWeight="600"   sx={{
                     fontSize: {
                       xs: 24, // mobile
                       sm: 28, // tablets
@@ -50,8 +50,8 @@ function PublishOptions() {
                     },
                   }}  gutterBottom>
                    {` Publish on the Go!`}
-                </Typography>
-                {/* <h1 className={classes.pageHeading}>{` Publish on the Go!`}</h1> */}
+                </Typography> */}
+                <h1 className={classes.pageHeading}>{` Publish on the Go!`}</h1>
             <Box p={4}  bgcolor="#f0f4fa"  borderRadius={6}>
                 <Typography variant="subtitle1" 
                 sx={{

@@ -597,7 +597,7 @@ img{
     h3.mediacardimgename {
         margin-bottom: 0;
         color: #202b3b;
-        font-size: 22px;
+        font-size: 16px;
         font-family: "Rubik";
         font-weight: 600;
         line-height: 2;
@@ -605,34 +605,30 @@ img{
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
     p {
-        font-size: 12px;
-        font-weight: 500;
         margin-bottom: 0;
-        color: #c1c0c8;
-        line-height: 1.4;
-        margin-bottom: 0;
-        color: #7c8797;
         font-size: 14px;
         font-family: "Rubik";
-        font-weight: 600;
+        font-weight: 500;
         line-height: 18px;
         text-transform: uppercase;
     }
 
-    div {
+    div.mediacardLike{
         cursor: pointer;
     }
-}
-
-.mediacard:hover {
-    background: #202b3b;
-    h3.mediacardimgename {
-        color: white;
-    }
-    p{
-        color: white;
+    &:hover {
+        transition: all .3s ease;
+        background: #202b3b;
+        h3.mediacardimgename {
+            color: white;
+        }
+        p{
+            color: white;
+        }
+        .mediacardLike{
+            color: #fff;
+        }
     }
 }
 .sectioncard{
@@ -642,6 +638,9 @@ img{
     }
     p{
         color: white;
+    }
+    .mediacardLike{
+        color: #fff;
     }
 }
 .warningbox {
@@ -749,6 +748,7 @@ img{
     justify-content: space-between;
     height: 100%;
     overflow-y: scroll;
+    flex-wrap: wrap;
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
@@ -875,4 +875,129 @@ img{
                 outline: none;
             }
         }
+}
+.screencard{
+    width: 100%;
+    max-width: 400px;
+    background-color: #f6f6f6;
+    border-radius: 30.240000000000002px;
+    display: flex;
+    gap: 4%;
+    padding: 15px;
+    .screenImage{
+        width: 48%;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .sreenDetails{
+        h3.screenName{
+            color: #9399a2;
+            font-size: 18px;
+            font-family: "Rubik";
+            font-weight: 500;
+            line-height: 26px;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+            li{
+                 display: flex;
+                 gap: 10px;
+                 align-items: center;
+                 color: #9399a2;
+                 font-size: 15px;
+                 font-family: "Rubik";
+                 font-weight: 500;
+                 line-height: 26px;
+            }
+        }
+        .seemorebtn{
+            padding: 6px 12px;
+            border: 0;
+            box-sizing: border-box;
+            border-radius: 24px;
+            background-color: #202b3b;
+            color: #f6f6f6;
+            font-size: 14px;
+            font-family: "Rubik";
+            font-weight: 500;
+            line-height: 20px;
+            outline: none;
+        }
+    }
+    &.screenselected{
+        background-color: #202b3b;
+        transition: all .3s ease;
+        .sreenDetails{
+            h3.screenName{
+                color: #f6f6f6;
+            }
+            ul{
+              
+                li{
+                     color: #f6f6f6;
+                }
+            }
+            .seemorebtn{        
+                background-color: #f6f6f6;
+                color: #202b3b;
+            }
+        }
+    }
+    &:hover{
+        background-color: #202b3b;
+        transition: all .3s ease;
+        .sreenDetails{
+            h3.screenName{
+                color: #f6f6f6;
+            }
+            ul{
+              
+                li{
+                     color: #f6f6f6;
+                }
+            }
+            .seemorebtn{        
+                background-color: #f6f6f6;
+                color: #202b3b;
+            }
+        }
+    }
+}
+.timelistitem{
+    padding: 20px 0;
+    .timeSquenceListItem{
+        border-right: 1px solid #f6f6f6;
+    }
+    .timelistcard{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: #e1edff;
+        justify-content: space-between;
+        border-radius: 16px;
+        border: 1px solid #85b6ff;
+        box-sizing: border-box;
+        box-shadow: 0px 2px 8px rgba(0,0,0,0.16);
+        padding: 10px;
+        h3{
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+        button{
+            background-color: #e5e5e5;
+            border-radius: 24px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.16);
+            color: #000000;
+            font-size: 12px;
+            padding: 5px 12px;
+            font-family: "Roboto";
+            line-height: 1.5;
+        }
+    }
 }
