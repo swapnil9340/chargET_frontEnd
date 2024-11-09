@@ -77,29 +77,32 @@ const Createscreen = (props) => {
 
   function campaignSelect(select) {
     setselectcampaign(prev => {
-      const newMediaItem = { media_id: select.media_id, duration: 10, order: 1 }; // Initial order set to 1 for new item
+      const newMediaItem = { media_id: select.media_id, duration: 10, order: 1 };
   
-      // Convert `props.zone` to a number and use it to determine how many campaign objects to create
+      // Convert `props.zone` to determine the number of campaign objects to create
       const numberOfZones = Number(props.zone.slice(-1));
   
       if (!isNaN(numberOfZones) && numberOfZones > 0) {
-        // Create an array to hold all the campaign objects that need to be updated or added
+        // Define a base zone_id offset to avoid unintended increments
+        const baseZoneId = 1; // or any starting value you prefer
         const campaignObjects = [];
   
-        for (let i = 1; i <= numberOfZones; i++) {
+        for (let i = 0; i < numberOfZones; i++) {
+          const zone_id = baseZoneId + i; // Ensure unique, incremental zone_id for each array
+  
           // Check if a campaign object for this part already exists
-          let existingCampaign = prev.find(campaign => campaign.zone_id === numberOfZones && campaign.name === `Header Zone Part ${i}`);
+          let existingCampaign = prev.find(campaign => campaign.zone_id === zone_id);
   
           if (!existingCampaign) {
             // Initialize a new campaign object if it doesn't exist
             existingCampaign = {
-              zone_id: numberOfZones,
-              name: `Header Zone Part ${i}`,
+              zone_id,
+              name: `Header Zone Part ${i + 1}`,
               media_sequence: [],
               custom_properties: {
                 width_percentage: 100 / numberOfZones,
                 height_percentage: 20,
-                position: { x_percentage: (i - 1) * (100 / numberOfZones), y_percentage: 0 }
+                position: { x_percentage: i * (100 / numberOfZones), y_percentage: 0 }
               }
             };
           }
@@ -108,7 +111,7 @@ const Createscreen = (props) => {
           const zoneConfig = selectzone[0][`zone${numberOfZones}`];
   
           // Update media_sequence in the existing campaign object if its corresponding selectzone is true
-          if (zoneConfig && zoneConfig[`selectzone${i}`]) {
+          if (zoneConfig && zoneConfig[`selectzone${i + 1}`]) {
             existingCampaign.media_sequence = [...existingCampaign.media_sequence, newMediaItem]
               .map((media, index) => ({
                 ...media,
@@ -120,10 +123,10 @@ const Createscreen = (props) => {
           campaignObjects.push(existingCampaign);
         }
   
-        // Return the updated selectcampaign state, removing any existing objects for this zone_id and adding the new ones
+        // Replace old objects with the same zone_ids and add the new ones
         return [
-          ...prev.filter(campaign => campaign.zone_id !== numberOfZones), // Remove old objects for this zone_id
-          ...campaignObjects // Add the updated/new campaign objects
+          ...prev.filter(campaign => !campaignObjects.some(newCampaign => newCampaign.zone_id === campaign.zone_id)),
+          ...campaignObjects
         ];
       }
   
@@ -131,6 +134,8 @@ const Createscreen = (props) => {
       return prev;
     });
   }
+  
+  
   
 
   function find_id(id) {
@@ -142,46 +147,12 @@ const Createscreen = (props) => {
       method: 'POST',
       url: 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/',
       params: {type: 'campaign', action: 'create'},
-      headers: {'content-type': 'application/json', Authorization: ''},
+      headers: {'content-type': 'application/json', Authorization: props.token},
       data: {
         campaign_name: 'My Custom Campaign',
         orientation: 'Landscape',
         layout_type: 'custom',
-        zones: [
-          {
-            zone_id: 1,
-            name: 'Header Zone',
-            media_sequence: [
-              {media_id: 'media_1', duration: 10, order: 1},
-              {media_id: 'media_1', duration: 10, order: 2}
-            ],
-            custom_properties: {
-              width_percentage: 100,
-              height_percentage: 20,
-              position: {x_percentage: 0, y_percentage: 0}
-            }
-          },
-          {
-            zone_id: 2,
-            name: 'Main Zone',
-            media_sequence: [{media_id: 'media_2', duration: 15, order: 1}],
-            custom_properties: {
-              width_percentage: 100,
-              height_percentage: 60,
-              position: {x_percentage: 0, y_percentage: 20}
-            }
-          },
-          {
-            zone_id: 3,
-            name: 'Footer Zone',
-            media_sequence: [{media_id: 'media_3', duration: 20, order: 1}],
-            custom_properties: {
-              width_percentage: 100,
-              height_percentage: 20,
-              position: {x_percentage: 0, y_percentage: 80}
-            }
-          }
-        ],
+        zones: selectcampaign,
         created_at: '2024-11-02T12:00:00Z',
         updated_at: '2024-11-02T12:00:00Z'
       }
@@ -245,7 +216,7 @@ const trueKeysForSecondZone = getTrueKeysForZone(props.zone.slice(-1))[0].slice(
             <h3 className={styled.commonboxTitle}>{'Composition Summary'}</h3>
             <div style={{}}>
             <button>{'Preview'}</button>
-            <button onClick={ApiCall()}>{'Save'}</button>
+            <button onClick={ApiCall  }>{'Save'}</button>
             </div>
           </div>
           <div className='row'>
