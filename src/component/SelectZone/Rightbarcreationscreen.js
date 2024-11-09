@@ -8,47 +8,19 @@ import DuelZone from './Dual';
 import Threezone from './Threezone';
 
 const Rightbarcreationscreen = (props) => {
+const {selectzone, setSelectZone} = props
 
-
-  const [selectzone, setSelectZone] = React.useState(
-    [
-      {
-        zone1: {
-          selectzone1: true,
-        },
-        zone2: {
-          selectzone1:true,
-          selectzone2:false,
-        },
-        zone3: {
-          selectzone1:true,
-          selectzone2:false,
-          selectzone3:false,
-        },
-        Bottomzone1: {
-          selectzone1: true,
-        },
-        Bottomzone2: {
-          selectzone1:true,
-          selectzone2:false,
-        },
-        Bottomzone3: {
-          selectzone1:true,
-          selectzone2:false,
-          selectzone3:false,
-        }
-      }
-    ]
-  );
-
-  function handleZone(zone, key) {
+  function handleZone(zone, selectedKey) {
     setSelectZone(prevZones =>
-        prevZones.map(zoneObj => ({
-            ...zoneObj, [zone]: {...zoneObj[zone], [key]: !zoneObj[zone][key] }
-        }))
+      prevZones.map(zoneObj => ({
+        ...zoneObj,
+        [zone]: Object.keys(zoneObj[zone]).reduce((acc, key) => {
+          acc[key] = key === selectedKey; // Set only the selected key to true, others to false
+          return acc;
+        }, {})
+      }))
     );
-}
-
+  }
   return (
     <div>
       <div className={`${styled.commonbox} ${styled.historybox} `}>

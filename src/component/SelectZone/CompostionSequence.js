@@ -113,8 +113,8 @@ const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
                     </StyledCard>
                 ))}
             </InfiniteScroll> */}
-
-
+{console.log(selectcampaign)
+}
             <List
                 values={selectcampaign}
                 onChange={({ oldIndex, newIndex }) =>
@@ -137,11 +137,12 @@ const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <StyledSelect
-                            value={selectcampaign?.duration}
+                            value={selectcampaign?.duration || 5}
                             onChange={(e) => {
-                                const updatedItems = items.map((itm) =>
+                                const updatedItems = selectcampaign.map((itm) =>
                                     itm.media_id === value.media_id ? { ...itm, duration: e.target.value } : itm
                                 );
+                                console.log(updatedItems)
                                 setselectcampaign(updatedItems);
                             }}
                             size="small"
@@ -152,7 +153,7 @@ const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
                                 '& .MuiSelect-select': { padding: '4px 8px' },
                             }}
                         >
-                            {[5, 10, 15, 20].map((sec) => (
+                            {[5, 10, 15, 20,30,40].map((sec) => (
                                 <MenuItem key={sec} value={sec}>
                                     {sec} SEC
                                 </MenuItem>
