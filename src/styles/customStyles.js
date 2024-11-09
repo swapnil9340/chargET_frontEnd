@@ -73,7 +73,26 @@ const useStyles = makeStyles((theme) => ({
       color:'#000',
       
     }
-  }
+  },
+  customScrollbar: {
+    overflowY: 'auto',
+    maxHeight: 550,
+    '&::-webkit-scrollbar': {
+      width: '6px', // Reduced width for minimal appearance
+    },
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: 'transparent', // Invisible track
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(136, 136, 136, 0.3)', // Semi-transparent for low visibility
+      borderRadius: '10px',
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: 'rgba(85, 85, 85, 0.7)', // Slightly more visible on hover
+    },
+    scrollbarWidth: 'thin', // For Firefox, makes scrollbar thinner
+    scrollbarColor: 'rgba(136, 136, 136, 0.3) transparent', // For Firefox, matching the WebKit styling
+  },
 }));
 
 export default useStyles;

@@ -14,26 +14,26 @@ const Rightbarcreationscreen = (props) => {
     [
       {
         zone1: {
-          selectzone1: false,
+          selectzone1: true,
         },
         zone2: {
-          selectzone1:false,
+          selectzone1:true,
           selectzone2:false,
         },
         zone3: {
-          selectzone1:false,
+          selectzone1:true,
           selectzone2:false,
           selectzone3:false,
         },
         Bottomzone1: {
-          selectzone1: false,
+          selectzone1: true,
         },
         Bottomzone2: {
-          selectzone1:false,
+          selectzone1:true,
           selectzone2:false,
         },
         Bottomzone3: {
-          selectzone1:false,
+          selectzone1:true,
           selectzone2:false,
           selectzone3:false,
         }
@@ -44,11 +44,7 @@ const Rightbarcreationscreen = (props) => {
   function handleZone(zone, key) {
     setSelectZone(prevZones =>
         prevZones.map(zoneObj => ({
-            ...zoneObj,
-            [zone]: {
-                ...zoneObj[zone],
-                [key]: !zoneObj[zone][key]
-            }
+            ...zoneObj, [zone]: {...zoneObj[zone], [key]: !zoneObj[zone][key] }
         }))
     );
 }
@@ -73,7 +69,7 @@ const Rightbarcreationscreen = (props) => {
 
       </div>
       <div className={`${styled.commonbox} ${styled.historybox}`}>
-        <CompositionSequence selectcampaign ={props.selectcampaign}></CompositionSequence>
+        <CompositionSequence selectcampaign ={props.selectcampaign} setselectcampaign={props.setselectcampaign}></CompositionSequence>
       </div>
     </div>
   )

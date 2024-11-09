@@ -23,31 +23,31 @@ const StyledSelect = styled(Select)({
     },
 });
 
-const CompositionSequence = ({selectcampaign}) => {
+const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
     console.log(selectcampaign)
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
 
-    const fetchMoreData = () => {
-        if (items.length >= 20) {
-            setHasMore(false);
-            return;
-        }
+    // const fetchMoreData = () => {
+    //     if (items.length >= 20) {
+    //         setHasMore(false);
+    //         return;
+    //     }
 
-        const newItems = Array.from({ length: 5 }).map((_, i) => ({
-            id: items.length + i + 1,
-            name: 'Choco',
-            image: '/path/to/choco.jpg',
-            duration: 10,
-            size: '1024x2048'
-        }));
-        setItems([...items, ...newItems]);
-    };
+    //     const newItems = Array.from({ length: 5 }).map((_, i) => ({
+    //         id: items.length + i + 1,
+    //         name: 'Choco',
+    //         image: '/path/to/choco.jpg',
+    //         duration: 10,
+    //         size: '1024x2048'
+    //     }));
+    //     setItems([...items, ...newItems]);
+    // };
 
 
-React.useEffect(()=>{
-    setItems(selectcampaign)
-},[selectcampaign])
+// React.useEffect(()=>{
+//     setItems(selectcampaign)
+// },[selectcampaign])
 
 
 
@@ -116,13 +116,14 @@ React.useEffect(()=>{
 
 
             <List
-                values={items}
+                values={selectcampaign}
                 onChange={({ oldIndex, newIndex }) =>
-                    setItems(arrayMove(items, oldIndex, newIndex))
+                    setselectcampaign(arrayMove(selectcampaign, oldIndex, newIndex))
                 }
                 renderList={({ children, props }) => <ul {...props} className='px-0'>{children}</ul>}
                 renderItem={({ value, props }) =>  { 
-                return <StyledCard key={value.id} {...props}>
+                    console.log(value)
+                return <StyledCard key={value.media_id} {...props}>
                 <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>  { Boolean(props.key+1) ? props.key +1 : <MdDragIndicator /> } .</Typography>
                 <Avatar src={value.asset_url} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
                 <CardContent sx={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0' }}>
@@ -136,12 +137,12 @@ React.useEffect(()=>{
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <StyledSelect
-                            value={value.duration}
+                            value={selectcampaign?.duration}
                             onChange={(e) => {
                                 const updatedItems = items.map((itm) =>
-                                    itm.id === value.id ? { ...itm, duration: e.target.value } : itm
+                                    itm.media_id === value.media_id ? { ...itm, duration: e.target.value } : itm
                                 );
-                                setItems(updatedItems);
+                                setselectcampaign(updatedItems);
                             }}
                             size="small"
                             sx={{
@@ -159,7 +160,7 @@ React.useEffect(()=>{
                         </StyledSelect>
                         <IconButton
                             onClick={() => {
-                                setItems(items.filter((itm) => itm.id !== value.id));
+                                setselectcampaign(selectcampaign.filter((itm) => itm.media_id !== value.media_id));
                             }}
                             sx={{ color: '#757575' }}
                         >
