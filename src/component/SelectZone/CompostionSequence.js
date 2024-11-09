@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, { useState, useEffect } from 'react';
 import { Avatar, Box, Card, CardContent, IconButton, Typography, Select, MenuItem } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/system';
@@ -23,68 +22,60 @@ const StyledSelect = styled(Select)({
     },
 });
 
-const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
-    console.log(selectcampaign)
-    // const [items, setItems] = useState([]);
-    const [hasMore, setHasMore] = useState(true);
+const CompositionSequence = ({ selectcampaign, setselectcampaign, selectingzones = 1 }) => {
 
-    // const fetchMoreData = () => {
-    //     if (items.length >= 20) {
-    //         setHasMore(false);
-    //         return;
-    //     }
-
-    //     const newItems = Array.from({ length: 5 }).map((_, i) => ({
-    //         id: items.length + i + 1,
-    //         name: 'Choco',
-    //         image: '/path/to/choco.jpg',
-    //         duration: 10,
-    //         size: '1024x2048'
-    //     }));
-    //     setItems([...items, ...newItems]);
-    // };
-
-
-// React.useEffect(()=>{
-//     setItems(selectcampaign)
-// },[selectcampaign])
-
-
-
+     console.log(selectcampaign)
     return (
         <Box>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Composition Sequence
             </Typography>
-            {/* <InfiniteScroll
-                dataLength={items.length}
-                next={fetchMoreData}
-                hasMore={hasMore}
-                loader={<Typography textAlign="center">Loading...</Typography>}
-                height={400}
-                endMessage={<Typography textAlign="center">{`You have seen it all`}</Typography>}
-            >
-                {items.map((item, index) => (
-                    <StyledCard key={item.id}>
-                        <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>{index + 1}.</Typography>
-                        <Avatar src={item.image} alt={item.name} sx={{ width: 40, height: 40, mr: 2 }} />
+            <List
+                values={selectcampaign[selectingzones-1]?.media_sequence || []}
+                onChange={({ oldIndex, newIndex }) => {
+                    const updatedSequence = arrayMove(selectcampaign[selectingzones - 1]?.media_sequence, oldIndex, newIndex)
+                        .map((media, index) => ({
+                            ...media,
+                            order: index + 1 // Update order based on index position
+                        }));
+                
+                    const updatedCampaign = selectcampaign.map((campaign, index) =>
+                        index === selectingzones - 1 ? { ...campaign, media_sequence: updatedSequence } : campaign
+                    );
+                
+                    setselectcampaign(updatedCampaign);
+                }}
+                renderList={({ children, props }) => <ul {...props} className='px-0'>{children}</ul>}
+                renderItem={({ value, props }) => (
+                    <StyledCard key={value.media_id} {...props}>
+                        <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>
+                            {Boolean(props.key + 1) ? props.key + 1 : <MdDragIndicator />} .
+                        </Typography>
+                        <Avatar src={value.asset_url} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
                         <CardContent sx={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0' }}>
                             <Box>
                                 <Typography variant="body1" fontWeight="bold">
-                                    {item.name}
+                                    {value.media_id}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
-                                    {item.size}
+                                    {value.size}
                                 </Typography>
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <StyledSelect
-                                    value={item.duration}
+                                    value={value.duration || 5}
                                     onChange={(e) => {
-                                        const updatedItems = items.map((itm) =>
-                                            itm.id === item.id ? { ...itm, duration: e.target.value } : itm
+                                        const updatedItems = selectcampaign.map((campaign, index) =>
+                                            index < selectingzones
+                                                ? {
+                                                    ...campaign,
+                                                    media_sequence: campaign.media_sequence.map((itm) =>
+                                                        itm.media_id === value.media_id ? { ...itm, duration: e.target.value } : itm
+                                                    )
+                                                }
+                                                : campaign
                                         );
-                                        setItems(updatedItems);
+                                        setselectcampaign(updatedItems);
                                     }}
                                     size="small"
                                     sx={{
@@ -94,7 +85,7 @@ const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
                                         '& .MuiSelect-select': { padding: '4px 8px' },
                                     }}
                                 >
-                                    {[5, 10, 15, 20].map((sec) => (
+                                    {[5, 10, 15, 20, 30, 40].map((sec) => (
                                         <MenuItem key={sec} value={sec}>
                                             {sec} SEC
                                         </MenuItem>
@@ -102,7 +93,15 @@ const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
                                 </StyledSelect>
                                 <IconButton
                                     onClick={() => {
-                                        setItems(items.filter((itm) => itm.id !== item.id));
+                                        const updatedItems = selectcampaign.map((campaign, index) =>
+                                            index < selectingzones
+                                                ? {
+                                                    ...campaign,
+                                                    media_sequence: campaign.media_sequence.filter((itm) => itm.media_id !== value.media_id)
+                                                }
+                                                : campaign
+                                        );
+                                        setselectcampaign(updatedItems);
                                     }}
                                     sx={{ color: '#757575' }}
                                 >
@@ -111,67 +110,7 @@ const CompositionSequence = ({selectcampaign , setselectcampaign}) => {
                             </Box>
                         </CardContent>
                     </StyledCard>
-                ))}
-            </InfiniteScroll> */}
-{console.log(selectcampaign)
-}
-            <List
-                values={selectcampaign}
-                onChange={({ oldIndex, newIndex }) =>
-                    setselectcampaign(arrayMove(selectcampaign, oldIndex, newIndex))
-                }
-                renderList={({ children, props }) => <ul {...props} className='px-0'>{children}</ul>}
-                renderItem={({ value, props }) =>  { 
-                    console.log(value)
-                return <StyledCard key={value.media_id} {...props}>
-                <Typography variant="body1" sx={{ mx: 2, color: '#757575' }}>  { Boolean(props.key+1) ? props.key +1 : <MdDragIndicator /> } .</Typography>
-                <Avatar src={value.asset_url} alt={value.name} sx={{ width: 40, height: 40, mr: 2 }} />
-                <CardContent sx={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0' }}>
-                    <Box>
-                        <Typography variant="body1" fontWeight="bold">
-                            {value.media_id}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                            {value.size}
-                        </Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <StyledSelect
-                            value={selectcampaign?.duration || 5}
-                            onChange={(e) => {
-                                const updatedItems = selectcampaign.map((itm) =>
-                                    itm.media_id === value.media_id ? { ...itm, duration: e.target.value } : itm
-                                );
-                                console.log(updatedItems)
-                                setselectcampaign(updatedItems);
-                            }}
-                            size="small"
-                            sx={{
-                                mr: 1,
-                                minWidth: '60px',
-                                backgroundColor: '#ffffff',
-                                '& .MuiSelect-select': { padding: '4px 8px' },
-                            }}
-                        >
-                            {[5, 10, 15, 20,30,40].map((sec) => (
-                                <MenuItem key={sec} value={sec}>
-                                    {sec} SEC
-                                </MenuItem>
-                            ))}
-                        </StyledSelect>
-                        <IconButton
-                            onClick={() => {
-                                setselectcampaign(selectcampaign.filter((itm) => itm.media_id !== value.media_id));
-                            }}
-                            sx={{ color: '#757575' }}
-                        >
-                            <DeleteIcon />
-                        </IconButton>
-                    </Box>
-                </CardContent>
-               </StyledCard>}
-            
-        }
+                )}
             />
         </Box>
     );

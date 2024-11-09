@@ -46,6 +46,7 @@ const Createscreen = (props) => {
       }
     ]
   );
+
   const [value, setValue] = React.useState('1');
   const [selectcampaign, setselectcampaign] = React.useState([])
   const Styles = useStyles()
@@ -76,10 +77,10 @@ const Createscreen = (props) => {
 
   function campaignSelect(select) {
     setselectcampaign(prev => {
-      const newMediaItem = { media_id: select.media_id, duration: 10, order: prev.length + 1 };
+      const newMediaItem = { media_id: select.media_id, duration: 10, order: 1 }; // Initial order set to 1 for new item
   
       // Convert `props.zone` to a number and use it to determine how many campaign objects to create
-      const numberOfZones = Number(2);
+      const numberOfZones = Number(props.zone.slice(-1));
   
       if (!isNaN(numberOfZones) && numberOfZones > 0) {
         // Create an array to hold all the campaign objects that need to be updated or added
@@ -105,10 +106,14 @@ const Createscreen = (props) => {
   
           // Access selectzone state to check for each part dynamically
           const zoneConfig = selectzone[0][`zone${numberOfZones}`];
-          
+  
           // Update media_sequence in the existing campaign object if its corresponding selectzone is true
           if (zoneConfig && zoneConfig[`selectzone${i}`]) {
-            existingCampaign.media_sequence = [...existingCampaign.media_sequence, newMediaItem];
+            existingCampaign.media_sequence = [...existingCampaign.media_sequence, newMediaItem]
+              .map((media, index) => ({
+                ...media,
+                order: index + 1 // Update order based on index position
+              }));
           }
   
           // Add the updated or new campaign object to the campaignObjects array
@@ -127,9 +132,7 @@ const Createscreen = (props) => {
     });
   }
   
-  
-  
-  
+
   function find_id(id) {
 
     return selectcampaign.find((data) => data.media_id === id);
@@ -194,9 +197,17 @@ const Createscreen = (props) => {
 
 
 
+const getTrueKeysForZone = (zoneIndex) => {
+  const zoneKey = `zone${zoneIndex}`;
+  const selectedZone = selectzone[0][zoneKey];
 
-console.log(selectcampaign)
+  if (!selectedZone) return [];
 
+  return Object.keys(selectedZone).filter(key => selectedZone[key] === true);
+};
+
+// Usage
+const trueKeysForSecondZone = getTrueKeysForZone(props.zone.slice(-1))[0].slice(-1); // Retrieves keys from zone2 that have `true` values
 
   return (
     <div className={styled.dashboard}>
@@ -281,7 +292,9 @@ console.log(selectcampaign)
         </div>
       </div>
       <div className={styled.DashboardLeftSection}>
-        <Rightbarcreationscreen selectzone={selectzone} setSelectZone={setSelectZone} zone={props.zone} selectcampaign={selectcampaign} setselectcampaign={setselectcampaign} />
+        <Rightbarcreationscreen selectzone={selectzone} setSelectZone={setSelectZone} zone={props.zone} selectcampaign={selectcampaign} setselectcampaign={setselectcampaign}
+        selctingcam={trueKeysForSecondZone}
+        />
       </div>
     </div>
   )
@@ -293,6 +306,7 @@ export async function getServerSideProps(context) {
   const { layout } = context.query;
   const { req } = context;
   const tokenString = req?.cookies?.ChargeET_UserToken;
+  console.log(tokenString)
   // Check if the 'layout' query parameter exists
   if (!layout) {
     // Redirect to a 404 page if 'layout' query is missing

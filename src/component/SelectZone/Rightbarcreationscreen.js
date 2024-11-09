@@ -41,7 +41,7 @@ const {selectzone, setSelectZone} = props
 
       </div>
       <div className={`${styled.commonbox} ${styled.historybox}`}>
-        <CompositionSequence selectcampaign ={props.selectcampaign} setselectcampaign={props.setselectcampaign}></CompositionSequence>
+        <CompositionSequence selectcampaign ={props.selectcampaign} setselectcampaign={props.setselectcampaign} selectingzones={props.selctingcam}></CompositionSequence>
       </div>
     </div>
   )
