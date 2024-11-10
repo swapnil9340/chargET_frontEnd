@@ -16,24 +16,34 @@ const Choosescreen = () => {
     const [value, setValue] = React.useState('1');
     const [selecteditem , setselecteditem]= useState([])
     const Styles = useStyles()
+    const router = useRouter();
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    const selected= (id)=>{
-         if(selecteditem.includes(id)){
-            setselecteditem(selecteditem.filter((item)=>{
-                return item !== id
-            }))
-         }else{
-            setselecteditem([...selecteditem , id])
-         }
-    }
+    const selected = (id) => {
+        setselecteditem((prevSelectedItems) => {
+          if (prevSelectedItems.includes(id)) {
+            return prevSelectedItems.filter((item) => item !== id);
+          } else {
+            return [...prevSelectedItems, id];
+          }
+        });
+      };
+     
+    const handleRedirect = () => {
+        router.push('/sequence');
+      };
+
   return (
     <div className={styled.dashboard}>
     <div className={styled.mainDashboardsection} style={{ width: "100%" }}>
+        <div>
         <Header />
+       
+        </div>
         <div   className='d-flex w-100 justify-content-between align-items-center'  >
             <h1 className={styled.pageHeading}>{`Choose Layout`}</h1>
+          {Boolean(selecteditem.length) &&  <button onClick={handleRedirect}>{`Next`}</button>}
         </div>
         <Box className={Styles.historyList}>
             <TabContext value={value}>
@@ -81,5 +91,5 @@ const Choosescreen = () => {
 </div>
   )
 }
-
+Choosescreen.layout = "layout1"
 export default Choosescreen

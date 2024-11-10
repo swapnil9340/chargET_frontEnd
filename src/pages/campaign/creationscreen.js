@@ -14,8 +14,9 @@ import Header from '@/component/Header/Searchbar';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import Rightbarcreationscreen from '@/component/SelectZone/Rightbarcreationscreen';
 import axios from 'axios';
-
+import { useRouter } from 'next/router';
 const Createscreen = (props) => {
+  const router = useRouter();
   const [selectzone, setSelectZone] = React.useState(
     [
       {
@@ -138,10 +139,31 @@ const Createscreen = (props) => {
   
   
 
-  function find_id(id) {
-
-    return selectcampaign.find((data) => data.media_id === id);
+  function find_id(mediaId, zone) {
+    const zone_id = Number(zone);
+  
+    // Find the campaign with the specified `zone_id`
+    const campaign = selectcampaign.find(campaign => campaign.zone_id === zone_id);
+  
+    if (campaign) {
+      console.log(`Checking zone_id ${zone_id}:`, campaign);
+  
+      // Check if `media_sequence` contains the specified `media_id`
+      const mediaExists = campaign.media_sequence.some(media => media.media_id === mediaId);
+  
+      if (mediaExists) {
+        console.log(`Media ID ${mediaId} exists in zone ${zone_id}: true`);
+      } else {
+        console.log(`Media ID ${mediaId} does not exist in zone ${zone_id}: false`);
+      }
+      
+      return mediaExists;
+    } else {
+      console.warn(`No campaign found for zone ${zone_id}`);
+      return false;
+    }
   }
+
   const  ApiCall =  async () => {
     const options = {
       method: 'POST',
@@ -160,7 +182,7 @@ const Createscreen = (props) => {
     
     try {
       const { data } = await axios.request(options);
-      console.log(data);
+      router.push('/campaign');
     } catch (error) {
       console.error(error);
     }
@@ -203,7 +225,7 @@ const trueKeysForSecondZone = getTrueKeysForZone(props.zone.slice(-1))[0].slice(
                       key={index}
                       hnadlechnage={campaignSelect}
                       item={item}
-                      select={find_id(item.media_id) ? styled.sectioncard : ""}
+                      select={find_id(item.media_id , props.zone.slice(-1)) ? styled.sectioncard : ""}
                     />
                   ))}
                 </div>

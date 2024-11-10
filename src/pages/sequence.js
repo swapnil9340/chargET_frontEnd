@@ -27,7 +27,7 @@ const Sequence = () => {
       setValue(newValue);
     };
     const [media , Setmedia] = React.useState([])
-    const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=media&action=get';
+    const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=campaign&action=get';
     const cookieValue = Cookies.get('ChargeET_UserToken');
     const headers = {
       'Authorization': cookieValue,
@@ -40,7 +40,7 @@ const Sequence = () => {
     axios.post(url, data, { headers })
       .then(response  => {
         // console.log(Boolean(response.data.media_information))
-        const l =   response.data.media_information
+        const l =   response.data.campaign_detail
         Setmedia( l);
       })
       .catch(error => {
@@ -48,24 +48,11 @@ const Sequence = () => {
       });
   },[])
   
-  function campaignSelect(select) {
-    setselectcampaign(prev => {
-      const mediaExists = prev.some(media => media.media_id === select.media_id);
-      if (mediaExists) {
-        // Remove the existing media
-        return prev.filter(media => media.media_id !== select.media_id);
-      } else {
-        // Add the new media
-        return [...prev, select];
-      }
-    });
-  
+ const  handleselectcam=(media)=>{
+console.log(media)
   }
-  function find_id ( id){
 
-    return  selectcampaign.find((data) => data.media_id === id);
-  }
- 
+
   return (
     <div className={styled.dashboard}>
     <div className={styled.mainDashboardsection}>
@@ -83,7 +70,7 @@ const Sequence = () => {
            
              <div className={styled.mediacardwrapper}>{
                       media.slice(0 ,8).map((item, index) => {
-                       return <Mediacard key={index}  hnadlechnage={campaignSelect} item={item} select={ find_id(item.media_id) ? styled.sectioncard : ""} />
+                       return <Mediacard key={index} hnadlechnage={handleselectcam}  item={item}  />
                      })
                }
              </div>
@@ -249,5 +236,5 @@ const Sequence = () => {
  </div>
   )
 }
-
+Sequence.layout = "layout1"
 export default Sequence
