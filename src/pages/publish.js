@@ -13,10 +13,11 @@ import {
 import Image from 'next/image';
 import Header from '@/component/Header/Searchbar';
 import classes from "@/styles/style.module.scss"
+import { useRouter } from 'next/router';
 function PublishOptions() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
+    const router = useRouter();
     const options = [
         {
             title: 'Schedule',
@@ -37,6 +38,12 @@ function PublishOptions() {
             imageSrc: '/publishSetting.png',
         },
     ];
+
+
+
+    const handleRedirect = () => {
+        router.push('/choosescreen');
+      };
 
     return (
         <Box>
@@ -77,7 +84,7 @@ function PublishOptions() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button variant="contained" color="primary" fullWidth>
+                                    <Button  onClick={()=>handleRedirect()}variant="contained" color="primary" fullWidth>
                                         {option.buttonText}
                                     </Button>
                                 </CardActions>

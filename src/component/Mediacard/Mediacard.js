@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FaHeart , FaRegHeart } from "react-icons/fa";
 import classes from '@/styles/style.module.scss'
 
-const Mediacard = ({item , hnadlechnage ,select , key} ) => {
+const Mediacard = ({item , hnadlechnage =()=>{},select='' , key} ) => {
   const [like,setlike]=useState()
   
   return (
