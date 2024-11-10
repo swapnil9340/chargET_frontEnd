@@ -19,7 +19,7 @@ import Cookies from 'js-cookie';
 import Avatar from '@mui/material/Avatar';
 import { MdDeleteForever } from "react-icons/md";
 import iamge from '../../public/DeviewImgss.png'
-const sequence = () => {
+const Sequence = () => {
     const [value, setValue] = React.useState('1');
     const [selectcampaign, setselectcampaign] = React.useState([])
     const Styles=useStyles() 
@@ -250,4 +250,4 @@ const sequence = () => {
   )
 }
 
-export default sequence
+export default Sequence
