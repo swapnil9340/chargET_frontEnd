@@ -12,7 +12,7 @@ import Header from '@/component/Header/Searchbar';
 import { Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Screencard from '@/component/Screen/Screencard';
-const choosescreen = () => {
+const Choosescreen = () => {
     const [value, setValue] = React.useState('1');
     const [selecteditem , setselecteditem]= useState([])
     const Styles = useStyles()
@@ -82,4 +82,4 @@ const choosescreen = () => {
   )
 }
 
-export default choosescreen
+export default Choosescreen
