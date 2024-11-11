@@ -39,7 +39,7 @@ const Login = () => {
   
       const data = response.data;
       router.push('/');
-      const oneHour = 1/ 24; // 1 hour in days
+      const oneHour = 6/ 24; // 1 hour in days
       Cookies.set('ChargeET_UserToken', data.token, { expires: oneHour });
   
     } catch (error) {
