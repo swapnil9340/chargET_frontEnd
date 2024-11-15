@@ -23,8 +23,6 @@ const StyledSelect = styled(Select)({
 });
 
 const CompositionSequence = ({ selectcampaign, setselectcampaign, selectingzones = 1 }) => {
-
-     console.log(selectcampaign)
     return (
         <Box>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
