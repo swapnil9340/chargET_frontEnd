@@ -327,3 +327,30 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+
+
+// {
+//   "specific_dates": ["2023-11-13", "2023-11-14", "2023-11-15", "2023-11-16", "2023-11-17"], // Monday to Friday of a specific week
+//   "schedule_items": [
+//     {
+//       "campaign_id": "CampaignA_Id",
+//       "time_slots": [
+//         {
+//           "start_time": "10:00:00",
+//           "end_time": "12:00:00"
+//         }
+//       ]
+//     },
+//     {
+//       "campaign_id": "CampaignA_Id",
+//       "time_slots": [
+//         {
+//           "start_time": "10:00:00",
+//           "end_time": "12:00:00"
+//         }
+//       ]
+//     }
+//   ],
+//   "status": "published/draft",
+// }
