@@ -47,7 +47,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #fff;
-  background-color: #06367A;
+  background-color: #06367a;
   border: none;
   border-radius: 50px;
   line-height: 2;
@@ -56,12 +56,20 @@
   gap: 10px;
 }
 
+.pageHeading {
+  color: #202b3b;
+  font-size: 40px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 46px;
+}
+
 .commonbox {
   background-color: #eaecef;
   border-radius: 24px;
   padding: 30px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 .commonbox .commonboxTitle {
   color: #9399a2;
@@ -99,29 +107,67 @@
   height: 100vh;
   padding: 20px;
   overflow: hidden;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 .layoutWrapper::-webkit-scrollbar {
   display: none;
 }
 .layoutWrapper main {
   flex: 1;
+  max-width: 93%;
+}
+
+.DeviceSection {
+  position: relative;
+}
+.DeviceSection .DevicesectionCard {
+  width: 70%;
+}
+.DeviceSection .DevicesectionImage {
+  width: 30%;
+}
+.DeviceSection .DevicesectionImage .deviceiamge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 100%;
+  max-height: 250px;
+}
+.DeviceSection .DevicesectionImage .deviceiamge img {
+  width: auto;
+  max-width: 400px;
+  height: 100%;
 }
 
 .devicedcard {
   position: relative;
-  width: 140px;
+  width: 100%;
+  padding: 0 10px;
   padding-bottom: 30px;
   border-right: 2px solid #dde0e4;
   text-align: center;
 }
+.devicedcard img {
+  margin: 0 auto;
+  max-width: 100%;
+}
 .devicedcard h4 {
   color: #9399a2;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Rubik";
   font-weight: 600;
-  line-height: 22px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  height: 18px;
+  -webkit-box-orient: vertical;
   text-align: center;
 }
 .devicedcard button {
@@ -136,6 +182,13 @@
   font-weight: 500;
   line-height: 20px;
   outline: none;
+  border: 1px solid;
+}
+.devicedcard button:hover {
+  background-color: #f5f5f5;
+  color: #202b3b;
+  transition: all 0.3s ease;
+  border-color: #202b3b;
 }
 
 .HomepageLayout {
@@ -244,6 +297,11 @@
   border-radius: 50%;
   overflow: hidden;
 }
+.suggestionsection .suggestioncircle .suggestionimagebox:hover {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
 .suggestionsection .suggestioncircle .suggestionimagebox img {
   width: 100%;
   height: 100%;
@@ -303,8 +361,8 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  border: 1px solid #06367A;
-  color: #06367A;
+  border: 1px solid #06367a;
+  color: #06367a;
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 12px;
@@ -314,7 +372,7 @@
   gap: 5px;
 }
 .card .postionbutton:hover {
-  background-color: #06367A;
+  background-color: #06367a;
   color: #fff;
   transition: all 0.3s ease-in-out;
 }
@@ -325,7 +383,7 @@
 .homesection h2.homesectiontitle {
   font-size: 24px;
   line-height: 1.5;
-  color: #06367A;
+  color: #06367a;
   font-weight: 700;
 }
 .homesection .scrollContainer {
@@ -339,7 +397,7 @@
 
 .accespage {
   display: flex;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   gap: 0;
 }
@@ -440,6 +498,27 @@
 }
 .accespage .rightside {
   width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accespage .rightside .LoginaimgeContent {
+  width: 60%;
+}
+.accespage .rightside .LoginaimgeContent h3 {
+  color: #030303;
+  font-size: 24px;
+  font-family: "Rubik";
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: center;
+}
+.accespage .rightside .LoginaimgeContent p {
+  color: #7c8797;
+  font-size: 18px;
+  font-family: "Rubik";
+  line-height: 30px;
+  text-align: center;
 }
 
 .mediacardwrapper {
@@ -452,7 +531,7 @@
 }
 
 .mediacard {
-  width: 30%;
+  width: 200px;
   border-radius: 20px;
   background-color: "#ffffff";
   border-radius: 16px;
@@ -470,27 +549,50 @@
 .mediacard h3.mediacardimgename {
   margin-bottom: 0;
   color: #202b3b;
-  font-size: 22px;
+  font-size: 16px;
   font-family: "Rubik";
   font-weight: 600;
   line-height: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mediacard p {
-  font-size: 12px;
-  font-weight: 500;
   margin-bottom: 0;
-  color: #c1c0c8;
-  line-height: 1.4;
-  margin-bottom: 0;
-  color: #7c8797;
   font-size: 14px;
   font-family: "Rubik";
-  font-weight: 600;
+  font-weight: 500;
   line-height: 18px;
   text-transform: uppercase;
 }
-.mediacard div {
+.mediacard div.mediacardLike {
   cursor: pointer;
+}
+.mediacard:hover {
+  transition: all 0.3s ease;
+  background: #202b3b;
+}
+.mediacard:hover h3.mediacardimgename {
+  color: white;
+}
+.mediacard:hover p {
+  color: white;
+}
+.mediacard:hover .mediacardLike {
+  color: #fff;
+}
+
+.sectioncard {
+  background: #202b3b;
+}
+.sectioncard h3.mediacardimgename {
+  color: white;
+}
+.sectioncard p {
+  color: white;
+}
+.sectioncard .mediacardLike {
+  color: #fff;
 }
 
 .warningbox {
@@ -586,8 +688,11 @@
   justify-content: space-between;
   height: 100%;
   overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  flex-wrap: wrap;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 .dashboard::-webkit-scrollbar {
   display: none;
@@ -596,7 +701,8 @@
   width: 67%;
 }
 .dashboard .DashboardLeftSection {
-  width: 30%;
+  width: 32%;
+  height: 75%;
 }
 
 .imageUploadbox {
@@ -640,4 +746,179 @@
 
 .mediapagewrapper {
   display: flex;
-}/*# sourceMappingURL=style.module.css.map */
+}
+
+.campaignbox {
+  display: flex;
+}
+
+.zoneselect {
+  background-color: #f6f6f6;
+  border-radius: 30.24px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  display: flex;
+  justify-content: center;
+}
+
+.zonebox {
+  display: flex;
+  justify-content: center;
+}
+
+.hoverzonesection .custombox {
+  border-radius: 15px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+.hoverzonesection .hoverzonetitle {
+  color: #9399a2;
+  font-size: 16px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 35px;
+  margin-bottom: 0;
+}
+.hoverzonesection .hoverzoneBtn {
+  display: none;
+}
+.hoverzonesection:hover .custombox {
+  background-color: #202b3b;
+  transition: all 0.3s ease;
+}
+.hoverzonesection:hover .hoverzonetitle {
+  color: #eaecef;
+}
+.hoverzonesection:hover .hoverzoneBtn {
+  display: flex;
+  background-color: #fff;
+  color: #030303;
+  padding: 6px 20px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background-color: #f6f6f6;
+  color: #000000;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 20px;
+  outline: none;
+}
+
+.screencard {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f6f6f6;
+  border-radius: 30.24px;
+  display: flex;
+  gap: 4%;
+  padding: 15px;
+}
+.screencard .screenImage {
+  width: 48%;
+}
+.screencard .screenImage img {
+  width: 100%;
+  height: auto;
+}
+.screencard .sreenDetails h3.screenName {
+  color: #9399a2;
+  font-size: 18px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 26px;
+}
+.screencard .sreenDetails ul {
+  list-style: none;
+  padding: 0;
+}
+.screencard .sreenDetails ul li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #9399a2;
+  font-size: 15px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 26px;
+}
+.screencard .sreenDetails .seemorebtn {
+  padding: 6px 12px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background-color: #202b3b;
+  color: #f6f6f6;
+  font-size: 14px;
+  font-family: "Rubik";
+  font-weight: 500;
+  line-height: 20px;
+  outline: none;
+}
+.screencard.screenselected {
+  background-color: #202b3b;
+  transition: all 0.3s ease;
+}
+.screencard.screenselected .sreenDetails h3.screenName {
+  color: #f6f6f6;
+}
+.screencard.screenselected .sreenDetails ul li {
+  color: #f6f6f6;
+}
+.screencard.screenselected .sreenDetails .seemorebtn {
+  background-color: #f6f6f6;
+  color: #202b3b;
+}
+.screencard:hover {
+  background-color: #202b3b;
+  transition: all 0.3s ease;
+}
+.screencard:hover .sreenDetails h3.screenName {
+  color: #f6f6f6;
+}
+.screencard:hover .sreenDetails ul li {
+  color: #f6f6f6;
+}
+.screencard:hover .sreenDetails .seemorebtn {
+  background-color: #f6f6f6;
+  color: #202b3b;
+}
+
+.timelistitem {
+  padding: 20px 0;
+}
+.timelistitem .timeSquenceListItem {
+  border-right: 1px solid #f6f6f6;
+}
+.timelistitem .timelistcard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #e1edff;
+  justify-content: space-between;
+  border-radius: 16px;
+  border: 1px solid #85b6ff;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+}
+.timelistitem .timelistcard h3 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+.timelistitem .timelistcard button {
+  background-color: #e5e5e5;
+  border-radius: 24px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+  color: #000000;
+  font-size: 12px;
+  padding: 5px 12px;
+  font-family: "Roboto";
+  line-height: 1.5;
+}
+/*# sourceMappingURL=style.module.css.map */
