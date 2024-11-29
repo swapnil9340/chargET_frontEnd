@@ -16,7 +16,6 @@ export default function calender({ events, setEvents, getscheduleData, Setschedu
 
     const data = {};
     const data1 = { page: 1, page_size: 40 };
-
     React.useEffect(() => {
         axios.post(url, data, { headers })
             .then(response => {
@@ -43,7 +42,7 @@ export default function calender({ events, setEvents, getscheduleData, Setschedu
     // Example events
     const handleSelectSlot = (slotInfo) => {
        
-      if(Boolean(campaignId.length) ){
+      if(Boolean(campaignId.length)  && Boolean(!getscheduleData.length)  ){
         const title = prompt("Enter a title for your schedule:", "Sample publish");
         if (!title || title.trim() === "") {
             alert("Schedule name is required.");
@@ -141,7 +140,13 @@ export default function calender({ events, setEvents, getscheduleData, Setschedu
 
       }
       else {
-        alert("Select camp");
+        if( Boolean(!campaignId.length) ){
+
+            alert("Select camp");
+        }
+        else if (Boolean(getscheduleData.length)) {
+            alert("save or draft previous");
+        }
       }
     };
 
