@@ -100,7 +100,6 @@ export default function calender({ events, setEvents, getscheduleData, Setschedu
             alert("Schedule added successfully!");
         }
         else if (currentView === "day") {
-            console.log(slotInfo)
             const date = new Date(slotInfo.start);
             const day = String(date.getDate()).padStart(2, '0'); // Two-digit day
             const month = String(date.getMonth() + 1).padStart(2, '0'); // Two-digit month
