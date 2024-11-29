@@ -3,7 +3,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-export default function calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia }) {
+export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia }) {
     const [currentView, setCurrentView] = React.useState('day')
     const cookieValue = Cookies.get('ChargeET_UserToken');
     const campaignId = campaignIds.map((id) => id.trim());
