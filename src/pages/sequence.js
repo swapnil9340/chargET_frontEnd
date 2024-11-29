@@ -2,20 +2,17 @@ import React from 'react'
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
-import { MdEdit } from "react-icons/md";
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import useStyles from '@/styles/customStyles';
 import Mediacard from '@/component/Mediacard/Mediacard';
 import styled from '@/styles/style.module.scss'
 import { BsBadgeHdFill } from "react-icons/bs";
-
 import { TbRefreshDot } from "react-icons/tb";
 import Header from '@/component/Header/Searchbar';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import iamge from '../../public/DeviewImgss.png'
 import Calendar from "../component/schedule/calender";
 import Router from 'next/router'
 
@@ -24,7 +21,8 @@ const Sequence = () => {
     const [events, setEvents] = React.useState([]);
     const [getscheduleData, SetscheduleData] = React.useState([])
     const [campaignIds ,setcampaignIds] = React.useState([]);
-    const Styles = useStyles()
+    const [ loading , setloading] = React.useState(false)
+    const Styles = useStyles() 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -51,30 +49,38 @@ const Sequence = () => {
     };
 
      const handlesavefunction = async (status) =>{
+     if(Boolean(getscheduleData.length)) {
+        setloading(true)
         const options = {
-          method: 'POST',
-          url: 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/',
-          params: {type: 'schedulev2', action: 'create'},
-          headers: headers,
-          data:
-           {
-            screen_ids: getscheduleData[0].screen_ids,
-            specific_dates: getscheduleData[0].specific_dates,
-            schedule_name: getscheduleData[0].schedule_name,
-            schedule_items:   getscheduleData[0].schedule_items,
-            status: status
+            method: 'POST',
+            url: 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/',
+            params: {type: 'schedulev2', action: 'create'},
+            headers: headers,
+            data:
+             {
+              screen_ids: getscheduleData[0].screen_ids,
+              specific_dates: getscheduleData[0].specific_dates,
+              schedule_name: getscheduleData[0].schedule_name,
+              schedule_items:   getscheduleData[0].schedule_items,
+              status: status
+            }
+          };
+          
+          try {
+            const { data } = await axios.request(options);
+            setloading(false) 
+          if(data.status= 'success') {
+              Router.push('/choosescreen')
           }
-        };
-        
-        try {
-          const { data } = await axios.request(options);
-        //   console.log();
-        if(data.status= 'success') {
-            Router.push('/choosescreen')
-        }
-        } catch (error) {
-          console.error(error);
-        }
+          } catch (error) {
+            console.error(error);
+          }
+     }
+     else {
+        alert("first select slot ")
+     }
+
+       
      }
     return (
         <div className={styled.dashboard}>
@@ -116,8 +122,8 @@ const Sequence = () => {
                     <div className='d-flex align-items-center gap-2'>
                         <button >{'See  more'}</button>
                         
-                        <button onClick={()=>handlesavefunction('published')}>{'Save & Next'}</button>
-                        
+                        <button onClick={()=>handlesavefunction('published')}>{loading ? 'loading...' : 'Save & Next'}</button>
+
                     </div>
                 </div>
                 <div className='row'>
