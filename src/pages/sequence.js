@@ -19,8 +19,8 @@ import Cookies from 'js-cookie';
 import Avatar from '@mui/material/Avatar';
 import { MdDeleteForever } from "react-icons/md";
 import iamge from '../../public/DeviewImgss.png'
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
+import Calendar from "../component/schedule/calender";
+import Router from 'next/router'
 
 const Sequence = () => {
     const [value, setValue] = React.useState('1');
@@ -32,38 +32,38 @@ const Sequence = () => {
         setValue(newValue);
     };
     const [media, Setmedia] = React.useState([])
-    const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=campaign&action=get';
-    const url1 = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=schedulev2&action=get';
+    // const url = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=campaign&action=get';
+    // const url1 = 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=schedulev2&action=get';
     const cookieValue = Cookies.get('ChargeET_UserToken');
     const headers = {
         'Authorization': cookieValue,
         'Content-Type': 'application/json'
     };
 
-    const data = {};
-    const data1 = { page: 1, page_size: 10 };
+    // const data = {};
+    // const data1 = { page: 1, page_size: 10 };
 
-    React.useEffect(() => {
-        axios.post(url, data, { headers })
-            .then(response => {
-                // console.log(Boolean(response.data.media_information))
-                const l = response.data.campaign_detail
-                Setmedia(l);
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-        axios.post(url1, data1, { headers })
-            .then(response => {
-                // console.log(Boolean(response.data.media_information))
-                const l = response.data.schedules
-                console.log(l)
-                setEvents((prevEvents) => [...prevEvents, ...l]);
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-    }, [])
+    // React.useEffect(() => {
+    //     axios.post(url, data, { headers })
+    //         .then(response => {
+    //             // console.log(Boolean(response.data.media_information))
+    //             const l = response.data.campaign_detail
+    //             Setmedia(l);
+    //         })
+    //         .catch(error => {
+    //             console.log('Error:', error);
+    //         });
+    //     axios.post(url1, data1, { headers })
+    //         .then(response => {
+    //             // console.log(Boolean(response.data.media_information))
+    //             const l = response.data.schedules
+    //             console.log(l)
+    //             setEvents((prevEvents) => [...prevEvents, ...l]);
+    //         })
+    //         .catch(error => {
+    //             console.log('Error:', error);
+    //         });
+    // }, [])
 
 
     const handleselectcam = (media) => {
@@ -79,226 +79,238 @@ const Sequence = () => {
         });
     };
 
-    const localizer = momentLocalizer(moment);
+    // const localizer = momentLocalizer(moment);
 
     // Example events
-    const handleSelectSlot = (slotInfo) => {
-        // Prompt for the event title
-        const title = prompt("Enter a title for your schedule:", "Sample publish");
-        if (!title || title.trim() === "") {
-            alert("Schedule name is required.");
-            return;
-        }
+    // const handleSelectSlot = (slotInfo) => {
+    //     // Prompt for the event title
+    //     const title = prompt("Enter a title for your schedule:", "Sample publish");
+    //     if (!title || title.trim() === "") {
+    //         alert("Schedule name is required.");
+    //         return;
+    //     }
 
-        // Prompt for start and end times
-        let startTimeInput = prompt("Enter the start time (HH:MM, e.g., 08:00):", "08:00");
-        while (!isValidTime(startTimeInput)) {
-            startTimeInput = prompt("Invalid start time! Please enter a valid time (HH:MM, e.g., 08:00):", "08:00");
-            if (!startTimeInput) return;
-        }
-
-        let endTimeInput = prompt("Enter the end time (HH:MM, e.g., 09:00):", "09:00");
-        while (!isValidTime(endTimeInput)) {
-            endTimeInput = prompt("Invalid end time! Please enter a valid time (HH:MM, e.g., 09:00):", "09:00");
-            if (!endTimeInput) return;
-        }
-
-        // Get specific dates from the selected slot
-        const normalizeDate = (date) => {
-            const localDate = new Date(date);
-            return new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
-        };
-
-        // Normalize start and end dates
-        const startDate = normalizeDate(slotInfo.start + "-1");
-        const endDate = normalizeDate(slotInfo.end);
-        const specificDates = generateDateRange(startDate, endDate);
-          console.log(specificDates , endTimeInput ,  startTimeInput )
-        const scheduleItems = campaignIds.map((campaignId) => {
-            let overlapWith = "";
+    //     // Prompt for start and end times
+    //     let startTimeInput = prompt("Enter the start time (HH:MM, e.g., 08:00):", "08:00");
+    //     while (!isValidTime(startTimeInput)) {
+    //         startTimeInput = prompt("Invalid start time! Please enter a valid time (HH:MM, e.g., 08:00):", "08:00");
+    //         if (!startTimeInput) return;
+    //     }
     
-            // specificDates.forEach((date) => {
-            //      console.log(events)
-            //     events.forEach((event) => {
-            //         if (
-            //             date &&
-            //             event.start_time === `${startTimeInput}:00` &&
-            //             event.end_time === `${endTimeInput}:00`
-            //         ) {
-            //             overlapWith = event._id; 
-            //         }
-            //     });
-            // });
-         
-            console.log(`Campaign ID: ${campaignId}, Overlap With: ${overlapWith}`); // Log campaign and overlap
+    //     let endTimeInput = prompt("Enter the end time (HH:MM, e.g., 09:00):", "09:00");
+    //     while (!isValidTime(endTimeInput)) {
+    //         endTimeInput = prompt("Invalid end time! Please enter a valid time (HH:MM, e.g., 09:00):", "09:00");
+    //         if (!endTimeInput) return;
+    //     }
     
-            // Return the object for scheduleItems
-            return {
-                campaign_id: campaignId,
-                overlap_with: overlapWith,
-                time_slots: {
-                    start_time: `${startTimeInput}:00`, // Add seconds
-                    end_time: `${endTimeInput}:00`, // Add seconds
-                },
-            };
-        });
+    //     // Normalize the selected start and end dates
+    //     const normalizeDate = (date) => {
+    //         const localDate = new Date(date);
+    //         return new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
+    //     };
     
-        console.log("Schedule Items:", scheduleItems); // Log schedule items to verify if they are populated
+    //     const startDate = normalizeDate(slotInfo.start);
+    //     const endDate = normalizeDate(slotInfo.end);
+    //     const specificDates = generateDateRange(startDate, endDate);
     
-
-        // Build the final data object
-        const scheduleData = {
-            screen_ids: ["1", "2", "3"], // Placeholder, modify as needed
-            specific_dates: specificDates,
-            schedule_name: title.trim(),
-            schedule_items: scheduleItems,
-            status: "published", // Fixed status
-        };
-
-        // Save the data (example: update state or send to API)
-        SetscheduleData((prevEvents) => [...prevEvents, scheduleData]); 
-        alert("Schedule added successfully!");
-    };
+    //     console.log(specificDates, endTimeInput, startTimeInput);
+    
+    //     // Create schedule items with overlap check
+    //     const scheduleItems = campaignIds.map((campaignId) => {
+    //         let overlapWith = "";
+    
+    //         // specificDates.forEach((date) => {
+    //         //     const formattedDate = date;
+    //         //     events.forEach((event) => {
+    //         //         if (
+    //         //             event.specific_dates.includes(formattedDate) && // Check date overlap
+    //         //             event.schedule_items.some(
+    //         //                 (item) =>
+    //         //                     item.time_slots.start_time === `${startTimeInput}:00` &&
+    //         //                     item.time_slots.end_time === `${endTimeInput}:00`
+    //         //             )
+    //         //         ) {
+    //         //             overlapWith = overlapWith
+    //         //                 ? `${overlapWith},${event.schedule_items[0].campaign_id}`
+    //         //                 : event.schedule_items[0].campaign_id; // Collect overlapping campaign IDs
+    //         //         }
+    //         //     });
+    //         // });
+    
+    //         console.log(`Campaign ID: ${campaignId}, Overlap With: ${overlapWith}`); // Log overlap details
+    
+    //         return {
+    //             campaign_id: campaignId,
+    //             overlap_with: overlapWith,
+    //             time_slots: {
+    //                 start_time: `${startTimeInput}:00`, // Ensure seconds are added
+    //                 end_time: `${endTimeInput}:00`,
+    //             },
+    //         };
+    //     });
+    
+    //     console.log("Schedule Items:", scheduleItems); // Debugging: check the populated schedule items
+    
+    //     // Build the final schedule object
+    //     const scheduleData = {
+    //         screen_ids: ["1", "2", "3"], // Replace with dynamic values if needed
+    //         specific_dates: specificDates,
+    //         schedule_name: title.trim(),
+    //         schedule_items: scheduleItems,
+    //         status: "published", // Fixed status for this implementation
+    //     };
+    
+    //     // Update the state or API call
+    //     SetscheduleData((prevSchedules) => [...prevSchedules, scheduleData]);
+    //     alert("Schedule added successfully!");
+    // };
+    
 
 
     // Utility function to validate time input (HH:MM format)
-    const isValidTime = (time) => {
-        if (!time) return false; // Empty or null input
-        const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/; // HH:MM in 24-hour format
-        return timeRegex.test(time);
-    };
+    // const isValidTime = (time) => {
+    //     if (!time) return false; // Empty or null input
+    //     const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/; // HH:MM in 24-hour format
+    //     return timeRegex.test(time);
+    // };
 
-    const generateDateRange = (start, end) => {
+    // const generateDateRange = (start, end) => {
 
-        const dateArray = [];
-        let currentDate = new Date(start + '-1');
+    //     const dateArray = [];
+    //     let currentDate = new Date(start + '-1');
 
-        while (currentDate <= end) {
-            dateArray.push(currentDate.toISOString().split("T")[0]);
-            currentDate.setDate(currentDate.getDate() + 1); // Increment by 1 day
-        }
+    //     while (currentDate <= end) {
+    //         dateArray.push(currentDate.toISOString().split("T")[0]);
+    //         currentDate.setDate(currentDate.getDate() + 1); // Increment by 1 day
+    //     }
 
-        return dateArray;
-    };
+    //     return dateArray;
+    // };
     // Handle event selection for editing
-    const handleSelectEvent = (event) => {
-        // Prompt for new title
-        const newTitle = prompt('Edit the event title:', event.title);
-        if (!newTitle || newTitle.trim() === '') {
-            alert('Event title cannot be empty.');
-            return;
-        }
+    // const handleSelectEvent = (event) => {
+    //     // Prompt for new title
+    //     const newTitle = prompt('Edit the event title:', event.title);
+    //     if (!newTitle || newTitle.trim() === '') {
+    //         alert('Event title cannot be empty.');
+    //         return;
+    //     }
 
-        // Prompt for new start date and time
-        const newStartDateInput = prompt(
-            'Edit the start date and time (YYYY-MM-DD HH:MM):',
-            `${formatDate(event.start)} ${formatTime(event.start)}`
-        );
-        if (!isValidDateTime(newStartDateInput)) {
-            alert('Invalid start date/time format.');
-            return;
-        }
+    //     // Prompt for new start date and time
+    //     const newStartDateInput = prompt(
+    //         'Edit the start date and time (YYYY-MM-DD HH:MM):',
+    //         `${formatDate(event.start)} ${formatTime(event.start)}`
+    //     );
+    //     if (!isValidDateTime(newStartDateInput)) {
+    //         alert('Invalid start date/time format.');
+    //         return;
+    //     }
 
-        // Prompt for new end date and time
-        const newEndDateInput = prompt(
-            'Edit the end date and time (YYYY-MM-DD HH:MM):',
-            `${formatDate(event.end)} ${formatTime(event.end)}`
-        );
-        if (!isValidDateTime(newEndDateInput)) {
-            alert('Invalid end date/time format.');
-            return;
-        }
+    //     // Prompt for new end date and time
+    //     const newEndDateInput = prompt(
+    //         'Edit the end date and time (YYYY-MM-DD HH:MM):',
+    //         `${formatDate(event.end)} ${formatTime(event.end)}`
+    //     );
+    //     if (!isValidDateTime(newEndDateInput)) {
+    //         alert('Invalid end date/time format.');
+    //         return;
+    //     }
 
-        // Parse the new start and end dates
-        const newStartDate = parseDateTime(newStartDateInput);
-        const newEndDate = parseDateTime(newEndDateInput);
+    //     // Parse the new start and end dates
+    //     const newStartDate = parseDateTime(newStartDateInput);
+    //     const newEndDate = parseDateTime(newEndDateInput);
 
-        // Validate that start date/time is before end date/time
-        if (newStartDate >= newEndDate) {
-            alert('Start date/time must be before end date/time.');
-            return;
-        }
+    //     // Validate that start date/time is before end date/time
+    //     if (newStartDate >= newEndDate) {
+    //         alert('Start date/time must be before end date/time.');
+    //         return;
+    //     }
 
-        // Update the event in the state
-        setEvents(
-            events.map((evt) =>
-                evt.id === event.id
-                    ? { ...evt, title: newTitle.trim(), start: newStartDate, end: newEndDate }
-                    : evt
-            )
-        );
+    //     // Update the event in the state
+    //     setEvents(
+    //         events.map((evt) =>
+    //             evt.id === event.id
+    //                 ? { ...evt, title: newTitle.trim(), start: newStartDate, end: newEndDate }
+    //                 : evt
+    //         )
+    //     );
 
-        alert('Event updated successfully!');
-    };
+    //     alert('Event updated successfully!');
+    // };
 
 
     // Format a date object into 'YYYY-MM-DD' format
-    const formatDate = (date) => {
-        return date.toISOString().split('T')[0];
-    };
+    // const formatDate = (date) => {
+    //     return date.toISOString().split('T')[0];
+    // };
 
-    // Format a date object into 'HH:MM' format
-    const formatTime = (date) => {
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        return `${hours}:${minutes}`;
-    };
+    // // Format a date object into 'HH:MM' format
+    // const formatTime = (date) => {
+    //     const hours = date.getHours().toString().padStart(2, '0');
+    //     const minutes = date.getMinutes().toString().padStart(2, '0');
+    //     return `${hours}:${minutes}`;
+    // };
 
-    // Validate 'YYYY-MM-DD HH:MM' format
-    const isValidDateTime = (dateTime) => {
-        const dateTimeRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
-        if (!dateTimeRegex.test(dateTime)) return false;
+    // // Validate 'YYYY-MM-DD HH:MM' format
+    // const isValidDateTime = (dateTime) => {
+    //     const dateTimeRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
+    //     if (!dateTimeRegex.test(dateTime)) return false;
 
-        const [datePart, timePart] = dateTime.split(' ');
-        const [year, month, day] = datePart.split('-').map(Number);
-        const [hours, minutes] = timePart.split(':').map(Number);
+    //     const [datePart, timePart] = dateTime.split(' ');
+    //     const [year, month, day] = datePart.split('-').map(Number);
+    //     const [hours, minutes] = timePart.split(':').map(Number);
 
-        const isValidDate = !isNaN(new Date(`${year}-${month}-${day}`).getTime());
-        const isValidTime = hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
+    //     const isValidDate = !isNaN(new Date(`${year}-${month}-${day}`).getTime());
+    //     const isValidTime = hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
 
-        return isValidDate && isValidTime;
-    };
+    //     return isValidDate && isValidTime;
+    // };
 
-    // Parse 'YYYY-MM-DD HH:MM' into a Date object
-    const parseDateTime = (dateTime) => {
-        const [datePart, timePart] = dateTime.split(' ');
-        return new Date(`${datePart}T${timePart}:00`);
-    };
+    // // Parse 'YYYY-MM-DD HH:MM' into a Date object
+    // const parseDateTime = (dateTime) => {
+    //     const [datePart, timePart] = dateTime.split(' ');
+    //     return new Date(`${datePart}T${timePart}:00`);
+    // };
 
-
-    const calendarEvents = events.flatMap(event =>
-        event.schedule_items.flatMap((scheduleItem, index) =>
-            event.specific_dates.map(date => ({
-                _id: event._id,
-                title: event.schedule_name || event._id,
-                start: new Date(`${date}T${scheduleItem.time_slots.start_time}`),
-                end: new Date(`${date}T${scheduleItem.time_slots.end_time}`),
-            }))
-        )
-    );
-    
-    const formattedGetscheduleData = getscheduleData.flatMap((schedule) => {
-        // Extract the common time from the first schedule_item
-        const firstItem = schedule.schedule_items[0];
-        if (!firstItem || !firstItem.time_slots?.start_time || !firstItem.time_slots?.end_time) {
-            return []; // Skip if no valid schedule_item exists
+    // const mapScheduleToEvents = (schedule) => {
+    //     const firstItem = schedule.schedule_items[0];
+    //     if (!firstItem || !firstItem.time_slots?.start_time || !firstItem.time_slots?.end_time) {
+    //         return [];
+    //     }
+    //     const { start_time, end_time } = firstItem.time_slots;
+    //     return schedule.specific_dates.map((date) => ({
+    //         title: schedule.schedule_name || "Untitled Event",
+    //         start: new Date(`${date}T${start_time}`),
+    //         end: new Date(`${date}T${end_time}`),
+    //     }));
+    // };
+    // const calendarEvents = events.flatMap((schedule) => mapScheduleToEvents(schedule));
+    // const formattedGetscheduleData = getscheduleData.flatMap((schedule) => mapScheduleToEvents(schedule));
+     const handlesavefunction = async (status) =>{
+        const options = {
+          method: 'POST',
+          url: 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/',
+          params: {type: 'schedulev2', action: 'create'},
+          headers: headers,
+          data:
+           {
+            screen_ids: getscheduleData[0].screen_ids,
+            specific_dates: getscheduleData[0].specific_dates,
+            schedule_name: getscheduleData[0].schedule_name,
+            schedule_items:   getscheduleData[0].schedule_items,
+            status: status
+          }
+        };
+        
+        try {
+          const { data } = await axios.request(options);
+        //   console.log();
+        if(data.status= 'success') {
+            Router.push('/choosescreen')
         }
-
-        const { start_time, end_time } = firstItem.time_slots;
-
-        // Map each specific_date to a single event
-        return schedule.specific_dates.map((date) => ({
-            title: schedule.schedule_name || "Untitled Event",
-            start: new Date(`${date}T${start_time}`),
-            end: new Date(`${date}T${end_time}`),
-        }));
-    });
-
-
-
-
-    const combinedEvents = [...calendarEvents, ...formattedGetscheduleData];
-    console.log(calendarEvents , events)
+        } catch (error) {
+          console.error(error);
+        }
+     }
     return (
         <div className={styled.dashboard}>
             <div className={styled.mainDashboardsection}>
@@ -309,7 +321,6 @@ const Sequence = () => {
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList onChange={handleChange} aria-label="lab API tabs example">
                                 <Tab label={`ALL`} value="1" />
-                                <Tab label={`FAVOURITE`} value="4" />
                             </TabList>
                         </Box>
                         <TabPanel value="1">
@@ -322,48 +333,14 @@ const Sequence = () => {
                             </div>
 
                         </TabPanel>
-                        <TabPanel value="2">
-
-                            <div className={styled.mediacardwrapper}>{
-                                // [1,2,3,4,5,6,7].map((item , index)=>{
-                                //   return <Mediacard key={index}/>
-                                // })
-                            }
-                            </div>
-                        </TabPanel>
-                        <TabPanel value="3">
-
-                            <div className={styled.mediacardwrapper}>{
-                                // [1,2,3,4,5,6,7].map((item , index)=>{
-                                //   return <Mediacard key={index}/>
-                                // })
-                            }
-                            </div>
-                        </TabPanel>
-                        <TabPanel value="4">
-                            <div className={styled.mediacardwrapper}>{
-                                // [1,2,3,4,5,6,7].map((item , index)=>{
-                                //   return <Mediacard key={index}/>
-                                // })
-                            }
-                            </div>
-                        </TabPanel>
+              
                     </TabContext>
                 </Box>
 
             </div>
             <div className={styled.DashboardLeftSection}>
 
-                <Calendar
-                    localizer={localizer}
-                    events={combinedEvents}
-                    startAccessor="start"
-                    endAccessor="end"
-                    selectable
-                    onSelectSlot={handleSelectSlot} // Add new events
-                    onSelectEvent={handleSelectEvent} // Edit events
-                    style={{ height: '100%' }}
-                    defaultView="day"
+                <Calendar campaignIds ={campaignIds} setcampaignIds={setcampaignIds} events={events} setEvents={setEvents}  Setmedia={Setmedia} getscheduleData={getscheduleData}  SetscheduleData={SetscheduleData}
                 />
             </div>
 
@@ -372,8 +349,8 @@ const Sequence = () => {
                 <div className='d-flex justify-content-between align-items-center'>
                     <h3 className={styled.commonboxTitle}>{'Sequence Summary'}</h3>
                     <div className='d-flex align-items-center gap-2'>
-                        <button>{'See  more'}</button>
-                        <button>{'Save & Next'}</button>
+                        <button >{'See  more'}</button>
+                        <button onClick={()=>handlesavefunction('published')}>{'Save & Next'}</button>
                     </div>
                 </div>
                 <div className='row'>
@@ -382,7 +359,7 @@ const Sequence = () => {
                             <div><BsBadgeHdFill size={22} color='#9399a2' /></div>
                             <div>
                                 <span>{`Total media`}</span>
-                                <h4>{`5`}</h4>
+                                <h4>{campaignIds.length}</h4>
                             </div>
                         </div>
                     </div>
@@ -404,3 +381,5 @@ const Sequence = () => {
 }
 Sequence.layout = "layout1"
 export default Sequence
+
+

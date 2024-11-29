@@ -4,8 +4,8 @@ import Slider from "@/component/sidebar/slider";
 import styled from "../styles/style.module.scss";
 export default function layout1({ children }) {
     return (
-                <div className={styled.layoutWrapper}>
-                    <main className={styled.layout}>{children}</main>
-                </div>       
+        <div className={styled.layoutWrapper}>
+            <main className={styled.layout}>{children}</main>
+        </div>
     );
 }
