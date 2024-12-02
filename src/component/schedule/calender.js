@@ -95,7 +95,6 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
             };
 
 
-            // Save the data (example: update state or send to API)
             SetscheduleData((prevEvents) => [...prevEvents, scheduleData]); // Add to state
             alert("Schedule added successfully!");
         }
