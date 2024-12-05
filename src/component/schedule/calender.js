@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia  , Setspecific_dates , name, specific_dates ,select}) {
     const [currentView, setCurrentView] = React.useState(select)
     const cookieValue = Cookies.get('ChargeET_UserToken');
-    console.log(campaignIds)
+    console.log(campaignIds.name)
     const campaignId = campaignIds;
     const headers = {
         'Authorization': cookieValue,
@@ -80,7 +80,8 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
         const formattedEndTime = formatTime(slotInfo.end);
 
         const scheduleItems = {
-            campaign_id: campaignId[0], // Construct campaign ID dynamically
+            campaign_Name: campaignId.name , 
+            campaign_id: campaignId.id, // Construct campaign ID dynamically
             overlap_with: "",
             time_slots: {
                 start_time: `${formattedStartTime}:00`, // Add seconds
@@ -174,7 +175,7 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
 
     const mapScheduleToEvents = (schedule, date) => {
         return {
-            title: name,
+            title: schedule.campaign_Name,
             start: new Date(`${date}T${schedule.time_slots.start_time}`),
             end: new Date(`${date}T${schedule.time_slots.end_time}`),
         };
@@ -187,17 +188,15 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
             : [new Date().toISOString().split('T')[0]];
     
         const rawEvents = dates.flatMap(date =>
-            getscheduleData.flatMap(schedule =>
-                schedule.campaign_id === campaignId[0] 
-                    ? mapScheduleToEvents(schedule, date) 
-                    : []
+            getscheduleData.flatMap(schedule => mapScheduleToEvents(schedule, date) 
+                  
             )
         );
     
         return rawEvents;
     };
     
-    console.log(specific_dates , generateCalendarEvents(getscheduleData , specific_dates))
+    console.log(specific_dates ,  getscheduleData, generateCalendarEvents(getscheduleData , specific_dates))
 
 
 
