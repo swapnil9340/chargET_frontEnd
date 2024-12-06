@@ -138,6 +138,7 @@ const Sequence = () => {
                         <div className={styled.DashboardLeftSection}>
 
                             <Calendar
+                            events={events}
                                 campaignIds={campaignIds}
                                 setcampaignIds={setcampaignIds}
                                 Setmedia={Setmedia}
@@ -158,6 +159,7 @@ const Sequence = () => {
                     Setmedia={Setmedia}
                     select={'month'}
                     name={campaign}
+                    events={events}
                     Setspecific_dates={Setspecific_dates}
                     specific_dates={specific_dates}
                     getscheduleData={getscheduleData}

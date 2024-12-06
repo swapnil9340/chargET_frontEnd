@@ -3,10 +3,12 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia  , Setspecific_dates , name, specific_dates ,select}) {
+import { FaTrash } from "react-icons/fa";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia, Setspecific_dates, name, specific_dates, select }) {
     const [currentView, setCurrentView] = React.useState(select)
     const cookieValue = Cookies.get('ChargeET_UserToken');
-    console.log(campaignIds.name)
+    const [colorMap] = React.useState({});
     const campaignId = campaignIds;
     const headers = {
         'Authorization': cookieValue,
@@ -42,125 +44,112 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
 
     // Example events
     const handleSelectSlot = (slotInfo) => {
-    
-  if(name === "") {
-    
-    alert("fill campaign name ");
-  }
-  else {
-    if (currentView === "month") {
-    
-        // Extract specific dates directly from the `slots` array
-        const specificDates = slotInfo.slots.map((date) => {
-            const day = String(date.getDate()).padStart(2, '0'); // Two digits for day
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Two digits for month (0-indexed)
-            const year = date.getFullYear(); // Four-digit year
-            return `${year}-${month}-${day}`; // Combine in DD/MM/YYYY format
-        });
 
-        Setspecific_dates((prevEvents) => {
-            const newEvents = [...prevEvents, ...specificDates];
-            return newEvents; 
-        });
-        alert("Schedule added successfully!");
-    }
-    else if (currentView === "day") {
-        const date = new Date(slotInfo.start);
-        const day = String(date.getDate()).padStart(2, '0'); // Two-digit day
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Two-digit month
-        const year = date.getFullYear();
-        const formattedDate = `${year}-${month}-${day}`; // Format: DD/MM/YYYY
-        const formatTime = (date) => {
-            const hours = String(date.getHours()).padStart(2, '0'); // HH
-            const minutes = String(date.getMinutes()).padStart(2, '0'); // MM
-            return `${hours}:${minutes}`;
-        };
+        if (name === "") {
 
-        const formattedStartTime = formatTime(slotInfo.start);
-        const formattedEndTime = formatTime(slotInfo.end);
-
-        const scheduleItems = {
-            campaign_Name: campaignId.name , 
-            campaign_id: campaignId.id, // Construct campaign ID dynamically
-            overlap_with: "",
-            time_slots: {
-                start_time: `${formattedStartTime}:00`, // Add seconds
-                end_time: `${formattedEndTime}:00`, // Add seconds
-            }
+            alert("fill campaign name ");
         }
-        // }));
-        // Build the final data object
-        // const scheduleData = {
-        //     screen_ids: ["1", "2", "3"], // Placeholder, modify as needed
-        //     specific_dates: [formattedDate],
-        //     schedule_name: title.trim(),
-        //     schedule_items: scheduleItems,
-        //     status: "published", // Fixed status
-        // };
+        else {
+            if (currentView === "month") {
 
-        // Save the data (example: update state or send to API)
-        const validateAndCorrectTimeSlot = (timeSlot) => {
-            const start = new Date(`1970-01-01T${timeSlot.start_time}Z`);
-            const end = new Date(`1970-01-01T${timeSlot.end_time}Z`);
-
-            if (start > end) {
-                // If start_time is after end_time, swap them
-                return {
-                    start_time: timeSlot.end_time,
-                    end_time: timeSlot.start_time,
-                };
-            }
-            return timeSlot;
-        };
-
-        const checkAndUpdateSchedule = (scheduleItems) => {
-            SetscheduleData((prevEvents) => {
-                let updatedEvents = [...prevEvents];
-                let overlapFound = false;
-        
-                // Validate and correct the time slots of the new item
-                scheduleItems.time_slots = validateAndCorrectTimeSlot(scheduleItems.time_slots);
-        
-                updatedEvents = updatedEvents.filter((item) => {
-                    const existingStart = new Date(`1970-01-01T${item.time_slots.start_time}Z`);
-                    const existingEnd = new Date(`1970-01-01T${item.time_slots.end_time}Z`);
-                    const newStart = new Date(`1970-01-01T${scheduleItems.time_slots.start_time}Z`);
-                    const newEnd = new Date(`1970-01-01T${scheduleItems.time_slots.end_time}Z`);
-        
-                    if (item.campaign_id === scheduleItems.campaign_id) {
-                        // If the same campaign, adjust the existing item's end time if there's an overlap
-                        if (newStart < existingEnd && newStart >= existingStart) {
-                            item.time_slots.end_time = newStart.toISOString().split('T')[1].slice(0, 8);
-                        }
-                        return true;
-                    } else if (newStart < existingEnd && newEnd > existingStart) {
-                        // If overlap is found with a different campaign, prompt the user
-                        overlapFound = true;
-                        return false; // Remove the old item if user decides to replace
-                    }
-                    return true;
+                // Extract specific dates directly from the `slots` array
+                const specificDates = slotInfo.slots.map((date) => {
+                    const day = String(date.getDate()).padStart(2, '0'); // Two digits for day
+                    const month = String(date.getMonth() + 1).padStart(2, '0'); // Two digits for month (0-indexed)
+                    const year = date.getFullYear(); // Four-digit year
+                    return `${year}-${month}-${day}`; // Combine in DD/MM/YYYY format
                 });
-        
-                if (overlapFound) {
-                    const userConfirmed = window.confirm("Time slot overlaps with an existing schedule. Do you want to replace the old schedule?");
-                    if (!userConfirmed) {
-                        // User did not confirm, do not add the new schedule item
-                        return prevEvents;
+
+                Setspecific_dates((prevEvents) => {
+                    const newEvents = [...prevEvents, ...specificDates];
+                    return newEvents;
+                });
+                alert("Schedule added successfully!");
+            }
+            else if (currentView === "day") {
+                const date = new Date(slotInfo.start);
+                const day = String(date.getDate()).padStart(2, '0'); // Two-digit day
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Two-digit month
+                const year = date.getFullYear();
+                const formattedDate = `${year}-${month}-${day}`; // Format: DD/MM/YYYY
+                const formatTime = (date) => {
+                    const hours = String(date.getHours()).padStart(2, '0'); // HH
+                    const minutes = String(date.getMinutes()).padStart(2, '0'); // MM
+                    return `${hours}:${minutes}`;
+                };
+
+                const formattedStartTime = formatTime(slotInfo.start);
+                const formattedEndTime = formatTime(slotInfo.end);
+
+                const scheduleItems = {
+                    campaign_Name: campaignId.name,
+                    campaign_id: campaignId.id, // Construct campaign ID dynamically
+                    overlap_with: "",
+                    time_slots: {
+                        start_time: `${formattedStartTime}:00`, // Add seconds
+                        end_time: `${formattedEndTime}:00`, // Add seconds
                     }
                 }
-        
-                // Add the new schedule item
-                updatedEvents.push(scheduleItems);
-        
-                return updatedEvents; // Update the state
-            });
-        };
-        
-        // Call the function to check and update schedule
-        checkAndUpdateSchedule(scheduleItems);
-        alert("Schedule added successfully!");
-    }
-  }
+                const validateAndCorrectTimeSlot = (timeSlot) => {
+                    const start = new Date(`1970-01-01T${timeSlot.start_time}Z`);
+                    const end = new Date(`1970-01-01T${timeSlot.end_time}Z`);
+
+                    if (start > end) {
+                        // If start_time is after end_time, swap them
+                        return {
+                            start_time: timeSlot.end_time,
+                            end_time: timeSlot.start_time,
+                        };
+                    }
+                    return timeSlot;
+                };
+
+                const checkAndUpdateSchedule = (scheduleItems) => {
+                    SetscheduleData((prevEvents) => {
+                        let updatedEvents = [...prevEvents];
+                        let overlapFound = false;
+
+                        // Validate and correct the time slots of the new item
+                        scheduleItems.time_slots = validateAndCorrectTimeSlot(scheduleItems.time_slots);
+
+                        updatedEvents = updatedEvents.filter((item) => {
+                            const existingStart = new Date(`1970-01-01T${item.time_slots.start_time}Z`);
+                            const existingEnd = new Date(`1970-01-01T${item.time_slots.end_time}Z`);
+                            const newStart = new Date(`1970-01-01T${scheduleItems.time_slots.start_time}Z`);
+                            const newEnd = new Date(`1970-01-01T${scheduleItems.time_slots.end_time}Z`);
+
+                            if (item.campaign_id === scheduleItems.campaign_id) {
+                                // If the same campaign, adjust the existing item's end time if there's an overlap
+                                if (newStart < existingEnd && newStart >= existingStart) {
+                                    item.time_slots.end_time = newStart.toISOString().split('T')[1].slice(0, 8);
+                                }
+                                return true;
+                            } else if (newStart < existingEnd && newEnd > existingStart) {
+                                // If overlap is found with a different campaign, prompt the user
+                                overlapFound = true;
+                                return false; // Remove the old item if user decides to replace
+                            }
+                            return true;
+                        });
+
+                        if (overlapFound) {
+                            const userConfirmed = window.confirm("Time slot overlaps with an existing schedule. Do you want to replace the old schedule?");
+                            if (!userConfirmed) {
+                                // User did not confirm, do not add the new schedule item
+                                return prevEvents;
+                            }
+                        }
+
+                        // Add the new schedule item
+                        updatedEvents.push(scheduleItems);
+
+                        return updatedEvents; // Update the state
+                    });
+                };
+                checkAndUpdateSchedule(scheduleItems);
+                alert("Schedule added successfully!");
+            }
+        }
 
 
     };
@@ -175,6 +164,7 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
 
     const mapScheduleToEvents = (schedule, date) => {
         return {
+            campaign_id:schedule.campaign_id,
             title: schedule.campaign_Name,
             start: new Date(`${date}T${schedule.time_slots.start_time}`),
             end: new Date(`${date}T${schedule.time_slots.end_time}`),
@@ -183,39 +173,74 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
 
     const generateCalendarEvents = (getscheduleData, specificDates = []) => {
         // If specificDates is empty, use today's date
-        const dates = specificDates.length > 0 
-            ? specificDates 
+        const dates = specificDates.length > 0
+            ? specificDates
             : [new Date().toISOString().split('T')[0]];
-    
+
         const rawEvents = dates.flatMap(date =>
-            getscheduleData.flatMap(schedule => mapScheduleToEvents(schedule, date) 
-                  
+            getscheduleData.flatMap(schedule => mapScheduleToEvents(schedule, date)
+
             )
         );
-    
+
         return rawEvents;
     };
-    
-    console.log(specific_dates ,  getscheduleData, generateCalendarEvents(getscheduleData , specific_dates))
-
-
-
-    
     const handleViewChange = (view) => {
         setCurrentView(select);
     };
+    const handleDeleteEvent = (id) => {
+         SetscheduleData(prevData => prevData.filter(item => item.campaign_id !== id));
+    }
 
+      const EventComponent = ({ event  , vlaue}) => {
+        console.log(vlaue)
+        return (
+            <div
+            style={{
+              position: "relative",
+              backgroundColor:"#ff33b2", // Use the color assigned to the campaign_id
+              color: "white", // White text
+              padding: "10px",
+              borderRadius: "8px", // Rounded corners
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "100%",
+            }}
+          >
+            <div style={{ fontWeight: "bold", marginBottom: "5px"}}>
+              {moment(event.start).format("h:mm A")} - {moment(event.end).format("h:mm A")}
+            </div>
+            <div> { events ? event.title : name}</div>
+            
+            <FaTrash
+              style={{
+                position: "absolute",
+                top: "5px",
+                right: "5px",
+                cursor: "pointer",
+                color: "white",
+              }}
+              onClick={(vlaue) => handleDeleteEvent(event.campaign_id , vlaue)}
+            />
+          </div>
+        );
+      };
     return (
         <Calendar
-    localizer={localizer}
-    events={generateCalendarEvents(getscheduleData, specific_dates)}
-    selectable
-    onSelectSlot={handleSelectSlot} // Add new events
-    style={{ height: '100%', width: '100%' }}
-    defaultView={select} // Ensure 'select' is set to 'day'
-    views={[select]} // Restrict to only 'day' view
-    toolbar={false} // Removes navigation and view options
-    onView={handleViewChange}
+            localizer={localizer}
+            events={generateCalendarEvents(getscheduleData, specific_dates)}
+            selectable
+            onSelectSlot={handleSelectSlot} // Add new events
+            style={{ height: '100%', width: '100%' }}
+            defaultView={select} // Ensure 'select' is set to 'day'
+            views={[select]} // Restrict to only 'day' view
+            toolbar={false} // Removes navigation and view options
+            onView={handleViewChange}
+            components={{
+                event: EventComponent, // Custom event component
+
+            }}
         />
     )
 }
@@ -283,3 +308,4 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
 //         return updatedEvents; // Update the state
 //     });
 // }
+
