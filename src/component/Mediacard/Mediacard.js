@@ -11,7 +11,7 @@ const Mediacard = ({item , hnadlechnage =()=>{},select='' , key} ) => {
         <div className={classes.mediacardimage} >
             <Image width={100} height={50}  src={item.asset_url || '/user.jpg' } quality={100}  alt='image'></Image>
         </div>
-        <h3 className={classes.mediacardimgename}>{item.media_id || item._id}</h3>
+        <h3 className={classes.mediacardimgename}>{item.campaign_name||item.media_id || item._id}</h3>
         <div className='d-flex justify-content-between align-content-center'>
           <p className={classes.mediafileSize}>{'JuLY 01, 2024'}</p>
           <div  className={classes.mediacardLike}>
