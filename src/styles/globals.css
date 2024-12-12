@@ -199,3 +199,9 @@ padding: 0;
 .slick-next:before, .slick-prev:before{
   color: #000;
 }
+.rbc-event {
+  background-color: transparent !important; /* Remove default background */
+  color: inherit !important; /* Use custom text color */
+  border: none !important; /* Remove default borders */
+  padding: 0 !important; /* Remove padding */
+}

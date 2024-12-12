@@ -39,8 +39,10 @@ const Sequence = () => {
 
 
     const handleselectcam = (media) => {
+        console.log(media.campaign_name)
+         const name =  media.campaign_name
         const id = media._id;
-        setcampaignIds([id]); // Directly set the new campaign ID, removing all previous ones
+        setcampaignIds({id : id ,name :name }); // Directly set the new campaign ID, removing all previous ones
     };
 
 
@@ -122,7 +124,7 @@ const Sequence = () => {
 
                                         <div className={styled.mediacardwrapper}>{
                                             media.slice(0, 8).map((item, index) => {
-                                                return <Mediacard key={index} hnadlechnage={handleselectcam} item={item} select={Boolean(campaignIds.find((element) => element === item._id)) ? styled.sectioncard : ""} />
+                                                return <Mediacard key={index} hnadlechnage={handleselectcam} item={item} select={Boolean(campaignIds.id === item._id) ? styled.sectioncard : ""} />
                                             })
                                         }
                                         </div>
@@ -136,6 +138,7 @@ const Sequence = () => {
                         <div className={styled.DashboardLeftSection}>
 
                             <Calendar
+                            events={events}
                                 campaignIds={campaignIds}
                                 setcampaignIds={setcampaignIds}
                                 Setmedia={Setmedia}
@@ -156,6 +159,7 @@ const Sequence = () => {
                     Setmedia={Setmedia}
                     select={'month'}
                     name={campaign}
+                    events={events}
                     Setspecific_dates={Setspecific_dates}
                     specific_dates={specific_dates}
                     getscheduleData={getscheduleData}
