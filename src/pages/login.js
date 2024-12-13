@@ -25,7 +25,7 @@ const Login = () => {
       Setloading(true);
   
       const response = await axios.post(
-        'http://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=user&action=login',
+        'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=user&action=login',
         {
           email: event.email,
           password: event.password
