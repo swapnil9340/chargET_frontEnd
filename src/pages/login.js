@@ -25,7 +25,7 @@ const Login = () => {
       Setloading(true);
   
       const response = await axios.post(
-        'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=user&action=login',
+        'http://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/?type=user&action=login',
         {
           email: event.email,
           password: event.password
@@ -43,8 +43,7 @@ const Login = () => {
       Cookies.set('ChargeET_UserToken', data.token, { expires: oneHour });
   
     } catch (error) {
-      // Customize error handling logic based on the type of error
-      if (error.response.data.message === "Wrong Credentials.") {
+      if (error?.response?.data?.message === "Wrong Credentials.") {
         setError('email', { type: 'custom', message: 'Invalid email' });
         setError('password', { type: 'custom', message: 'Invalid password' });
 
