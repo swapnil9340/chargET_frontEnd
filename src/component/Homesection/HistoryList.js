@@ -28,10 +28,10 @@ const Styles = useStyles()
   };
   return (
     <div>
-        <Box className={Styles.historyList}>
-            <TabContext value={value}>
+        <Box className={Styles.historyList} sx={{height:"37rem" , overflow:"scroll"}}>
+            <TabContext value={value} >
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example">
+                <TabList onChange={handleChange} aria-label="lab API tabs example" >
                     <Tab label={`ALL`} value="1" />
                     <Tab label={`ACTIVE`} value="2" />
                     <Tab label={`UPCOMING`} value="3" />

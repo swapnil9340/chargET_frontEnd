@@ -65,7 +65,7 @@ const DeviceSection = () => {
             <span>{'View all '}<RiExpandLeftRightLine />                  </span>
           </div>
           <div className='d-flex w-100'>
-            <div className="slider-container w-100 py-3">
+            <div className="slider-container w-100">
                 <Slider {...settings}>
                   {
                     device.map((data ,key) => {

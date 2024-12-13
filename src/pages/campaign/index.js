@@ -74,7 +74,7 @@ const Addcampaign = (props) => {
           <h1 className={styled.pageHeading}>{`Campaign`}</h1>
           <Button onClick={addcampaign} className={Styles.addcampaignBtn}>{`Add Composition`}</Button>
         </div>
-        <Box className={Styles.historyList}>
+        <Box className={Styles.historyList} sx={{height:"39rem" , overflow:"overlay"}}>
 
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -105,13 +105,13 @@ const Addcampaign = (props) => {
             </TabPanel>
           </TabContext>
         </Box>
-        <div className={`${styled.commonbox} ${styled.DeviceInfo}  `}>
+        <div className={`${styled.commonbox} ${styled.DeviceInfo}   `} style={{margin:'0px' , padding:"20px"}}>
           <div className='d-flex justify-content-between align-items-center'>
             <h3 className={styled.commonboxTitle}>{'BURGER'}</h3>
             <button>{'Edit'}</button>
           </div>
           <div className="row">
-            <div className="col-12 col-sm-6 col-md-3 mb-3">
+            <div className="col-12 col-sm-6 col-md-3 ">
               <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
                 <div><BsBadgeHdFill size={22} color="#9399a2" /></div>
                 <div>
@@ -120,7 +120,7 @@ const Addcampaign = (props) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-sm-6 col-md-3 mb-3">
+            <div className="col-12 col-sm-6 col-md-3">
               <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
                 <div><BsBadgeHdFill size={22} color="#9399a2" /></div>
                 <div>
@@ -129,7 +129,7 @@ const Addcampaign = (props) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-sm-6 col-md-3 mb-3">
+            <div className="col-12 col-sm-6 col-md-3">
               <div className={`${styled.deviceinfocard} d-flex gap-2 align-items-start`}>
                 <div><TbRefreshDot size={22} color="#9399a2" /></div>
                 <div>

@@ -69,7 +69,7 @@
     border-radius: 24px;
     padding: 30px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     .commonboxTitle {
         color: #9399a2;
@@ -133,7 +133,7 @@
         .deviceiamge{
             position: absolute;
             right: 0;
-            bottom: 0;
+            bottom: 10px;
             width: auto;
             height: 100%;
             max-height: 250px;
@@ -670,7 +670,7 @@ img{
         button {
             width: 224px;
             font-size: 14px;
-            line-height: 50px;
+            line-height: 38px;
         }
     }
 }
@@ -701,25 +701,28 @@ img{
     }
 
     .deviceinfocard {
-        margin-top: 15px;
+        // margin-top: 15px;
 
         span {
             color: #9399a2;
-            font-size: 20px;
+            font-size: 16px;
             font-family: "Rubik";
-            line-height: 26px;
+            line-height: 16px;
         }
 
         h4 {
+            margin: 0;
             color: #202b3b;
-            font-size: 32px;
+            font-size: 26px;
             font-family: "Rubik";
             font-weight: 600;
             line-height: 38px;
         }
     }
 }
-
+.extrsscss{
+    margin-bottom: 0px;
+}
 .sidebar {
     width: 94px;
     height: 100%;

@@ -51,8 +51,8 @@ const NameAndLocation = () => {
         // fetchData();
       }, [])
     return (
-        <div style={{ padding: 16, height: "180px" }} >
-            <Grid container spacing={2}>
+        <div s >
+            <Grid container spacing={2} sx={{height:"135px"}}>
                 <Grid item xs={12} md={6}>
                     <Typography variant="h6">{`Hello Alex`}</Typography>
                     <Typography>{`4/5 Device Connected`}</Typography>

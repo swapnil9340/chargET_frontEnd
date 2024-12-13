@@ -7,7 +7,7 @@ import { CiSettings } from "react-icons/ci";
 
 const DeviceInfo = () => {
   return (
-    <div className={`${styled.commonbox} ${styled.DeviceInfo} container `}>
+    <div className={`${styled.commonbox} ${styled.DeviceInfo} ${styled.extrsscss} container `}>
            <div className='d-flex justify-content-between align-items-center'>
                   <h3 className={styled.commonboxTitle}>{'YOUR DEVICES'}</h3>
                   <button>{'See  more'}</button>
