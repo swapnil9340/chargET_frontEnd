@@ -34,7 +34,7 @@ const Choosescreen = () => {
       };
      
     const handleRedirect = () => {
-        router.push(`/sequence?${selecteditem}`);
+      router.push(`/sequence?screen_id=${selecteditem}`);
       };
 
       React.useEffect(() => {

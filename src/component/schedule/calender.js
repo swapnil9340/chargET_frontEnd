@@ -5,11 +5,14 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { FaTrash } from "react-icons/fa";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { v4 as uuidv4 } from 'uuid';
 export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia, Setspecific_dates, name, specific_dates, select }) {
     const [currentView, setCurrentView] = React.useState(select)
     const cookieValue = Cookies.get('ChargeET_UserToken');
     const [colorMap] = React.useState({});
     const campaignId = campaignIds;
+    const uniqueId = uuidv4();
+    console.log(uniqueId);
     const headers = {
         'Authorization': cookieValue,
         'Content-Type': 'application/json'
@@ -86,6 +89,7 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
                     campaign_id: campaignId.id, // Construct campaign ID dynamically
                     overlap_with: "",
                     time_slots: {
+                        timeslot_id:uniqueId,  
                         start_time: `${formattedStartTime}:00`, // Add seconds
                         end_time: `${formattedEndTime}:00`, // Add seconds
                     }
@@ -97,6 +101,7 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
                     if (start > end) {
                         // If start_time is after end_time, swap them
                         return {
+                            timeslot_id:uniqueId,  
                             start_time: timeSlot.end_time,
                             end_time: timeSlot.start_time,
                         };
@@ -154,17 +159,10 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
 
     };
 
-    // Utility function to validate time
-    const isValidTime = (time) => {
-        if (!time) return false; // Empty or null input
-        const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/; // HH:MM in 24-hour format
-        return timeRegex.test(time);
-    };
-
-
     const mapScheduleToEvents = (schedule, date) => {
+        console.log(schedule)
         return {
-            campaign_id:schedule.campaign_id,
+            timeslot_id:schedule.time_slots.timeslot_id,
             title: schedule.campaign_Name,
             start: new Date(`${date}T${schedule.time_slots.start_time}`),
             end: new Date(`${date}T${schedule.time_slots.end_time}`),
@@ -172,6 +170,7 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
     };
 
     const generateCalendarEvents = (getscheduleData, specificDates = []) => {
+        console.log(getscheduleData)
         // If specificDates is empty, use today's date
         const dates = specificDates.length > 0
             ? specificDates
@@ -188,12 +187,16 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
     const handleViewChange = (view) => {
         setCurrentView(select);
     };
-    const handleDeleteEvent = (id) => {
-         SetscheduleData(prevData => prevData.filter(item => item.campaign_id !== id));
-    }
+    const handleDeleteEvent = (timeslot_id) => {
+        SetscheduleData(prevData => 
+            prevData.filter(item => item.time_slots.timeslot_id !== timeslot_id)
+        );
+    };
+    
+    
+      console.log(getscheduleData)
 
       const EventComponent = ({ event  , vlaue}) => {
-        console.log(vlaue)
         return (
             <div
             style={{
@@ -221,11 +224,13 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
                 cursor: "pointer",
                 color: "white",
               }}
-              onClick={(vlaue) => handleDeleteEvent(event.campaign_id , vlaue)}
+              onClick={(e) => handleDeleteEvent(event.timeslot_id)}
             />
           </div>
         );
       };
+console.log(getscheduleData)
+
     return (
         <Calendar
             localizer={localizer}

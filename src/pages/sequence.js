@@ -17,7 +17,7 @@ import Calendar from "../component/schedule/calender";
 import Router from 'next/router'
 import { TextField } from '@mui/material';
 
-const Sequence = () => {
+const Sequence = (props) => {
     const [value, setValue] = React.useState('1');
     const [events, setEvents] = React.useState(true);
     const [getscheduleData, SetscheduleData] = React.useState([])
@@ -45,7 +45,7 @@ const Sequence = () => {
     };
 
 
-
+console.log(props.screen_id)
     const handlesavefunction = async (status) => {
         if (Boolean(getscheduleData.length)) {
             setloading(true)
@@ -56,7 +56,7 @@ const Sequence = () => {
                 headers: headers,
                 data:
                 {
-                    screen_ids: [1, 2, 3],
+                    screen_ids:props.screen_id,
                     specific_dates: specific_dates,
                     schedule_name: campaign,
                     schedule_items: getscheduleData,
@@ -68,7 +68,7 @@ const Sequence = () => {
                 const { data } = await axios.request(options);
                 setloading(false)
                 if (data.status = 'success') {
-                    Router.push('/campaign')
+                    Router.push('/allcampaign')
                 }
             } catch (error) {
                 console.error(error);
@@ -209,3 +209,27 @@ Sequence.layout = "layout1"
 export default Sequence
 
 
+export async function getServerSideProps(context) {
+    const { screen_id } = context.query;
+    const { req } = context;
+    const tokenString = req?.cookies?.ChargeET_UserToken;
+    console.log(context.query)
+    // Check if the 'layout' query parameter exists
+    if (!screen_id) {
+      // Redirect to a 404 page if 'layout' query is missing
+      return {
+        redirect: {
+          destination: '/404',
+          permanent: false,
+        },
+      };
+    }
+  
+    // If 'layout' query parameter is present, pass it as props
+    return {
+      props: {
+        screen_id: screen_id.split(','),
+        token: tokenString
+      },
+    };
+  }
