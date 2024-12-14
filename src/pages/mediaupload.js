@@ -16,6 +16,10 @@ import axios from 'axios';
 
 const Mediaupload = (props) => {
 
+
+
+
+
   const [value, setValue] = React.useState('1');
   const Styles = useStyles()
   const handleChange = (event, newValue) => {
@@ -67,6 +71,7 @@ React.useEffect   (()=>{
                   })
               }
               </div>
+              
 
             </TabPanel>
             <TabPanel value="2">
