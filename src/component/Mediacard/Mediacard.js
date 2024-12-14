@@ -9,7 +9,7 @@ const Mediacard = ({item , hnadlechnage =()=>{},select='' , key} ) => {
   return (
     <div className={`${classes.mediacard} ${select} `} onClick={()=>hnadlechnage(item)}  >
         <div className={classes.mediacardimage} >
-            <Image width={100} height={50}  src={item.asset_url || '/user.jpg' } quality={100}  alt='image'></Image>
+            <Image width={100} height={100}  src={item.asset_url || '/user.jpg' } quality={100}  alt='image'></Image>
         </div>
         <h3 className={classes.mediacardimgename}>{item.campaign_name||item.media_id || item._id}</h3>
         <div className='d-flex justify-content-between align-content-center'>

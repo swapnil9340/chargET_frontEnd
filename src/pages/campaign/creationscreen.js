@@ -69,7 +69,6 @@ const Createscreen = (props) => {
   React.useEffect(() => {
     axios.post(url, data, { headers })
       .then(response => {
-        // console.log(Boolean(response.data.media_information))
         const l = response.data.media_information
         Setmedia(l);
       })
@@ -91,9 +90,7 @@ const Createscreen = (props) => {
         const campaignObjects = [];
 
         for (let i = 0; i < numberOfZones; i++) {
-          const zone_id = baseZoneId + i; // Ensure unique, incremental zone_id for each array
-
-          // Check if a campaign object for this part already exists
+          const zone_id = baseZoneId + i; 
           let existingCampaign = prev.find(campaign => campaign.zone_id === zone_id);
 
           if (!existingCampaign) {
@@ -208,13 +205,13 @@ const Createscreen = (props) => {
     <div className={styled.dashboard}>
       <div className={styled.mainDashboardsection}>
         <Header />
-        <p style={{ fontSize: "24px", fontWeight: "600" }}> <DesignServicesIcon ></DesignServicesIcon>
+        <div style={{ fontSize: "24px", fontWeight: "600" }}> <DesignServicesIcon ></DesignServicesIcon>
           <TextField
             value={campaign_name}
             onChange={(e)=>setcampaign_name(e.target.value)}
             placeholder='Campaign Name'
           ></TextField>
-        </p>
+        </div>
         <Box className={Styles.historyList}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

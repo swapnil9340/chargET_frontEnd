@@ -12,11 +12,14 @@ import Header from '@/component/Header/Searchbar';
 import { Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Screencard from '@/component/Screen/Screencard';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 const Choosescreen = () => {
     const [value, setValue] = React.useState('1');
     const [selecteditem , setselecteditem]= useState([])
     const Styles = useStyles()
     const router = useRouter();
+     const [device, setdevice] = React.useState([]);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -31,9 +34,50 @@ const Choosescreen = () => {
       };
      
     const handleRedirect = () => {
-        router.push('/sequence');
+        router.push(`/sequence?${selecteditem}`);
       };
 
+      React.useEffect(() => {
+        const fetchData = async () => {
+          const cookieValue = Cookies.get('ChargeET_UserToken');
+    
+          if (!cookieValue) {
+            console.warn("User token cookie not found.");
+            return;
+          }
+    
+          const options = {
+            method: 'POST',
+            url: 'https://mytx4uv5wqtobdr5ojx7qn3r5u0xaqli.lambda-url.us-east-1.on.aws/',
+            params: { type: 'register_device', action: 'get' },
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: cookieValue,
+            },
+            data: {},
+          };
+    
+          try {
+            const { data } = await axios.request(options);
+            if (data.status = 'success') {
+    
+              setdevice(data.devices);
+            }
+            else {
+              setdevice([]);
+            }
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        };
+    
+    
+        fetchData();
+      }, [])
+
+
+
+      console.log(device ,  selecteditem)
   return (
     <div className={styled.dashboard}>
     <div className={styled.mainDashboardsection} style={{ width: "100%" }}>
@@ -58,24 +102,11 @@ const Choosescreen = () => {
                     <div className={styled.commonbox}>
                         <h3 className={styled.commonboxTitle}>{`${selecteditem.length} screen selected`}</h3>
                         <Grid container spacing={3} className={styled.Zonesection}>
-                            <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
-                               <Screencard selected={selected} selecteditem={selecteditem} id={1} />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
-                                <Screencard selected={selected} selecteditem={selecteditem} id={2}/>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
-                                <Screencard selected={selected} selecteditem={selecteditem} id={3}/>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
-                                <Screencard selected={selected} selecteditem={selecteditem} id={4}/>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
-                                <Screencard selected={selected} selecteditem={selecteditem} id={5}/>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
-                                <Screencard selected={selected} selecteditem={selecteditem} id={6}/>
-                            </Grid>
+                            {device.map((data)=>{
+                               return( <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
+                                <Screencard selected={selected} selecteditem={selecteditem} id={1} data={data} />
+                             </Grid>)
+                            })}
                         </Grid>
                     </div>
                 </TabPanel>

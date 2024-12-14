@@ -5,14 +5,14 @@ import { MdHighQuality } from "react-icons/md";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FaLocationPin } from "react-icons/fa6";
 import deviceimage from '../../../public/deviceimage.png'
-const Screencard = ({ id ,selected , selecteditem}) => {
+const Screencard = ({ id ,selected , selecteditem , data}) => {
   return (
-    <div className={`${styled.screencard} ${selecteditem.includes(id)&& styled.screenselected}`} onClick={()=>{selected(id)}}>
+    <div className={`${styled.screencard } ${selecteditem.includes(data.device_id)&& styled.screenselected}`} onClick={()=>{selected(data.device_id)}}>
       <div className={styled.screenImage}>
         <Image src={deviceimage.src} alt='image' width={100} height={100}  />
       </div>
       <div className={styled.sreenDetails}>
-        <h3 className={styled.screenName}>{`Galaxy S1`}</h3>
+        <h3 className={styled.screenName}>{data.device_name}</h3>
         <ul>
             <li>
                 <span><MdHighQuality /> {`1080x2040`}

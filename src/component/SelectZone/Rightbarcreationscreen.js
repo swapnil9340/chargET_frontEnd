@@ -34,8 +34,8 @@ const {selectzone, setSelectZone} = props
           </div>
           <div className='col-6 d-flex mt-2 align-items-center' >
             {props.zone === "singlezone1" && <Button onClick={()=>handleZone("zone1" , "selectzone1")}>zone1</Button>}
-            {props.zone === "singlezone2" && <div><Button onClick={()=>handleZone("zone2" , "selectzone1")}>zone1</Button><Button onClick={()=>handleZone("zone2" , "selectzone2")}>zone1</Button></div>}
-            {props.zone === "singlezone3" && <div><Button onClick={()=>handleZone("zone3" , "selectzone1")}>zone1</Button><Button onClick={()=>handleZone("zone3" , "selectzone2")}>zone1</Button><Button onClick={()=>handleZone("zone3" , "selectzone3")}>zone1</Button></div>}
+            {props.zone === "singlezone2" && <div><Button onClick={()=>handleZone("zone2" , "selectzone1")}>zone1</Button><Button onClick={()=>handleZone("zone2" , "selectzone2")}>zone2</Button></div>}
+            {props.zone === "singlezone3" && <div><Button onClick={()=>handleZone("zone3" , "selectzone1")}>zone1</Button><Button onClick={()=>handleZone("zone3" , "selectzone2")}>zon2</Button><Button onClick={()=>handleZone("zone3" , "selectzone3")}>zone3</Button></div>}
           </div>
         </div>
 

@@ -39,7 +39,6 @@ const Sequence = () => {
 
 
     const handleselectcam = (media) => {
-        console.log(media.campaign_name)
          const name =  media.campaign_name
         const id = media._id;
         setcampaignIds({id : id ,name :name }); // Directly set the new campaign ID, removing all previous ones
