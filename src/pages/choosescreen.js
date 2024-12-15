@@ -102,8 +102,8 @@ const Choosescreen = () => {
                     <div className={styled.commonbox}>
                         <h3 className={styled.commonboxTitle}>{`${selecteditem.length} screen selected`}</h3>
                         <Grid container spacing={3} className={styled.Zonesection}>
-                            {device.map((data)=>{
-                               return( <Grid item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
+                            {device.map((data , index)=>{
+                               return( <Grid key={index} item xs={12} sm={6} md={4} xl={4} className={styled.zonebox}>
                                 <Screencard selected={selected} selecteditem={selecteditem} id={1} data={data} />
                              </Grid>)
                             })}
