@@ -123,13 +123,15 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
                             const newStart = new Date(`1970-01-01T${scheduleItems.time_slots.start_time}Z`);
                             const newEnd = new Date(`1970-01-01T${scheduleItems.time_slots.end_time}Z`);
 
-                            if (item.campaign_id === scheduleItems.campaign_id) {
+                            // if (item.campaign_id === scheduleItems.campaign_id) {
+                                
                                 // If the same campaign, adjust the existing item's end time if there's an overlap
                                 if (newStart < existingEnd && newStart >= existingStart) {
                                     item.time_slots.end_time = newStart.toISOString().split('T')[1].slice(0, 8);
+                                    return true;
                                 }
-                                return true;
-                            } else if (newStart < existingEnd && newEnd > existingStart) {
+                            // }
+                             else if (newStart < existingEnd && newEnd > existingStart) {
                                 // If overlap is found with a different campaign, prompt the user
                                 overlapFound = true;
                                 return false; // Remove the old item if user decides to replace
