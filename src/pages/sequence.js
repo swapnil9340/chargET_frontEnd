@@ -45,7 +45,7 @@ const Sequence = (props) => {
     };
 
 
-console.log(props.screen_id)
+
     const handlesavefunction = async (status) => {
         if (Boolean(getscheduleData.length)) {
             setloading(true)

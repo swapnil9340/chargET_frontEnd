@@ -76,8 +76,6 @@ const Choosescreen = () => {
       }, [])
 
 
-
-      console.log(device ,  selecteditem)
   return (
     <div className={styled.dashboard}>
     <div className={styled.mainDashboardsection} style={{ width: "100%" }}>
