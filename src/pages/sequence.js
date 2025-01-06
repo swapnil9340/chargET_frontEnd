@@ -20,6 +20,7 @@ import { TextField } from '@mui/material';
 const Sequence = (props) => {
     const [value, setValue] = React.useState('1');
     const [events, setEvents] = React.useState(true);
+    const [allscheduleData , setallscheduleData]  = React.useState([])
     const [getscheduleData, SetscheduleData] = React.useState([])
     const [campaignIds, setcampaignIds] = React.useState([]);
     const [campaign, Setcampaign] = React.useState("")
@@ -138,6 +139,8 @@ const Sequence = (props) => {
 
                             <Calendar
                             events={events}
+                            allscheduleData ={allscheduleData}
+                             setallscheduleData={setallscheduleData}
                                 campaignIds={campaignIds}
                                 setcampaignIds={setcampaignIds}
                                 Setmedia={Setmedia}
@@ -154,6 +157,8 @@ const Sequence = (props) => {
                     : 
                     <Calendar
                     campaignIds={campaignIds}
+                    allscheduleData ={allscheduleData}
+                    setallscheduleData={setallscheduleData}
                     setcampaignIds={setcampaignIds}
                     Setmedia={Setmedia}
                     select={'month'}
@@ -215,15 +220,15 @@ export async function getServerSideProps(context) {
     const tokenString = req?.cookies?.ChargeET_UserToken;
     console.log(context.query)
     // Check if the 'layout' query parameter exists
-    if (!screen_id) {
-      // Redirect to a 404 page if 'layout' query is missing
-      return {
-        redirect: {
-          destination: '/404',
-          permanent: false,
-        },
-      };
-    }
+    // if (!screen_id) {
+    //   // Redirect to a 404 page if 'layout' query is missing
+    //   return {
+    //     redirect: {
+    //       destination: '/404',
+    //       permanent: false,
+    //     },
+    //   };
+    // }
   
     // If 'layout' query parameter is present, pass it as props
     return {

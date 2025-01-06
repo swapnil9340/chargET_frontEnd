@@ -6,13 +6,12 @@ import axios from 'axios';
 import { FaTrash } from "react-icons/fa";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { v4 as uuidv4 } from 'uuid';
-export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia, Setspecific_dates, name, specific_dates, select }) {
+export default function Calender({ events, setEvents, getscheduleData, SetscheduleData, campaignIds, Setmedia, Setspecific_dates, name, specific_dates, select ,allscheduleData , setallscheduleData }) {
     const [currentView, setCurrentView] = React.useState(select)
     const cookieValue = Cookies.get('ChargeET_UserToken');
     const [colorMap] = React.useState({});
     const campaignId = campaignIds;
     const uniqueId = uuidv4();
-    console.log(uniqueId);
     const headers = {
         'Authorization': cookieValue,
         'Content-Type': 'application/json'
@@ -162,9 +161,9 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
     };
 
     const mapScheduleToEvents = (schedule, date) => {
-        console.log(schedule)
+        const uniqueId = uuidv4();
         return {
-            timeslot_id:schedule.time_slots.timeslot_id,
+            timeslot_id:uniqueId,
             title: schedule.campaign_Name,
             start: new Date(`${date}T${schedule.time_slots.start_time}`),
             end: new Date(`${date}T${schedule.time_slots.end_time}`),
@@ -190,8 +189,8 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
         setCurrentView(select);
     };
     const handleDeleteEvent = (timeslot_id) => {
-        SetscheduleData(prevData => 
-            prevData.filter(item => item.time_slots.timeslot_id !== timeslot_id)
+        setallscheduleData(prevData => 
+            prevData.filter(item => item.timeslot_id !== timeslot_id)
         );
     };
     
@@ -231,12 +230,18 @@ export default function Calender({ events, setEvents, getscheduleData, Setschedu
           </div>
         );
       };
-console.log(getscheduleData)
+console.log(getscheduleData , events , generateCalendarEvents(getscheduleData, specific_dates) , allscheduleData)
+
+         React.useEffect(()=>{
+            setallscheduleData(generateCalendarEvents(getscheduleData, specific_dates))
+         },[getscheduleData , specific_dates ])
+
+
 
     return (
         <Calendar
             localizer={localizer}
-            events={generateCalendarEvents(getscheduleData, specific_dates)}
+            events={allscheduleData}
             selectable
             onSelectSlot={handleSelectSlot} // Add new events
             style={{ height: '100%', width: '100%' }}
